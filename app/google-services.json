@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "797037560426",
+    "project_id": "jua-kaligo",
+    "storage_bucket": "jua-kaligo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:797037560426:android:52d2aa31fb4a7a201ac013",
+        "android_client_info": {
+          "package_name": "com.example.jua_kaligo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "797037560426-hgius207thg733h3kg246ccg85r3fu25.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUbASgKFOxyJUJalRF_yuUUcqsXj3hIXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "797037560426-hgius207thg733h3kg246ccg85r3fu25.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

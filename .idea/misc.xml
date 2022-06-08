@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/drawable/circle.xml" value="0.1" />
+        <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/font/.xml" value="0.19907407407407407" />
+        <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/font/alex_brush.xml" value="0.11822916666666666" />
+        <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/font/arizonia.xml" value="0.11822916666666666" />
+        <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/font/eater.xml" value="0.11822916666666666" />
+        <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/font/pacifico.xml" value="0.11822916666666666" />
+        <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/font/supermercado_one.xml" value="0.11822916666666666" />
+        <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/activity_main.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/activity_verification.xml" value="0.22760416666666666" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
