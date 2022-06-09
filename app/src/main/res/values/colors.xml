@@ -10,4 +10,6 @@
     <color name="gold">#F3DB08</color>
     <color name="goldish">#C6B30A</color>
     <color name="gol">#786D04</color>
+    <color name="textcolor">#C30848</color>
+    <color name="bar">#FF9800</color>
 </resources>

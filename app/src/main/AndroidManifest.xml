@@ -14,10 +14,16 @@
         android:theme="@style/Theme.JUAKALIGO"
         tools:targetApi="31">
         <activity
-            android:name=".Verification"
+            android:name=".ChooseRole"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Verification"
+            android:exported="false" />
+        <activity
+            android:name=".Splash_Screen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
