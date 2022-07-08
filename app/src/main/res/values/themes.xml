@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.JUAKALIGO" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/gold</item>
+        <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/goldish</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -10,7 +10,7 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">#F09004</item>
+        <item name="android:statusBarColor" tools:targetApi="l">#CEBB10</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

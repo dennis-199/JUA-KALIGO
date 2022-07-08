@@ -4,44 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backimage"
+    android:background="#EED622"
     tools:context=".Splash_Screen">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:rotation="-35"
-        android:layout_marginTop="0dp"
-        android:layout_marginStart="135dp"
         android:orientation="vertical">
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-
-            android:textStyle="bold"
-            android:text="Jua"
-            android:fontFamily="@font/alex_brush"
-            android:shadowColor="#6A3632"
-            android:shadowDx="0.0"
-            android:shadowDy="0.0"
-            android:shadowRadius="2"
-            android:textColor="@color/white"
-            android:textSize="109sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:fontFamily="@font/alex_brush"
-            android:shadowColor="#6A3632"
-            android:shadowDx="0.0"
-            android:shadowDy="0.0"
-            android:shadowRadius="2"
-            android:text="Kali"
-            android:textColor="@color/white"
-            android:textSize="109sp"
-            android:textStyle="bold" />
+            android:src="@drawable/logo"/>
 
     </LinearLayout>
 

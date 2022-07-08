@@ -1,4 +1,28 @@
 <resources>
     <string name="app_name">JUA-KALIGO</string>
     <string name="phonenumber">phone number</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="full_names">Full Names</string>
+    <string name="phone_number">phone number</string>
+    <string name="vendor">VENDOR</string>
+    <string name="customer">CUSTOMER</string>
+    <string-array name="region">
+        <item>Westlands</item>
+        <item>Dagoretti North</item>
+        <item>Dagoretti South</item>
+        <item>Langata</item>
+        <item>Kibra</item>
+        <item>Roysambu</item>
+        <item>Kasarani</item>
+        <item>Ruaraka</item>
+        <item>Embakasi South</item>
+        <item>Embakasi North</item>
+        <item>Embakasi Central</item>
+        <item>Embakasi East</item>
+        <item>Embakasi West</item>
+        <item>Makadara</item>
+        <item>Kamukunji</item>
+        <item>Starehe</item>
+        <item>Mathare</item>
+    </string-array>
 </resources>

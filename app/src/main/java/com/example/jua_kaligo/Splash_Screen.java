@@ -20,7 +20,7 @@ public class Splash_Screen extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
-                    Intent welcomeIntent = new Intent(Splash_Screen.this, MainActivity.class);
+                    Intent welcomeIntent = new Intent(Splash_Screen.this, ChooseRole.class);
                     startActivity(welcomeIntent);
                 }
 
