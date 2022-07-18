@@ -25,4 +25,14 @@
         <item>Starehe</item>
         <item>Mathare</item>
     </string-array>
+    <string-array name="business">
+        <item>Welding</item>
+        <item>Mtumba clothes</item>
+        <item>Hotel</item>
+        <item>Electronics</item>
+        <item>Cyber</item>
+        <item>Basket weaving</item>
+        <item>Car wash</item>
+
+    </string-array>
 </resources>
