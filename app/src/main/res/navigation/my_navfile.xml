@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_navfile"
+    app:startDestination="@id/homefragment">
+    <fragment
+        android:id="@+id/homefragment"
+        android:label="Home"
+        android:name="com.example.jua_kaligo.Homefragment"
+        tools:layout="@layout/fragment_homefragment"/>
+
+
+</navigation>
