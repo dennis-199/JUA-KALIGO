@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EED622"
-    tools:context=".MainActivity">
+    tools:context=".vendorReg">
     <TextView
         android:id="@+id/signupintext"
         android:layout_width="wrap_content"
@@ -125,8 +125,10 @@
                 android:layout_height="45dp"
                 android:layout_marginTop="30dp"
                 android:text="Register"
+
                 android:textColor="@color/black"
                 android:background="@drawable/circle"
+                android:onClick="login"
                 android:textStyle="bold"/>
 
 

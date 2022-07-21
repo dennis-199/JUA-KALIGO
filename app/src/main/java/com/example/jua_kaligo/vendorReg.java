@@ -2,7 +2,9 @@ package com.example.jua_kaligo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -24,5 +26,13 @@ public class vendorReg extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.business, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(adapter2);
+
+
+
+    }
+    public void login(View view) {
+        Intent intent = new Intent(vendorReg.this, MainScreen.class);
+        startActivity(intent);
+
     }
 }

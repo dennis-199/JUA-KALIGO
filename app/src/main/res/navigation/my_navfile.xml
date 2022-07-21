@@ -9,6 +9,27 @@
         android:label="Home"
         android:name="com.example.jua_kaligo.Homefragment"
         tools:layout="@layout/fragment_homefragment"/>
+    <fragment
+        android:id="@+id/catrgoryfragament"
+        android:label="Category"
+        android:name="com.example.jua_kaligo.categoryFragment"
+        tools:layout="@layout/fragment_category"/>
+    <fragment
+        android:id="@+id/servicefragment"
+        android:label="Services"
+        android:name="com.example.jua_kaligo.servicesFragment"
+        tools:layout="@layout/fragment_services"/>
+    <fragment
+        android:id="@+id/bartertrade"
+        android:label="Trade"
+        android:name="com.example.jua_kaligo.TradeFragment"
+        tools:layout="@layout/fragment_trade"/>
+    <fragment
+        android:id="@+id/accountfragament"
+        android:name="com.example.jua_kaligo.AccountFragment"
+        android:label="Account"
+        tools:layout="@layout/fragment_account"/>
+
 
 
 </navigation>
