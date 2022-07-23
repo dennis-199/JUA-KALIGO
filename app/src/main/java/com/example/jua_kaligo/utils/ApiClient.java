@@ -1,13 +1,13 @@
 package com.example.jua_kaligo.utils;
 
-import static com.example.buupass.utils.AppConstants.BASE_URL;
-import static com.example.buupass.utils.AppConstants.CONNECT_TIMEOUT;
-import static com.example.buupass.utils.AppConstants.READ_TIMEOUT;
-import static com.example.buupass.utils.AppConstants.WRITE_TIMEOUT;
+import static com.example.jua_kaligo.utils.AppConstants.BASE_URL;
+import static com.example.jua_kaligo.utils.AppConstants.CONNECT_TIMEOUT;
+import static com.example.jua_kaligo.utils.AppConstants.READ_TIMEOUT;
+import static com.example.jua_kaligo.utils.AppConstants.WRITE_TIMEOUT;
 
-import com.example.buupass.interceptor.AccessTokenInterceptor;
-import com.example.buupass.interceptor.AuthInterceptor;
-import com.example.buupass.services.STKPushService;
+import com.example.jua_kaligo.interceptor.AccessTokenInterceptor;
+import com.example.jua_kaligo.interceptor.AuthInterceptor;
+import com.example.jua_kaligo.services.STKPushService;
 
 import java.util.concurrent.TimeUnit;
 
