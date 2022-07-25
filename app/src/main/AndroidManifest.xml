@@ -3,17 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.jua_kaligo">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher3"
-        tools:replace="android:icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher1_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JUAKALIGO"
+        tools:replace="android:icon"
         tools:targetApi="31">
+        <activity
+            android:name=".Payment"
+            android:exported="false" />
         <activity
             android:name=".MpesaActivity"
             android:exported="false" />

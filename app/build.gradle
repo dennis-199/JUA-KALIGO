@@ -84,6 +84,9 @@ dependencies {
 
     implementation 'com.jakewharton:butterknife:10.2.3'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
+    // flutter wave
+    implementation 'com.github.flutterwave.rave-android:rave_android:2.1.39'
+    implementation 'com.github.Flutterwave.rave-android:rave_presentation:2.1.39'
 
 
 }
