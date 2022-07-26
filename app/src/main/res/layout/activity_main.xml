@@ -100,6 +100,7 @@
                 android:layout_height="45dp"
                 android:layout_marginTop="30dp"
                 android:text="Register"
+                android:onClick="testing"
                 android:textColor="@color/black"
                 android:background="@drawable/circle"
                 android:textStyle="bold"/>

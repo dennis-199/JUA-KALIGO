@@ -36,4 +36,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void testing(View view) {
+        Intent intent= new Intent(this,Payment.class);
+        startActivity(intent);
+    }
 }
