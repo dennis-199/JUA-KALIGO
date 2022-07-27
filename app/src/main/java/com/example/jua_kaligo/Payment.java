@@ -7,16 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.flutterwave.raveandroid.Meta;
+
+//import com.flutterwave.raveandroid.RaveConstants;
 import com.flutterwave.raveandroid.RavePayActivity;
-//import com.flutterwave.raveandroid.RaveUiManager;
-import com.flutterwave.raveandroid.RavePayManager;
-import com.flutterwave.raveandroid.RaveConstants;
 
 
 
+//import com.flutterwave.raveandroid.rave_java_commons.RaveConstants;
+import com.flutterwave.raveandroid.RaveUiManager;
 
-
+//import com.flutterwave.raveandroid.RavePayManager;
 
 
 public class Payment extends AppCompatActivity {
@@ -36,7 +36,7 @@ public class Payment extends AppCompatActivity {
     }
 
     private void makepayment() {
-        new RavePayManager(this)//.setAmount(100)
+        new RaveUiManager(this)//.setAmount(100)
                 .setCurrency("Ksh")
                 .setCountry("KEN")
                 .setEmail("otieno.dennis strathmore.edu")
@@ -59,13 +59,13 @@ public class Payment extends AppCompatActivity {
                 .initialize();
 
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    //@Override
+    /*protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         /*
          *  We advise you to do a further verification of transaction's details on your server to be
          *  sure everything checks out before providing service or goods.
          */
-        if (requestCode == RaveConstants.RAVE_REQUEST_CODE && data != null) {
+        /*if (requestCode == RaveConstants.RAVE_REQUEST_CODE && data != null) {
             String message = data.getStringExtra("response");
             if (resultCode == RavePayActivity.RESULT_SUCCESS) {
                 Toast.makeText(this, "SUCCESS " + message, Toast.LENGTH_SHORT).show();
@@ -80,6 +80,6 @@ public class Payment extends AppCompatActivity {
         else {
             super.onActivityResult(requestCode, resultCode, data);
         }
-    }
+    } */
 
 }
