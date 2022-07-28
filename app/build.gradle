@@ -23,6 +23,20 @@ android {
         }
     }
 
+    flavorDimensions "version"
+    productFlavors {
+        gms {
+            dimension "version"
+            applicationIdSuffix ".gms"
+            versionNameSuffix "-gms"
+        }
+        v3 {
+            dimension "version"
+            applicationIdSuffix ".v3"
+            versionNameSuffix "-v3"
+        }
+    }
+
 
 
 
@@ -84,6 +98,9 @@ dependencies {
     //implementation 'com.github.Flutterwave:rave-android:1.0.35'
 
     implementation 'com.github.flutterwave.rave-android:rave_android:2.1.39'
+
+    // GMS
+    gmsImplementation 'com.google.android.gms:play-services-maps:18.1.0'
 
 
 
