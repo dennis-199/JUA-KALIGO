@@ -5,8 +5,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainScreen">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:id="@+id/mytable"
+        android:background="#EED622"
+        android:layout_height="36dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/mytext"
+            android:text="Good Morning:"
+            android:textColor="@color/white"
+            android:textSize="27sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Dennis Ochieng "
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="21sp"
+            android:textStyle="bold"/>
+        </LinearLayout>
+
+    </TableLayout>
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment"
+        android:layout_below="@id/mytable"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
