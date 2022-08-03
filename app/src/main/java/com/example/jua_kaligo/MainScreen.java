@@ -8,8 +8,10 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.content.ClipData;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -60,4 +62,9 @@ public class MainScreen extends AppCompatActivity {
         }
     };
 
+    public void postactivity(View view) {
+        Intent intent = new Intent(this,PostActivity.class);
+        startActivity(intent);
+
+    }
 }

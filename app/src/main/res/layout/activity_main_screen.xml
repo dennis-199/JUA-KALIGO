@@ -53,6 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
+        android:onClick="postactivity"
         android:layout_marginRight="20dp"
         android:backgroundTint="#EED622"
         android:src="@drawable/ic_baseline_post_add_24"
