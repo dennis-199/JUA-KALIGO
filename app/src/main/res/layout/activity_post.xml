@@ -30,6 +30,30 @@
             android:padding="10dp"
             android:textColor="@color/black"
             android:textStyle="bold" />
+        <EditText
+            android:id="@+id/itemdesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/circle"
+            android:hint="Description of item "
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/cost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/circle"
+            android:hint="cost of item  "
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
