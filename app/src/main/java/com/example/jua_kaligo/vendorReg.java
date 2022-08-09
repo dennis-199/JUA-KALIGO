@@ -6,10 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.hbb20.CountryCodePicker;
 
 public class vendorReg extends AppCompatActivity {
     private Spinner spinner, spinner2;
+    TextInputEditText text;
+    EditText phone, fullname;
+    CountryCodePicker countryCodePicker;
+    Spinner spinnerLocation, Spinnertypeofbusiness;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +39,7 @@ public class vendorReg extends AppCompatActivity {
 
     }
     public void login(View view) {
-        Intent intent = new Intent(vendorReg.this, MainScreen.class);
+        Intent intent = new Intent(vendorReg.this, Verification.class);
         startActivity(intent);
 
     }
