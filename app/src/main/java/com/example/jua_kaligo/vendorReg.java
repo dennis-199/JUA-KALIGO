@@ -15,14 +15,18 @@ import com.hbb20.CountryCodePicker;
 public class vendorReg extends AppCompatActivity {
     private Spinner spinner, spinner2;
     TextInputEditText text;
-    EditText phone, fullname;
+    EditText phone, fullname, IDnumber;
     CountryCodePicker countryCodePicker;
-    Spinner spinnerLocation, Spinnertypeofbusiness;
+    //Spinner spinnerLocation, Spinnertypeofbusiness;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor_reg);
+        phone = findViewById(R.id.phone_number);
+        fullname = findViewById(R.id.fullName);
+        countryCodePicker = findViewById(R.id.country_code_picker);
+        IDnumber = findViewById(R.id.idnumber);
 
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner2 = (Spinner) findViewById(R.id.spinner2);
@@ -38,8 +42,18 @@ public class vendorReg extends AppCompatActivity {
 
 
     }
-    public void login(View view) {
+    public void login(View view)
+    {
+        //if(!validatePhone()){
+
+        //}
+
+        String _getUserenteredphonenumber = phone.getText().toString().trim();
+        String _getPhoneNumber = "+"+countryCodePicker.getFullNumber()+_getUserenteredphonenumber;
         Intent intent = new Intent(vendorReg.this, Verification.class);
+        // passing fields to the next activity
+        //intent.putExtra("fullname", fullname);
+        // start activity
         startActivity(intent);
 
     }

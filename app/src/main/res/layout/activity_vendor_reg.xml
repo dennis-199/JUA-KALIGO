@@ -40,6 +40,7 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
             <EditText
+                android:id="@+id/fullName"
                 android:layout_width="330dp"
                 android:layout_height="45dp"
                 android:hint="@string/full_names"
@@ -64,6 +65,7 @@
                     app:ccp_showPhoneCode="true"
                     app:ccp_flagBorderColor="@color/black"/>
                 <EditText
+                    android:id="@+id/phone_number"
                     android:layout_width="170dp"
                     android:layout_height="45dp"
                     android:layout_marginTop="6dp"
