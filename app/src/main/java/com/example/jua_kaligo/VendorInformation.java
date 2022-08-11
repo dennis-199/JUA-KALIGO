@@ -32,9 +32,17 @@ public class VendorInformation extends AppCompatActivity {
 
     public void verifyOTP(View view) {
 
-        //String _getUserenteredphonenumber = phone.getText().toString().trim();
-        //String _getPhoneNumber = "+"+countryCodePicker.getFullNumber()+_getUserenteredphonenumber;
+        // get values passed from previous screen
+        String _fullname = getIntent().getStringExtra("fullname");
+        String _IDnumber = getIntent().getStringExtra("IDnumber");
+
+        String _getUserenteredphonenumber = phone.getText().toString().trim();
+        String _getPhoneNumber = "+"+countryCodePicker.getFullNumber()+_getUserenteredphonenumber;
         Intent intent = new Intent(VendorInformation.this, Verification.class);
+        // pass all fields to the next activity
+        intent.putExtra("fullname", _fullname);
+        intent.putExtra("IDnumber",_IDnumber);
+        intent.putExtra("phoneNo",_getPhoneNumber);
         startActivity(intent);
 
 
