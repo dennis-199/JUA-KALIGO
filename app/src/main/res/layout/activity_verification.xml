@@ -29,6 +29,15 @@
             app:itemWidth="50dp"
             app:lineColor="@color/gold"
             app:lineWidth="3dp" />
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Verify Code"
+            android:layout_marginTop="30dp"
+            android:textStyle="bold"
+            android:onClick="callNextScreenFromOTP"
+            android:transitionName="transition_OTP_Screen"/>
     </LinearLayout>
 
 </RelativeLayout>

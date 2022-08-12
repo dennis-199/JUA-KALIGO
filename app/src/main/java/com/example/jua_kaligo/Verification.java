@@ -5,13 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.chaos.view.PinView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskExecutors;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -55,6 +62,11 @@ public class Verification extends AppCompatActivity {
 
         @Override
         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+            String code = phoneAuthCredential.getSmsCode();
+            if(code!=null){
+                pinfromUser.setText(code);
+                verifyCode(code);
+            }
 
         }
 
@@ -65,4 +77,38 @@ public class Verification extends AppCompatActivity {
         }
     };
 
+    private void verifyCode(String code) {
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(codebySystem,code);
+        signInWithPhoneAuthCredential(credential);
+    }
+
+    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
+        firebaseAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+
+                            Toast.makeText(Verification.this, "Verification Completed", Toast.LENGTH_SHORT).show();
+
+                        } else {
+
+                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                                Toast.makeText(Verification.this, "Verification not completed not complete", Toast.LENGTH_SHORT).show();
+
+                            }
+                        }
+                    }
+                });
+    }
+
+    public void callNextScreenFromOTP(View view) {
+        String code = pinfromUser.getText().toString();
+        if(!code.isEmpty()){
+            verifyCode(code);
+        }
+    }
 }

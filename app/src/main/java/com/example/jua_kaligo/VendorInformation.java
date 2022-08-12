@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -14,6 +16,7 @@ import com.hbb20.CountryCodePicker;
 public class VendorInformation extends AppCompatActivity {
     Spinner spinner, spinner2;
     TextInputEditText text;
+    ScrollView scrollView;
     EditText phone, fullname, IDnumber;
     CountryCodePicker countryCodePicker;
 
@@ -25,6 +28,8 @@ public class VendorInformation extends AppCompatActivity {
         fullname = findViewById(R.id.fullName);
         countryCodePicker = findViewById(R.id.country_code_picker);
         IDnumber = findViewById(R.id.idnumber);
+
+        scrollView = findViewById(R.id.sign_up_scrollview);
 
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner2 = (Spinner) findViewById(R.id.spinner2);
@@ -38,12 +43,15 @@ public class VendorInformation extends AppCompatActivity {
 
         String _getUserenteredphonenumber = phone.getText().toString().trim();
         String _getPhoneNumber = "+"+countryCodePicker.getFullNumber()+_getUserenteredphonenumber;
-        Intent intent = new Intent(VendorInformation.this, Verification.class);
+        Intent intent = new Intent(getApplicationContext(), Verification.class);
         // pass all fields to the next activity
         intent.putExtra("fullname", _fullname);
         intent.putExtra("IDnumber",_IDnumber);
         intent.putExtra("phoneNo",_getPhoneNumber);
-        startActivity(intent);
+        //startActivity(intent);
+        // Transition
+        Pair[] pairs = new Pair[1];
+        pairs[0] = new Pair<View, String>(scrollView, "transition_OTP_Screen");
 
 
     }
