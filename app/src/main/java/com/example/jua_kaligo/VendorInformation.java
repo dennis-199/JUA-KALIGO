@@ -2,7 +2,9 @@ package com.example.jua_kaligo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
@@ -52,6 +54,12 @@ public class VendorInformation extends AppCompatActivity {
         // Transition
         Pair[] pairs = new Pair[1];
         pairs[0] = new Pair<View, String>(scrollView, "transition_OTP_Screen");
+        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(VendorInformation.this, pairs);
+            startActivity(intent, options.toBundle());
+        }else{
+            startActivity(intent);
+        }
 
 
     }
