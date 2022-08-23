@@ -40,26 +40,29 @@ public class VendorInformation extends AppCompatActivity {
     public void verifyOTP(View view) {
 
         // get values passed from previous screen
-        String _fullname = getIntent().getStringExtra("fullname");
-        String _IDnumber = getIntent().getStringExtra("IDnumber");
+        //String _fullname = getIntent().getStringExtra("fullname");
+        //String _IDnumber = getIntent().getStringExtra("IDnumber");
 
-        String _getUserenteredphonenumber = phone.getText().toString().trim();
-        String _getPhoneNumber = "+"+countryCodePicker.getFullNumber()+_getUserenteredphonenumber;
-        Intent intent = new Intent(getApplicationContext(), Verification.class);
+        //String _getUserenteredphonenumber = phone.getText().toString().trim();
+        //String _getPhoneNumber = "+"+countryCodePicker.getFullNumber()+_getUserenteredphonenumber;
+        //Intent intent = new Intent(getApplicationContext(), Verification.class);
         // pass all fields to the next activity
-        intent.putExtra("fullname", _fullname);
-        intent.putExtra("IDnumber",_IDnumber);
-        intent.putExtra("phoneNo",_getPhoneNumber);
+        //intent.putExtra("fullname", _fullname);
+        //intent.putExtra("IDnumber",_IDnumber);
+        //intent.putExtra("phoneNo",_getPhoneNumber);
         //startActivity(intent);
         // Transition
-        Pair[] pairs = new Pair[1];
-        pairs[0] = new Pair<View, String>(scrollView, "transition_OTP_Screen");
-        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(VendorInformation.this, pairs);
-            startActivity(intent, options.toBundle());
-        }else{
-            startActivity(intent);
-        }
+       // Pair[] pairs = new Pair[1];
+        //pairs[0] = new Pair<View, String>(scrollView, "transition_OTP_Screen");
+        //if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            //ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(VendorInformation.this, pairs);
+            //startActivity(intent, options.toBundle());
+       // }else{
+          //  startActivity(intent);
+       // }
+        // Let's start here
+
+
 
 
     }
