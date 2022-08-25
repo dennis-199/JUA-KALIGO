@@ -27,6 +27,7 @@ import com.google.android.gms.tasks.TaskExecutors;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
@@ -68,11 +69,7 @@ public class VendorInformation extends AppCompatActivity {
         spinner2 = (Spinner) findViewById(R.id.spinner2);
         // Turn off phone auth app verification.
         // START
-        Intent intent = getIntent();
 
-        String fullN = intent.getStringExtra("FullName");
-        String phoneN = intent.getStringExtra("PhoneNumber");
-        String IDNumber = intent.getStringExtra("ID_NUMBER");
 
         mAuth = FirebaseAuth.getInstance();
         edtPhone = findViewById(R.id.phone_number);
@@ -113,15 +110,34 @@ public class VendorInformation extends AppCompatActivity {
 
     private void signInWithCredential(PhoneAuthCredential credential) {
         // checking if the code entered is correct
+        Intent intent = getIntent();
+
+        String fullN = intent.getStringExtra("FullName");
+        String phoneN = intent.getStringExtra("PhoneNumber");
+        String IDNumber = intent.getStringExtra("ID_NUMBER");
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    // if code is correct and task is succesful we are sending user to a new activity
 
-                    Intent i = new Intent(VendorInformation.this, MainScreen.class);
-                    startActivity(i);
-                    finish();
+                    // if code is correct and task is succesful we are sending user to a new activity
+                    Vendor vendor = new Vendor(fullN,phoneN,IDNumber);
+
+                    FirebaseDatabase.getInstance().getReference("Vendors").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(vendor).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(VendorInformation.this, "You have been registered successfully ", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(VendorInformation.this, MainScreen.class);
+                                startActivity(i);
+                                finish();
+                            }else{
+                                Toast.makeText(VendorInformation.this, "Failed to Register, Retry", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+
                 } else {
                     Toast.makeText(VendorInformation.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
