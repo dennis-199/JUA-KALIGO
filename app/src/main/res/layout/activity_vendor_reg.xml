@@ -91,6 +91,17 @@
                 android:gravity="center"
                 android:inputType="number"
                 android:textColor="@color/black"/>
+            <EditText
+                android:id="@+id/phoneNo"
+                android:layout_width="330dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/circle"
+                android:hint="Phone number  "
+                android:maxLength="15"
+                android:gravity="center"
+                android:inputType="phone"
+                android:textColor="@color/black"/>
             <Button
                 android:layout_width="200dp"
                 android:layout_height="45dp"
