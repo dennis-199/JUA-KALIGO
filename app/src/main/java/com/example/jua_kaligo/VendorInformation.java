@@ -69,6 +69,7 @@ public class VendorInformation extends AppCompatActivity {
         spinner2 = (Spinner) findViewById(R.id.spinner2);
         // Turn off phone auth app verification.
         // START
+        String country_code = countryCodePicker.getSelectedCountryCode().toString();
 
 
         mAuth = FirebaseAuth.getInstance();

@@ -47,38 +47,33 @@
                 android:textAlignment="center"
                 android:background="@drawable/circle"/>
 
-            <LinearLayout
+
+            <EditText
                 android:layout_width="330dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="30dp"
-                android:gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+
+                android:maxLength="10"
+                android:inputType="phone"
                 android:background="@drawable/circle"
-                android:orientation="horizontal">
-                <com.hbb20.CountryCodePicker
-                    android:id="@+id/country_code_picker"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:ccp_showNameCode="false"
-                    android:gravity="center"
+                android:drawableTint="@color/black"
+                android:hint="@string/phone_number"
+                android:gravity="center"
+                android:textStyle="italic"
+                android:drawableStart="@drawable/ic_baseline_phone_24"
+                />
+            <EditText
+                android:layout_width="330dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/circle"
+                android:hint="ID number"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="11"/>
 
-                    app:ccp_showPhoneCode="true"
-                    app:ccp_flagBorderColor="@color/black"/>
-                <EditText
-                    android:layout_width="170dp"
-                    android:layout_height="45dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginStart="10dp"
-                    android:maxLength="10"
-                    android:inputType="phone"
-                    android:drawableTint="@color/black"
-                    android:hint="@string/phone_number"
-                    android:gravity="center"
-                    android:textStyle="italic"
-                    android:drawableStart="@drawable/ic_baseline_phone_24"
-                    />
 
-            </LinearLayout>
             <TextView
                 android:id="@+id/location"
                 android:layout_width="wrap_content"

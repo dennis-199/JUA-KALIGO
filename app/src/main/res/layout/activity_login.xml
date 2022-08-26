@@ -1,9 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="0dp"
+        android:gravity="center_horizontal"
+        android:background="#EED622"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/signupintext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/eater"
+            android:text="@string/sign_in"
+            android:textColor="@color/black"
+            android:textSize="60sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="220dp"
+            android:src="@drawable/logo"
+            android:layout_gravity="center_horizontal"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="330dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center_horizontal"
+            android:background="@drawable/circle"
+            android:orientation="horizontal">
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/country_code_picker2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:ccp_showNameCode="false"
+                android:gravity="center"
+
+                app:ccp_showPhoneCode="true"
+                app:ccp_flagBorderColor="@color/black"/>
+            <EditText
+                android:id="@+id/phone_number2"
+                android:layout_width="170dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="6dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="10dp"
+                android:maxLength="10"
+                android:inputType="phone"
+                android:drawableTint="@color/black"
+                android:hint="@string/phone_number"
+                android:gravity="center"
+                android:textStyle="italic"
+                android:drawableStart="@drawable/ic_baseline_phone_24"
+                />
+
+
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/idBtnGetOtp2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="10dp"
+            android:text="Get OTP"
+            android:textAllCaps="false" />
+        <EditText
+            android:id="@+id/idEdtOtp2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="10dp"
+            android:hint="Enter OTP"
+            android:importantForAutofill="no"
+            android:inputType="phone" />
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NEXT"
+            android:id="@+id/idBtnVerify"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            app:backgroundTint="@color/white"
+            android:layout_marginTop="30dp"
+            />
+
+
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>
