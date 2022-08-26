@@ -40,6 +40,7 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
             <EditText
+                android:id="@+id/fullnames"
                 android:layout_width="330dp"
                 android:layout_height="45dp"
                 android:hint="@string/full_names"
@@ -49,11 +50,11 @@
 
 
             <EditText
+                android:id="@+id/phoneNumber"
                 android:layout_width="330dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="center_horizontal"
-
                 android:maxLength="10"
                 android:inputType="phone"
                 android:background="@drawable/circle"
@@ -64,6 +65,7 @@
                 android:drawableStart="@drawable/ic_baseline_phone_24"
                 />
             <EditText
+                android:id="@+id/IDNUMBER1"
                 android:layout_width="330dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="20dp"

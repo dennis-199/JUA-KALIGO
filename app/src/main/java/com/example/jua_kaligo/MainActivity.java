@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private Spinner spinner, spinner2;
     private TextView typeofBusiness, idnumber;
     private MaterialButton customerB, vendorB;
+    EditText fullnames, phoneNumber, IDNUMBER;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
         typeofBusiness = findViewById(R.id.typeofbusiness);
         customerB = findViewById(R.id.customerButton);
         vendorB = findViewById(R.id.vendorButton);
+
+        // call
+        fullnames = (EditText) findViewById(R.id.fullnames);
+        phoneNumber = (EditText) findViewById(R.id.phoneNumber);
+        IDNUMBER = (EditText) findViewById(R.id.IDNUMBER1);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.region, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
