@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.FirebaseDatabase;
 import com.hbb20.CountryCodePicker;
 
 import java.util.concurrent.TimeUnit;
@@ -49,7 +50,8 @@ public class LoginActivity extends AppCompatActivity {
         countryCodePicker = findViewById(R.id.country_code_picker2);
         IDnumber = findViewById(R.id.IDNUMBER1);
 
-        String country_code = countryCodePicker.getSelectedCountryCode().toString();
+        String country_code = countryCodePicker.getDefaultCountryCode().toString();
+
 
         mAuth = FirebaseAuth.getInstance();
         edtPhone = findViewById(R.id.phone_number2);
@@ -87,13 +89,32 @@ public class LoginActivity extends AppCompatActivity {
     }
     private void signInWithCredential(PhoneAuthCredential credential){
         // checking if the code entered is correct
+        Intent intent = getIntent();
+        String fullNames = intent.getStringExtra("FullName");
+        String phoneNum = intent.getStringExtra("PhoneNumber");
+        String idNum = intent.getStringExtra("ID_NUMBER");
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Intent i = new Intent(LoginActivity.this,MainScreen.class);
-                    startActivity(i);
-                    finish();
+                    // if code is correct and task is succesful we are sending user to a new activity
+
+                    Customer customer=new Customer(fullNames,phoneNum,idNum);
+
+                    FirebaseDatabase.getInstance().getReference("Customers").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(customer).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(LoginActivity.this, "You have been registered successfully ", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(LoginActivity.this,MainScreen.class);
+                                startActivity(i);
+                                finish();
+                            }else {
+                                Toast.makeText(LoginActivity.this, "Failed to Register, Retry", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
                 }else {
                     Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
