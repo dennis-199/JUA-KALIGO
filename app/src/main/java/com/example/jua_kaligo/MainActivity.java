@@ -44,7 +44,30 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void testing(View view) {
-        Intent intent= new Intent(this,LoginActivity.class);
+        String fullNames = fullnames.getText().toString();
+        String phoneNum = phoneNumber.getText().toString();
+        String idNum = IDNUMBER.getText().toString();
+
+        if(fullNames.isEmpty()){
+            fullnames.setError("Fullname is required ");
+            fullnames.requestFocus();
+            return;
+        }
+        if(phoneNum.isEmpty()){
+            phoneNumber.setError("Phone number is required ");
+            phoneNumber.requestFocus();
+            return;
+        }
+        if(idNum.isEmpty()){
+            IDNUMBER.setError("ID number is required ");
+            IDNUMBER.requestFocus();
+            return;
+        }
+        // move to next activity
+        Intent intent= new Intent(MainActivity.this,LoginActivity.class);
+        intent.putExtra("FullName", fullNames);
+        intent.putExtra("PhoneNumber",phoneNum);
+        intent.putExtra("ID_NUMBER",idNum);
         startActivity(intent);
     }
 }
