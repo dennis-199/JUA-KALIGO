@@ -31,7 +31,7 @@ public class MainScreen extends AppCompatActivity {
     private NavController navController;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
-    private DatabaseReference reference;
+    private DatabaseReference reference, reference2;
     private String userID;
     private TextView textView, fullname;
     FloatingActionButton postbutton;
@@ -47,6 +47,7 @@ public class MainScreen extends AppCompatActivity {
         // try here
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Customers");
+        reference2 = FirebaseDatabase.getInstance().getReference("Vendors");
         userID = user.getUid();
 
         final TextView greetingTextView = (TextView) findViewById(R.id.greetings);
@@ -74,6 +75,39 @@ public class MainScreen extends AppCompatActivity {
                     greetingTextView.setText("Good Night ");
                     full_nameTextview.setText(fullname+"!");
                 }
+                postbutton.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
+        reference2.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Vendor userprofile = snapshot.getValue(Vendor.class);
+
+                Calendar c = Calendar.getInstance();
+                int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
+                String fullname = userprofile.fullN;
+
+                if(timeOfDay >= 0 && timeOfDay < 12){
+                    greetingTextView.setText("Good Morning ");
+                    full_nameTextview.setText(fullname+"!");
+                }else if(timeOfDay >= 12 && timeOfDay < 16){
+                    greetingTextView.setText("Good Afternoon ");
+                    full_nameTextview.setText(fullname+"!");
+                }else if(timeOfDay >= 16 && timeOfDay < 21){
+                    greetingTextView.setText("Good Evening " );
+                    full_nameTextview.setText(fullname+"!");
+                }else if(timeOfDay >= 21 && timeOfDay < 24){
+                    greetingTextView.setText("Good Night ");
+                    full_nameTextview.setText(fullname+"!");
+                }
+                postbutton.setVisibility(View.VISIBLE);
+
             }
 
             @Override
