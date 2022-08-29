@@ -93,13 +93,14 @@ public class LoginActivity extends AppCompatActivity {
         String fullNames = intent.getStringExtra("FullName");
         String phoneNum = intent.getStringExtra("PhoneNumber");
         String idNum = intent.getStringExtra("ID_NUMBER");
+        String Location = intent.getStringExtra("Location");
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     // if code is correct and task is succesful we are sending user to a new activity
 
-                    Customer customer=new Customer(fullNames,phoneNum,idNum);
+                    Customer customer=new Customer(fullNames,phoneNum,idNum,Location);
 
                     FirebaseDatabase.getInstance().getReference("Customers").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(customer).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

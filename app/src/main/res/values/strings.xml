@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">JUA-KALIGO</string>
     <string name="phonenumber">phone number</string>
-    <string name="sign_in">SIGN IN</string>
+    <string name="sign_in">SIGN UP</string>
     <string name="full_names">Full Names</string>
     <string name="phone_number">phone number</string>
     <string name="vendor">VENDOR</string>

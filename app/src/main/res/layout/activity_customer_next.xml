@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EED622"
+    tools:context=".CustomerNext">
+    <TextView
+        android:id="@+id/signupintext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/eater"
+        android:text="@string/sign_in"
+        android:textColor="@color/black"
+        android:textSize="60sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="170dp"
+            android:src="@drawable/logo"
+            android:layout_gravity="center"/>
+        <EditText
+            android:id="@+id/IDNUMBER1"
+            android:layout_width="330dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/circle"
+            android:hint="ID number"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="11"/>
+
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Location "
+            android:layout_marginRight="100dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"/>
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="330dp"
+            android:layout_height="45dp"
+
+            android:layout_marginTop="10dp"
+            android:background="@drawable/circle"/>
+        <Button
+            android:layout_width="330dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="30dp"
+            android:onClick="nextActivity"
+            android:background="@drawable/circle"
+            android:text="NEXT"/>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -34,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
         // call
         fullnames = (EditText) findViewById(R.id.fullnames);
         phoneNumber = (EditText) findViewById(R.id.phoneNumber);
-        IDNUMBER = (EditText) findViewById(R.id.IDNUMBER1);
+        //IDNUMBER = (EditText) findViewById(R.id.IDNUMBER1);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.region, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.region, android.R.layout.simple_spinner_item);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //spinner.setAdapter(adapter);
 
     }
 
@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
     public void testing(View view) {
         String fullNames = fullnames.getText().toString();
         String phoneNum = phoneNumber.getText().toString();
-        String idNum = IDNUMBER.getText().toString();
+        //String idNum = IDNUMBER.getText().toString();
+        //String location = spinner.getSelectedItem().toString();
 
         if(fullNames.isEmpty()){
             fullnames.setError("Fullname is required ");
@@ -58,16 +59,17 @@ public class MainActivity extends AppCompatActivity {
             phoneNumber.requestFocus();
             return;
         }
-        if(idNum.isEmpty()){
-            IDNUMBER.setError("ID number is required ");
-            IDNUMBER.requestFocus();
-            return;
-        }
+        //if(idNum.isEmpty()){
+            //IDNUMBER.setError("ID number is required ");
+            //IDNUMBER.requestFocus();
+            //return;
+        //}
         // move to next activity
-        Intent intent= new Intent(MainActivity.this,LoginActivity.class);
+        Intent intent= new Intent(MainActivity.this,CustomerNext.class);
         intent.putExtra("FullName", fullNames);
         intent.putExtra("PhoneNumber",phoneNum);
-        intent.putExtra("ID_NUMBER",idNum);
+        //intent.putExtra("ID_NUMBER",idNum);
+        //intent.putExtra("Location",location);
         startActivity(intent);
     }
 }
