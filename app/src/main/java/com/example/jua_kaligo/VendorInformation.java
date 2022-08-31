@@ -129,7 +129,7 @@ public class VendorInformation extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
                                 Toast.makeText(VendorInformation.this, "You have been registered successfully ", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(VendorInformation.this, MainScreen.class);
+                                Intent i = new Intent(VendorInformation.this, VendorScreen.class);
                                 startActivity(i);
                                 finish();
                             }else{

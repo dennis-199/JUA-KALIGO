@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/homeven"
+    android:id="@+id/ven_nav">
+    <fragment
+        android:id="@+id/homeven"
+        android:label="Home"
+        android:name="com.example.jua_kaligo.HomeVendorFragment"
+        tools:layout="@layout/fragment_home_vendor"/>
+    <fragment
+        android:id="@+id/post"
+        android:label="Post"
+        android:name="com.example.jua_kaligo.post_ven_Fragment"
+        tools:layout="@layout/fragment_post_ven_"/>
+    <fragment
+        android:id="@+id/accountVen"
+        android:label="Profile"
+        android:name="com.example.jua_kaligo.account_Ven"
+        tools:layout="@layout/fragment_account__ven"/>
+
+</navigation>

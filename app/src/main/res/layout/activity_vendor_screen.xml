@@ -1,9 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".VendorScreen">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:id="@+id/table">
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <TextView
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/greetings2"
+                    android:text="Good Morning:"
+                    android:textColor="@color/white"
+                    android:textSize="27sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/names2"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Dennis Ochieng "
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="21sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment2"
+        android:layout_below="@id/table"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/ven_nav" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:labelVisibilityMode="labeled"
+        android:layout_gravity="start"
+        android:id="@+id/navigation2"
+        android:background="@color/white"
+        app:menu="@menu/bottomven_nav"
+        android:layout_alignParentBottom="true"/>
+
+
+</RelativeLayout>
