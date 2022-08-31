@@ -84,37 +84,7 @@ public class MainScreen extends AppCompatActivity {
             }
 
         });
-        reference2.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Vendor userprofile = snapshot.getValue(Vendor.class);
 
-                Calendar c = Calendar.getInstance();
-                int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
-                String fullname = userprofile.fullN;
-
-                if(timeOfDay >= 0 && timeOfDay < 12){
-                    greetingTextView.setText("Good Morning ");
-                    full_nameTextview.setText(fullname+"!");
-                }else if(timeOfDay >= 12 && timeOfDay < 16){
-                    greetingTextView.setText("Good Afternoon ");
-                    full_nameTextview.setText(fullname+"!");
-                }else if(timeOfDay >= 16 && timeOfDay < 21){
-                    greetingTextView.setText("Good Evening " );
-                    full_nameTextview.setText(fullname+"!");
-                }else if(timeOfDay >= 21 && timeOfDay < 24){
-                    greetingTextView.setText("Good Night ");
-                    full_nameTextview.setText(fullname+"!");
-                }
-                postbutton.setVisibility(View.VISIBLE);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
         //if(mAuth.getCurrentUser().equals(rootRef.child("Customers"))){
            // postbutton.setVisibility(View.INVISIBLE);
