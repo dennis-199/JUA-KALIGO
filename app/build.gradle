@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -32,6 +33,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -51,6 +55,7 @@ dependencies {
 
 
     implementation 'com.google.firebase:firebase-database:20.0.2'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
 
 
     testImplementation 'junit:junit:4.13.2'

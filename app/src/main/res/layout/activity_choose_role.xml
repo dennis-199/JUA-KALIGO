@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EED622"
+    android:background="#FFFF"
     tools:context=".ChooseRole">
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/eater"
             android:textStyle="bold"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="28sp"
             android:text="Register as a"/>
     </LinearLayout>
@@ -46,7 +46,7 @@
                 android:background="@drawable/rectangle"
                 android:fontFamily="@font/arizonia"
                 android:onClick="customermainActivity"
-                app:backgroundTint="@color/white"
+                app:backgroundTint="@color/backcolor"
                 android:text="@string/customer"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
@@ -67,7 +67,7 @@
                 android:background="@drawable/rectangle"
                 android:fontFamily="@font/arizonia"
                 android:onClick="vendorsMainactivity"
-                app:backgroundTint="@color/white"
+                app:backgroundTint="@color/backcolor"
                 android:text="@string/vendor"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
