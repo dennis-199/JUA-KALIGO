@@ -5,7 +5,7 @@
 
         <!-- Primary brand color. -->
         <item name="android:windowLightStatusBar">true</item>
-        <item name="colorPrimary">@color/gold</item>
+        <item name="colorPrimary">@color/backcolor</item>
         <item name="colorPrimaryVariant">@color/goldish</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->

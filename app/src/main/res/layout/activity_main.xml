@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EED622"
+    android:background="@color/white"
     tools:context=".MainActivity">
     <TextView
         android:id="@+id/signupintext"
@@ -13,7 +13,7 @@
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/eater"
         android:text="@string/sign_in"
-        android:textColor="@color/black"
+        android:textColor="@color/backcolor"
         android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -24,11 +24,13 @@
         android:layout_height="70dp"
         android:background="@drawable/circle"
         android:text="2/6"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/backcolor"
         android:layout_marginTop="100dp"
         android:layout_marginStart="10dp"
         android:gravity="center"
         android:textStyle="bold"
-        android:textSize="21sp"/>
+        android:textSize="24sp"/>
 
 
     <LinearLayout
@@ -37,8 +39,8 @@
         android:layout_marginTop="100dp"
         android:orientation="vertical">
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="170dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:src="@drawable/logo"
             android:layout_gravity="center"/>
 
@@ -46,6 +48,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="0dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
             <EditText
@@ -54,6 +57,9 @@
                 android:layout_height="45dp"
                 android:hint="@string/full_names"
                 android:inputType="text"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:backgroundTint="@color/backcolor"
                 android:textAlignment="center"
                 android:background="@drawable/circle"/>
 
@@ -66,6 +72,9 @@
                 android:layout_gravity="center_horizontal"
                 android:maxLength="10"
                 android:inputType="phone"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/backcolor"
                 android:background="@drawable/circle"
                 android:drawableTint="@color/black"
                 android:hint="@string/phone_number"
@@ -79,11 +88,11 @@
                 android:layout_width="200dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="30dp"
-                android:text="Register"
+                android:text="NEXT"
                 android:onClick="testing"
                 android:backgroundTint="@color/white"
 
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:background="@drawable/circle"
                 android:textStyle="bold"/>
 

@@ -11,6 +11,7 @@
     <color name="goldish">#C6B30A</color>
     <color name="gol">#786D04</color>
     <color name="textcolor">#C30848</color>
-    <color name="backcolor">#B6B4A4</color>
+    <color name="backcolor">#02DEFB</color>
     <color name="bar">#FF9800</color>
+    <color name="app_color">#EED622</color>
 </resources>
