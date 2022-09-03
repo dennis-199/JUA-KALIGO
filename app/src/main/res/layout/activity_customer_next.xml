@@ -4,8 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EED622"
+    android:background="@color/white"
     tools:context=".CustomerNext">
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/circle"
+        android:text="3/6"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/backcolor"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="10dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="24sp"/>
     <TextView
         android:id="@+id/signupintext"
         android:layout_width="wrap_content"
@@ -13,7 +25,7 @@
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/eater"
         android:text="@string/sign_in"
-        android:textColor="@color/black"
+        android:textColor="@color/backcolor"
         android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -35,8 +47,11 @@
             android:layout_width="330dp"
             android:layout_height="45dp"
             android:layout_marginTop="20dp"
+            android:backgroundTint="@color/backcolor"
             android:background="@drawable/circle"
             android:hint="ID number"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:gravity="center"
             android:inputType="number"
             android:maxLength="11"/>
@@ -54,6 +69,7 @@
             android:id="@+id/spinner"
             android:layout_width="330dp"
             android:layout_height="45dp"
+            android:backgroundTint="@color/backcolor"
 
             android:layout_marginTop="10dp"
             android:background="@drawable/circle"/>
