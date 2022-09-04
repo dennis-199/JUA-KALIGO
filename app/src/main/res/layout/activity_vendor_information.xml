@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EED622"
+    android:background="@color/white"
     android:id="@+id/sign_up_scrollview"
     tools:context=".VendorInformation">
 
@@ -38,6 +38,7 @@
                 android:layout_height="45dp"
                 android:layout_marginTop="30dp"
                 android:gravity="center_horizontal"
+                android:backgroundTint="@color/backcolor"
                 android:background="@drawable/circle"
                 android:orientation="horizontal">
                 <com.hbb20.CountryCodePicker
@@ -92,7 +93,7 @@
             android:id="@+id/idBtnVerify"
             android:textAlignment="center"
             android:textStyle="bold"
-            app:backgroundTint="@color/white"
+            app:backgroundTint="@color/backcolor"
             android:layout_marginTop="30dp"
             />
 
