@@ -65,6 +65,11 @@ dependencies {
     //country code picker
     implementation 'com.hbb20:ccp:2.5.1'
 
+    // circular view
+    implementation 'com.github.mohammadatif:CircularImageView:1.0.0'
+    // tere
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+
 
 
 
