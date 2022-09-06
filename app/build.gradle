@@ -53,9 +53,10 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.5.0'
     implementation 'androidx.navigation:navigation-ui:2.5.0'
 
-
     implementation 'com.google.firebase:firebase-database:20.0.2'
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.google.firebase:firebase-storage:20.0.2'
+    implementation 'com.google.firebase:firebase-messaging:23.0.0'
 
 
     testImplementation 'junit:junit:4.13.2'
@@ -65,10 +66,15 @@ dependencies {
     //country code picker
     implementation 'com.hbb20:ccp:2.5.1'
 
+    //sql lite
+    implementation 'com.github.p32929:AndroidEasySQL-Library:1.4.1'
+
     // circular view
     implementation 'com.github.mohammadatif:CircularImageView:1.0.0'
     // tere
    // implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+
+    implementation 'com.android.volley:volley:1.2.1'
 
     // image loading from firebase
     implementation 'com.squareup.picasso:picasso:2.71828'

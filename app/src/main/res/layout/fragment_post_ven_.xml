@@ -1,15 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gold"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".post_ven_Fragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:id="@+id/toolbarRl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="30dp"
+        android:background="@drawable/shape_rect01">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Add Product"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbarRl">
+        <!--form to input data-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-</FrameLayout>
+            <com.blogspot.atifsoftwares.circularimageview.CircularImageView
+                android:id="@+id/productIconIv"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_baseline_add_shopping_cart_24"
+                app:c_border="true"
+                app:c_border_color="@color/colorPrimaryDark"
+                app:c_border_width="1dp"/>
+
+
+            <EditText
+                android:id="@+id/titleEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/productIconIv"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/shape_rect02"
+                android:drawableStart="@drawable/ic_baseline_text_fields_24"
+                android:drawablePadding="10dp"
+                android:hint="Title"
+                android:inputType="textPersonName|textCapWords"
+                android:padding="10dp"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorGray" />
+            <EditText
+                android:id="@+id/descriptionEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:hint="Description"
+                android:textColorHint="@color/colorGray"
+                android:textColor="@color/colorPrimary"
+                android:background="@drawable/shape_rect02"
+                android:drawableStart="@drawable/ic_baseline_text_fields_24"
+                android:drawablePadding="10dp"
+                android:inputType="textCapSentences|textMultiLine"
+                android:padding="10dp"
+                android:layout_below="@+id/titleEt"/>
+            <TextView
+                android:id="@+id/categoryTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:hint="Category"
+                android:textColorHint="@color/colorGray"
+                android:textColor="@color/colorPrimary"
+                android:drawableEnd="@drawable/ic_down_gray"
+                android:background="@drawable/shape_rect02"
+                android:drawableStart="@drawable/ic_baseline_apps_24"
+                android:drawablePadding="10dp"
+                android:inputType="textCapSentences|textMultiLine"
+                android:padding="10dp"
+                android:layout_below="@+id/descriptionEt"/>
+            <EditText
+                android:id="@+id/quantityEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:hint="Quantity"
+                android:textColorHint="@color/colorGray"
+                android:textColor="@color/colorPrimary"
+                android:background="@drawable/shape_rect02"
+                android:drawableStart="@drawable/ic_baseline_shopping_cart_24"
+                android:drawablePadding="10dp"
+                android:inputType="textCapWords"
+                android:padding="10dp"
+                android:layout_below="@+id/categoryTv"/>
+            <EditText
+                android:id="@+id/priceEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:hint="Price"
+                android:textColorHint="@color/colorGray"
+                android:textColor="@color/colorPrimary"
+                android:background="@drawable/shape_rect02"
+                android:drawableStart="@drawable/ic_baseline_shopping_cart_24"
+                android:drawablePadding="10dp"
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                android:layout_below="@+id/quantityEt"/>
+            <!--whether or not product on discount-->
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/discountSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_below="@+id/priceEt"
+                android:text="Discount"/>
+
+            <EditText
+                android:id="@+id/discountedPriceEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:hint="Discount Price"
+                android:textColorHint="@color/colorGray"
+                android:textColor="@color/colorPrimary"
+                android:background="@drawable/shape_rect02"
+                android:drawableStart="@drawable/ic_baseline_shopping_cart_24"
+                android:drawablePadding="10dp"
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                android:layout_below="@+id/discountSwitch"/>
+
+            <EditText
+                android:id="@+id/discountedNoteEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/discountedPriceEt"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/shape_rect02"
+                android:drawableStart="@drawable/ic_baseline_shopping_cart_24"
+                android:drawablePadding="10dp"
+                android:hint="Discount Note e.g. 10% Off"
+                android:inputType="textCapSentences"
+                android:padding="10dp"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorGray" />
+
+            <Button
+                android:id="@+id/addProductBtn"
+                android:text="Add Product"
+                android:layout_below="@id/discountedNoteEt"
+                android:layout_centerHorizontal="true"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="150dp"
+                android:layout_marginTop="5dp"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</LinearLayout>

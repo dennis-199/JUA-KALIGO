@@ -8,23 +8,32 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@drawable/shape_rect01"
+        android:layout_height="75dp"
+        android:background="@color/white"
         android:id="@+id/table">
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
 
             android:layout_height="wrap_content">
+            <com.blogspot.atifsoftwares.circularimageview.CircularImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/profileIv"
+                android:layout_marginEnd="10dp"
+                app:c_border="true"
+                app:c_border_color="@color/white"
+                android:src="@drawable/ic_baseline_store_gray"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="vertical">
                 <TextView
 
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:id="@+id/greetings2"
+
                     android:text="Good Morning:"
                     android:textColor="@color/black"
                     android:textSize="27sp"
@@ -39,6 +48,15 @@
                     android:textSize="21sp"
                     android:textStyle="bold"/>
             </LinearLayout>
+            <ImageButton
+                android:id="@+id/logoutBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_baseline_power_settings_new_24"
+                android:layout_alignParentEnd="true"
+                android:background="@null"
+                android:layout_gravity="end"
+                android:contentDescription="LogoutButton" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
