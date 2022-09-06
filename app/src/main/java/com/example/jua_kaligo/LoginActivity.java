@@ -3,6 +3,7 @@ package com.example.jua_kaligo;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -40,6 +41,8 @@ public class LoginActivity extends AppCompatActivity {
 
     // string for storing our verification ID
     private String verificationId;
+    // pprogress dilaogue
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,9 @@ public class LoginActivity extends AppCompatActivity {
 
 
         mAuth = FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Registering");
+        progressDialog.setCanceledOnTouchOutside(false);
         edtPhone = findViewById(R.id.phone_number2);
         edtOTP = findViewById(R.id.idEdtOtp2);
         verifyOTPBtn = findViewById(R.id.idBtnVerify2);
@@ -83,6 +89,8 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     // if otp is not empty call method to verify
                     verifyCode(edtOTP.getText().toString());
+                    progressDialog.setMessage("Verifying OTP");
+                    progressDialog.show();
                 }
             }
         });
@@ -106,11 +114,14 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
+                                progressDialog.setMessage("Creating account...");
+                                progressDialog.show();
                                 Toast.makeText(LoginActivity.this, "You have been registered successfully ", Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(LoginActivity.this,MainScreen.class);
                                 startActivity(i);
                                 finish();
                             }else {
+                                progressDialog.dismiss();
                                 Toast.makeText(LoginActivity.this, "Failed to Register, Retry", Toast.LENGTH_SHORT).show();
                             }
                         }

@@ -6,18 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFF"
     tools:context=".ChooseRole">
-    <TextView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@drawable/circle"
-        android:text="1/6"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/backcolor"
-        android:layout_marginTop="100dp"
-        android:layout_marginStart="10dp"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="24sp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

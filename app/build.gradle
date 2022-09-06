@@ -70,10 +70,8 @@ dependencies {
     // tere
    // implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
 
-
-
-
-
+    // image loading from firebase
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation 'com.github.bumptech.glide:glide:4.12.0'
 
