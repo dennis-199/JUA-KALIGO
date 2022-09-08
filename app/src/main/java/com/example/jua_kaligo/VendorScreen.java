@@ -36,7 +36,7 @@ public class VendorScreen extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         user = FirebaseAuth.getInstance().getCurrentUser();
-       reference2 = FirebaseDatabase.getInstance().getReference("Vendors");
+       reference2 = FirebaseDatabase.getInstance().getReference("Users");
        userID = user.getUid();
 
         final TextView greetingTextView = (TextView) findViewById(R.id.greetings2);

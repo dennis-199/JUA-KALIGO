@@ -46,7 +46,7 @@ public class MainScreen extends AppCompatActivity {
 
         // try here
         user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Customers");
+        reference = FirebaseDatabase.getInstance().getReference("Users");
         reference2 = FirebaseDatabase.getInstance().getReference("Vendors");
         userID = user.getUid();
 

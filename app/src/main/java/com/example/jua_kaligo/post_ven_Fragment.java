@@ -271,7 +271,7 @@ public class post_ven_Fragment extends Fragment {
                                 hashMap.put("timestamp", "" + timestamp);
                                 hashMap.put("uid", "" + firebaseAuth.getUid());
                                 //add to db
-                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Vendors");
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
                                 reference.child(firebaseAuth.getUid()).child("Products").child(timestamp).setValue(hashMap)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override

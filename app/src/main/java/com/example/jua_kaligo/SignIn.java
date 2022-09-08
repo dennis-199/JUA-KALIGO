@@ -1,7 +1,6 @@
 package com.example.jua_kaligo;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 public class SignIn extends AppCompatActivity {

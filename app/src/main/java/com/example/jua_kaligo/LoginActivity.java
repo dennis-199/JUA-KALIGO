@@ -23,6 +23,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.FirebaseDatabase;
 import com.hbb20.CountryCodePicker;
 
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class LoginActivity extends AppCompatActivity {
@@ -102,24 +103,28 @@ public class LoginActivity extends AppCompatActivity {
         String phoneNum = intent.getStringExtra("PhoneNumber");
         String idNum = intent.getStringExtra("ID_NUMBER");
         String Location = intent.getStringExtra("Location");
+        String accountType = "Customer";
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     // if code is correct and task is succesful we are sending user to a new activity
 
-                    Customer customer=new Customer(fullNames,phoneNum,idNum,Location);
 
-                    FirebaseDatabase.getInstance().getReference("Customers").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(customer).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    Customer customer=new Customer(fullNames,phoneNum,idNum,Location,accountType);
+
+                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(customer).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
                                 progressDialog.setMessage("Creating account...");
                                 progressDialog.show();
+
                                 Toast.makeText(LoginActivity.this, "You have been registered successfully ", Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(LoginActivity.this,MainScreen.class);
                                 startActivity(i);
                                 finish();
+                                //saveFirebaseData();
                             }else {
                                 progressDialog.dismiss();
                                 Toast.makeText(LoginActivity.this, "Failed to Register, Retry", Toast.LENGTH_SHORT).show();
@@ -134,6 +139,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
     private void sendVerificationCode(String number){
         // this method is used for getting
         // OTP on user phone number.

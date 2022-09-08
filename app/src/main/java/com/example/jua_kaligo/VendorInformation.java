@@ -116,15 +116,16 @@ public class VendorInformation extends AppCompatActivity {
         String fullN = intent.getStringExtra("FullName");
         String phoneN = intent.getStringExtra("PhoneNumber");
         String IDNumber = intent.getStringExtra("ID_NUMBER");
+        String accountType = "Vendors";
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
 
                     // if code is correct and task is succesful we are sending user to a new activity
-                    Vendor vendor = new Vendor(fullN,phoneN,IDNumber);
+                    Vendor vendor = new Vendor(fullN,phoneN,IDNumber,accountType);
 
-                    FirebaseDatabase.getInstance().getReference("Vendors").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(vendor).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(vendor).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
