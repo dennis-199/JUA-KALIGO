@@ -42,7 +42,7 @@ public class CustomerNext extends AppCompatActivity {
             IDNUMBER.requestFocus();
             return;
         }
-        Intent i = new Intent(CustomerNext.this, LoginActivity.class);
+        Intent i = new Intent(CustomerNext.this, LocationActivity.class);
         i.putExtras(getIntent().getExtras());
        // i.putExtra("FullName", fullNames);
        // i.putExtra("PhoneNumber",phoneNum);
