@@ -24,6 +24,9 @@
         tools:replace="android:icon"
         tools:targetApi="31">
         <activity
+            android:name=".LocationVenActivity"
+            android:exported="false" />
+        <activity
             android:name=".LocationActivity"
             android:exported="false" />
         <activity
