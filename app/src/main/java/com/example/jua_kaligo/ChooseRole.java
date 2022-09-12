@@ -30,7 +30,7 @@ public class ChooseRole extends AppCompatActivity {
     }
 
     public void vendorsMainactivity(View view) {
-        Intent intent = new Intent(ChooseRole.this, vendorReg.class);
+        Intent intent = new Intent(ChooseRole.this, vendornames.class);
         startActivity(intent);
     }
 }

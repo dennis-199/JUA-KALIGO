@@ -17,7 +17,7 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:background="@drawable/circle"
-        android:text="3/4"
+        android:text="4/5"
         android:textColor="@color/white"
         android:backgroundTint="@color/backcolor"
         android:layout_centerHorizontal="true"

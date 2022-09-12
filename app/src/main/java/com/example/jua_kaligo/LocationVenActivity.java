@@ -119,7 +119,7 @@ public class LocationVenActivity extends AppCompatActivity implements LocationLi
         String city = cityEt.getText().toString();
         String address = addressEt.getText().toString();
 
-        Intent intent = new Intent(LocationVenActivity.this, LoginActivity.class);
+        Intent intent = new Intent(LocationVenActivity.this, VendorInformation.class);
         intent.putExtras(getIntent().getExtras());
         intent.putExtra("country",country);
         intent.putExtra("state",state);

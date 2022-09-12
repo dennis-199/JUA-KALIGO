@@ -59,9 +59,9 @@ public class VendorInformation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor_information);
         phone = findViewById(R.id.phone_number);
-        fullname = findViewById(R.id.fullName);
+
         countryCodePicker = findViewById(R.id.country_code_picker);
-        IDnumber = findViewById(R.id.idnumber);
+
 
         scrollView = findViewById(R.id.sign_up_scrollview);
 
@@ -116,6 +116,11 @@ public class VendorInformation extends AppCompatActivity {
         String fullN = intent.getStringExtra("FullName");
         String phoneN = intent.getStringExtra("PhoneNumber");
         String IDNumber = intent.getStringExtra("ID_NUMBER");
+        String Location = intent.getStringExtra("Location");
+        String country = intent.getStringExtra("country");
+        String state = intent.getStringExtra("state");
+        String city = intent.getStringExtra("city");
+        String address = intent.getStringExtra("address");
         String accountType = "Vendors";
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -123,7 +128,7 @@ public class VendorInformation extends AppCompatActivity {
                 if (task.isSuccessful()) {
 
                     // if code is correct and task is succesful we are sending user to a new activity
-                    Vendor vendor = new Vendor(fullN,phoneN,IDNumber,accountType);
+                    Vendor vendor = new Vendor(fullN,phoneN,IDNumber,Location,country,state,city,address,accountType);
 
                     FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(vendor).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

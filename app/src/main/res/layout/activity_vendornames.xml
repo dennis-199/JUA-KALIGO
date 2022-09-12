@@ -3,15 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".MainActivity">
-
+    android:layout_height="match_parent"
+    tools:context=".vendornames">
     <TextView
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:background="@drawable/circle"
-        android:text="2/5"
+        android:text="2/4"
         android:textColor="@color/white"
         android:backgroundTint="@color/backcolor"
         android:layout_marginTop="60dp"
@@ -67,7 +66,7 @@
                 android:background="@drawable/shape_rect02"
 
                 android:hint="@string/phone_number"
-               android:padding="10dp"
+                android:padding="10dp"
                 android:gravity="center"
                 android:textStyle="italic"
                 android:drawableStart="@drawable/ic_baseline_phone_24"
@@ -87,7 +86,7 @@
                 android:textStyle="bold"/>
 
 
-            </LinearLayout>
+        </LinearLayout>
 
 
 

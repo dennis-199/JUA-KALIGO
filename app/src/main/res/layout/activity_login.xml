@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".LoginActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+
     <TextView
         android:id="@+id/progre"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:background="@drawable/circle"
-        android:text="4/4"
+        android:text="5/5"
         android:textColor="@color/white"
         android:backgroundTint="@color/backcolor"
         android:layout_marginTop="60dp"
@@ -81,16 +87,27 @@
             android:layout_margin="10dp"
             android:text="Get OTP"
             android:textAllCaps="false" />
-        <EditText
-            android:id="@+id/idEdtOtp2"
-            android:layout_below="@id/idBtnGetOtp2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
 
-            android:layout_margin="10dp"
-            android:hint="Enter OTP"
-            android:importantForAutofill="no"
-            android:inputType="phone" />
+    <com.chaos.view.PinView
+        android:id="@+id/idEdtOtp2"
+        style="@style/PinWidget.PinView"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+       android:layout_below="@id/idBtnGetOtp2"
+        android:layout_marginTop="10dp"
+        android:cursorVisible="true"
+        android:inputType="number"
+        app:cursorColor="@color/black"
+        android:autofillHints="smsOTPCode"
+        android:importantForAutofill="yes"
+        app:hideLineWhenFilled="true"
+        app:itemCount="6"
+        app:itemHeight="50dp"
+        app:itemRadius="5dp"
+        app:itemWidth="50dp"
+        app:lineColor="@color/backcolor"
+        app:lineWidth="3dp" />
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -108,7 +125,7 @@
 
 
 
+    </RelativeLayout>
 
 
-
-</RelativeLayout>
+</ScrollView>

@@ -74,6 +74,7 @@
                 android:textStyle="bold" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
     </LinearLayout>
 
 </RelativeLayout>
