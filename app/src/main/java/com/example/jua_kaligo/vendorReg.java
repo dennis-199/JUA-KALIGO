@@ -15,7 +15,7 @@ import com.hbb20.CountryCodePicker;
 public class vendorReg extends AppCompatActivity {
     private Spinner spinner, spinner2;
     TextInputEditText text;
-    EditText phone, fullname, IDnumber;
+    EditText KRA;
     //CountryCodePicker countryCodePicker;
     Spinner spinnerLocation, Spinnertypeofbusiness;
 
@@ -28,6 +28,7 @@ public class vendorReg extends AppCompatActivity {
 
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner2 = (Spinner) findViewById(R.id.spinner2);
+        KRA = (EditText) findViewById(R.id.KRApin);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.region, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -42,17 +43,26 @@ public class vendorReg extends AppCompatActivity {
     }
     public void login(View view)
     {
-        //if(!validatePhone()){
 
-        //}
+        //String fullNames = fullnames.getText().toString();
+        String KRApin = KRA.getText().toString();
+        //String idNum = IDNUMBER.getText().toString();
+        //String location = spinner.getSelectedItem().toString();
 
-
+        if(KRApin.isEmpty()){
+            KRA.setError("Fullname is required ");
+            KRA.requestFocus();
+            return;
+        }
         // passing fields to the next activity
         //intent.putExtra("fullname", fullname);
         // start activity
 
         // move to next activity
-        Intent intent = new Intent(vendorReg.this, VendorInformation.class);
+        Intent intent = new Intent(vendorReg.this, LocationVenActivity.class);
+        intent.putExtras(getIntent().getExtras());
+        intent.putExtra("KRApin",KRApin);
+        //intent.putExtra("Location",location);
 
 
         startActivity(intent);

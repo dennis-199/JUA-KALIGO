@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
@@ -50,6 +51,7 @@ public class Splash_Screen extends AppCompatActivity {
     }
     private void checkUserType(){
         String check;
+
         // if user is vendor, start vendor main screen
         // if user is buyer,start user main screen
         // test
