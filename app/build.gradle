@@ -93,20 +93,25 @@ dependencies {
     //implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
     //implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
 
-    //implementation 'com.google.code.gson:gson:2.8.7'
-    //implementation 'com.squareup.okio:okio:2.9.0'
+    implementation 'com.google.code.gson:gson:2.8.7'
+    implementation 'com.squareup.okio:okio:2.9.0'
 
     //implementation 'com.jakewharton:butterknife:10.2.3'
     //annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
     // flutter wave
     //implementation 'com.github.flutterwave.rave-android:rave_android:2.1.39'
     //implementation 'com.github.Flutterwave:rave-android:1.0.35'
+    // END OF MPESA IMPLEMENTATIONS
 
     implementation 'com.github.flutterwave.rave-android:rave_android:2.1.39'
 
     // GMS
     //gmsImplementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'io.github.chaosleung:pinview:1.4.4'
+
+    // automatic sms verification
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation 'com.google.android.gms:play-services-auth-api-phone:17.4.0'
 
 
 

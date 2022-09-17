@@ -182,6 +182,8 @@ public class LoginActivity extends AppCompatActivity {
             // below line is used for getting OTP code
             // which is sent in phone auth credentials.
             final String code = phoneAuthCredential.getSmsCode();
+            // lets test here
+
 
             // checking if the code
             // is null or not.
