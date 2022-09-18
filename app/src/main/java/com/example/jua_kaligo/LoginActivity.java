@@ -183,8 +183,6 @@ public class LoginActivity extends AppCompatActivity {
             // which is sent in phone auth credentials.
             final String code = phoneAuthCredential.getSmsCode();
             // lets test here
-
-
             // checking if the code
             // is null or not.
             if(code != null){

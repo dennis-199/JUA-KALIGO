@@ -96,8 +96,8 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.7'
     implementation 'com.squareup.okio:okio:2.9.0'
 
-    //implementation 'com.jakewharton:butterknife:10.2.3'
-    //annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
     // flutter wave
     //implementation 'com.github.flutterwave.rave-android:rave_android:2.1.39'
     //implementation 'com.github.Flutterwave:rave-android:1.0.35'
