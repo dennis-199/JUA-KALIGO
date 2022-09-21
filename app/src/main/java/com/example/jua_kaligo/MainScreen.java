@@ -7,13 +7,18 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,16 +30,21 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
+import java.util.HashMap;
 
 public class MainScreen extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private NavController navController;
     private FirebaseAuth mAuth;
+    private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
     private DatabaseReference reference, reference2;
     private String userID;
     private TextView textView, fullname;
     FloatingActionButton postbutton;
+    private ImageButton logoutBtn;
+    private ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +52,7 @@ public class MainScreen extends AppCompatActivity {
         setContentView(R.layout.activity_main_screen);
 
         postbutton = findViewById(R.id.postButton);
+        logoutBtn = findViewById(R.id.logoutBtn);
         mAuth = FirebaseAuth.getInstance();
 
         // try here
@@ -49,6 +60,11 @@ public class MainScreen extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference("Users");
         reference2 = FirebaseDatabase.getInstance().getReference("Vendors");
         userID = user.getUid();
+
+        firebaseAuth = FirebaseAuth.getInstance ();
+        progressDialog = new ProgressDialog ( this );
+        progressDialog.setTitle ( "Please Wait" );
+        progressDialog.setCanceledOnTouchOutside ( false );
 
         final TextView greetingTextView = (TextView) findViewById(R.id.greetings);
         final TextView full_nameTextview = (TextView) findViewById(R.id.names);
@@ -92,6 +108,35 @@ public class MainScreen extends AppCompatActivity {
         //if(mAuth.getCurrentUser().getUid().equals("Customers")){
           //  postbutton.setVisibility(View.INVISIBLE);
         //}
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // do this
+                // after logging out, make user offline
+                progressDialog.setMessage ( "Logging out user..." );
+
+                HashMap<String, Object> hashMap = new HashMap <> (  );
+                hashMap.put("online","false");
+                // update value to db
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+                ref.child(firebaseAuth.getUid()).updateChildren(hashMap)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                firebaseAuth.signOut();
+                                startActivity(new Intent(MainScreen.this, SignIn.class));
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                progressDialog.dismiss ();
+                                Toast.makeText(MainScreen.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+            }
+        });
 
 
         bottomNavigationView = findViewById(R.id.navigation);

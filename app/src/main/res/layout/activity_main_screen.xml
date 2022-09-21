@@ -5,21 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainScreen">
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:id="@+id/mytable"
         android:background="@drawable/shape_rect01"
-        android:layout_height="45dp">
+        android:layout_height="65dp">
+
         <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content">
-
-
+            <ImageButton
+                android:id="@+id/logoutBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_baseline_power"
+                android:background="@color/white"
+                android:layout_gravity="end"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="5dp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
                     <TextView
 
                         android:layout_height="wrap_content"

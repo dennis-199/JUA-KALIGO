@@ -1,12 +1,12 @@
 package com.example.jua_kaligo;
 
 public class Customer {
-    public String fullNames, phoneNum, idNum, Location,country,state,city,address, accountType;
+    public String fullNames, phoneNum, idNum, Location,country,state,city,address, accountType, online,uid;
     public Customer(){
 
     }
     public Customer(String fullNames, String phoneNum, String idNum, String Location,String country,
-                    String state,String city,String address, String accountType){
+                    String state,String city,String address, String accountType, String online, String uid){
         this.fullNames = fullNames;
         this.phoneNum = phoneNum;
         this.idNum = idNum;
@@ -16,6 +16,8 @@ public class Customer {
         this.city = city;
         this.address = address;
         this.accountType = accountType;
+        this.online = online;
+        this.uid = uid;
 
     }
 }
