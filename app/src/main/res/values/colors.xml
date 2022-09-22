@@ -14,10 +14,14 @@
     <color name="gol">#786D04</color>
     <color name="textcolor">#C30848</color>
     <color name="backcolor">#02DEFB</color>
+    <color name="colorBlack">#FF000000</color>
     <color name="bar">#FF9800</color>
     <color name="app_color">#EED622</color>
     <color name="colorWhite">#fff</color>
     <color name="colorGray">#959393</color>
     <color name="colorGray01">#c9c9c9</color>
     <color name="colorGray02">#959595</color>
+    <color name="yellow">#FF9800</color>
+    <color name="colorGreen">#43A047</color>
+    <color name="colorRed">#C81609</color>
 </resources>

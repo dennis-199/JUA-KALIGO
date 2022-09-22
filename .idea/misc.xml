@@ -10,6 +10,7 @@
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/drawable/shape_circle01.xml" value="0.1155" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/drawable/shape_rect01.xml" value="0.122" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/drawable/shape_rect02.xml" value="0.1155" />
+        <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/drawable/shape_rect06.xml" value="0.122" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/font/.xml" value="0.19907407407407407" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/font/alex_brush.xml" value="0.11822916666666666" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/font/arizonia.xml" value="0.11822916666666666" />
@@ -45,7 +46,7 @@
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/fragment_post_ven_.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/fragment_services.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/fragment_trade.xml" value="0.24166666666666667" />
-        <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/row_product_seller.xml" value="0.18046875" />
+        <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/row_product_seller.xml" value="0.22" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/menu/bottom_nav.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/menu/bottomven_nav.xml" value="0.240625" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1235" />
