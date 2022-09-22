@@ -35,15 +35,15 @@ public class Splash_Screen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                //FirebaseUser user = firebaseAuth.getCurrentUser();
-                //if(user == null){
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if(user == null){
                     // user not logged in start login activity
                     startActivity(new Intent(Splash_Screen.this,ChooseRole.class));
-                //}else{
+                }else{
                     // user is logged in
-                   // checkUserType ();
+                    checkUserType ();
                 }
-           // }
+           }
         },1000);
 
 
@@ -64,8 +64,27 @@ public class Splash_Screen extends AppCompatActivity {
         //    test.child(firebaseAuth.getUid());
         //}
         // was working from here
-        //DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Customers");
-        //DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference("Vendors");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        ref.child(firebaseAuth.getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String accountType = ""+snapshot.child("accountType").getValue();
+                        if(accountType.equals("Customer")){
+                            startActivity(new Intent(Splash_Screen.this,MainScreen.class));
+                            finish();
+                        }else{
+                            // user is vendor
+                            startActivity(new Intent(Splash_Screen.this,VendorScreen.class));
+                            finish();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
 //        ref.child(firebaseAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
 //            @Override
@@ -79,16 +98,6 @@ public class Splash_Screen extends AppCompatActivity {
 //
 //            }
 //        });
-//        ref2.child(firebaseAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                startActivity(new Intent(Splash_Screen.this,VendorScreen.class));
-//            }
 //
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
     }
 }
