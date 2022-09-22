@@ -68,7 +68,7 @@ dependencies {
     implementation 'com.hbb20:ccp:2.5.1'
 
     //sql lite
-    implementation 'com.github.p32929:AndroidEasySQL-Library:1.4.1'
+    //implementation 'com.github.p32929:AndroidEasySQL-Library:1.4.1'
 
     // circular view
     implementation 'com.github.mohammadatif:CircularImageView:1.0.0'
@@ -117,6 +117,9 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.0-alpha03'
 
     implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
+    //sql lite
+    implementation 'com.github.p32929:AndroidEasySQL-Library:1.4.1'
 
 
 
