@@ -1,64 +1,131 @@
 package com.example.jua_kaligo;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeVendorFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
+
 public class HomeVendorFragment extends Fragment {
+    private TextView nameTv, shopNameTv, emailTv, tabProductsTv, tabOrdersTv,filteredProductsTv, filteredOrdersTv;
+    private EditText searchProductEt;
+    private ImageButton logoutBtn,editProfileBtn, addProductBtn,filterProductsBtn,filterOrderBtn, reviewsBtn, settingsBtn;
+    private ImageView profileIv;
+    private RelativeLayout productsRl,ordersRl;
+    private RecyclerView productsRv, ordersRv;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private ArrayList<ModelProduct> productList;
+    private AdapterProductSeller adapterProductSeller;
 
-    public HomeVendorFragment() {
-        // Required empty public constructor
-    }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeVendorFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeVendorFragment newInstance(String param1, String param2) {
-        HomeVendorFragment fragment = new HomeVendorFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    //private ArrayList<ModelOrderShop> orderShopArrayList;
+    //private AdapterOrderShop adapterOrderShop;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_home_vendor, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_vendor, container, false);
+        // calling the ids here
+        //nameTv = findViewById ( R.id.nameTv );
+        //shopNameTv = findViewById ( R.id.shopNameTv);
+        //emailTv = findViewById ( R.id.emailTv );
+        //tabProductsTv = findViewById ( R.id.tabProductsTv );
+        //tabOrdersTv = findViewById ( R.id.tabOrdersTv );
+        filteredProductsTv = view.findViewById ( R.id.filteredProductsTv );
+        searchProductEt = view.findViewById ( R.id.searchProductEt );
+        logoutBtn = view.findViewById ( R.id.logoutBtn);
+        //editProfileBtn = findViewById ( R.id.editProfileBtn);
+        addProductBtn = view.findViewById ( R.id.addProductBtn);
+        filterProductsBtn=view.findViewById(R.id.filterProductBtn);
+        //filterProductsBtn = findViewById ( R.id.filterProductsBtn);
+        profileIv = view.findViewById(R.id.profileIv);
+        productsRl = view.findViewById(R.id.productsRl);
+        //ordersRl = findViewById(R.id.ordersRl);
+        productsRv = view.findViewById(R.id.productsRv);
+        //filteredOrdersTv = findViewById(R.id.filteredOrdersTv);
+        //filterOrderBtn = findViewById(R.id.filterOrderBtn);
+        //ordersRv = findViewById(R.id.ordersRv);
+        //reviewsBtn= findViewById(R.id.reviewsBtn);
+        //settingsBtn = findViewById(R.id.settingsBtn);
+
+        firebaseAuth = FirebaseAuth.getInstance ();
+        progressDialog = new ProgressDialog ( getContext() );
+        progressDialog.setTitle ( "Please Wait" );
+        progressDialog.setCanceledOnTouchOutside ( false );
+
+        filterProductsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Choose Category")
+                        .setItems(Constants.productCategories, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //get selected item
+
+
+                            }
+                        });
+            }
+        });
+
+        loadAllProducts();
+        return view;
+    }
+
+    private void loadAllProducts() {
+        productList = new ArrayList <> ();
+
+        // get all products
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference.child(firebaseAuth.getUid()).child("Products").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // before getting reset list
+                productList.clear();
+                for(DataSnapshot ds: snapshot.getChildren()){
+                    ModelProduct modelProduct = ds.getValue(ModelProduct.class);
+                    productList.add(modelProduct);
+
+                }
+                // setup adapter
+                adapterProductSeller = new AdapterProductSeller(getContext(),productList);
+                // set adapter
+                productsRv.setAdapter(adapterProductSeller);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
