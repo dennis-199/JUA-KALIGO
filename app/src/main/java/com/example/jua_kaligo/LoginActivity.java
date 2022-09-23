@@ -216,4 +216,9 @@ public class LoginActivity extends AppCompatActivity {
         // calling sign in method.
         signInWithCredential(credential);
     }
+
+    public void RegisterPage(View view) {
+        Intent intent = new Intent(LoginActivity.this, ChooseRole.class);
+        startActivity(intent);
+    }
 }
