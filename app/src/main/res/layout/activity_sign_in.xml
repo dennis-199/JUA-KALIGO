@@ -123,8 +123,8 @@
       android:textColor="@color/backcolor"
       android:layout_below="@id/idBtnVerify3"
       android:layout_centerHorizontal="true"
-      android:layout_marginTop="49dp"
-      android:textSize="27sp"
+      android:layout_marginTop="54dp"
+      android:textSize="37sp"
       android:onClick="RegisterPage"/>
 
 
