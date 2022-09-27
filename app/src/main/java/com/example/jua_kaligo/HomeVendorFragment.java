@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,19 +88,87 @@ public class HomeVendorFragment extends Fragment {
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Choose Category")
-                        .setItems(Constants.productCategories, new DialogInterface.OnClickListener() {
+                        .setItems(Constants.productCategories1, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 //get selected item
+                                String selected = Constants.productCategories1[which];
+                                filteredProductsTv.setText(selected);
+                                if(selected.equals("All")){
+                                    //load all
+                                    loadAllProducts();
+                                }else{
+                                    // load filtered
+                                    loadFilteredProducts(selected);
+                                }
 
 
                             }
-                        });
+                        }).show();
             }
         });
 
         loadAllProducts();
+        // search
+        searchProductEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+                    adapterProductSeller.getFilter().filter(s);
+
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         return view;
+    }
+
+    private void loadFilteredProducts(String selected) {
+        productList = new ArrayList <> ();
+
+        // get all products
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference.child(firebaseAuth.getUid()).child("Products").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // before getting reset list
+                productList.clear();
+                for(DataSnapshot ds: snapshot.getChildren()){
+                    String productCategory = ""+ds.child("productCategory").getValue();
+
+                    // if selected category matches product category then add in list
+                    if(selected.equals(productCategory)){
+                        ModelProduct modelProduct = ds.getValue(ModelProduct.class);
+                        productList.add(modelProduct);
+                    }
+
+
+                }
+                // setup adapter
+                adapterProductSeller = new AdapterProductSeller(getContext(),productList);
+                // set adapter
+                productsRv.setAdapter(adapterProductSeller);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     private void loadAllProducts() {
