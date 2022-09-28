@@ -32,6 +32,47 @@
             android:src="@drawable/ic_baseline_edit"
             android:layout_toStartOf="@id/deleteBtn"
             android:layout_toLeftOf="@id/deleteBtn" />
+        <TextView
+            android:id="@+id/nameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
+            android:text="Product Details"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
     </RelativeLayout>
+    <ImageView
+        android:id="@+id/productIconIv"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="130dp"
+        android:background="@color/white"
+        android:adjustViewBounds="true"
+        android:padding="5dp"
+        android:src="@drawable/ic_baseline_add_shopping"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/productIconIv"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <TextView
+            android:id="@+id/discountNoteTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rec05"
+            android:padding="5dp"
+            android:paddingEnd="5dp"
+            android:paddingRight="5dp"
+            android:layout_marginStart="20dp"
+            android:text="10% OFF"
+            android:textColor="@color/colorGreen"
+            android:textSize="11sp"/>
+    </LinearLayout>
 
 </RelativeLayout>
