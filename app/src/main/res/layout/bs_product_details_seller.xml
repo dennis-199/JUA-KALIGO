@@ -16,6 +16,22 @@
             android:layout_height="30dp"
             android:background="@null"
             android:src="@drawable/ic_baseline_arrow_back"/>
+        <ImageButton
+            android:id="@+id/deleteBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:src="@drawable/ic_baseline_delete"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
+        <ImageButton
+            android:id="@+id/editBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:src="@drawable/ic_baseline_edit"
+            android:layout_toStartOf="@id/deleteBtn"
+            android:layout_toLeftOf="@id/deleteBtn" />
     </RelativeLayout>
 
 </RelativeLayout>
