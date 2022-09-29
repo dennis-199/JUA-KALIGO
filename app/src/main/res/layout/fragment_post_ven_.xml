@@ -78,21 +78,25 @@
                 android:inputType="textCapSentences|textMultiLine"
                 android:padding="10dp"
                 android:layout_below="@+id/titleEt"/>
+
             <TextView
                 android:id="@+id/categoryTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:hint="Category"
-                android:textColorHint="@color/colorGray"
-                android:textColor="@color/colorPrimary"
-                android:drawableEnd="@drawable/ic_down_gray"
+                android:layout_below="@+id/descriptionEt"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/shape_rect02"
                 android:drawableStart="@drawable/ic_baseline_apps_24"
+                android:drawableEnd="@drawable/ic_down_gray"
                 android:drawablePadding="10dp"
+                android:hint="Category"
                 android:inputType="textCapSentences|textMultiLine"
                 android:padding="10dp"
-                android:layout_below="@+id/descriptionEt"/>
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorGray" />
             <EditText
                 android:id="@+id/quantityEt"
                 android:layout_width="match_parent"

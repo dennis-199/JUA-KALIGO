@@ -3,6 +3,7 @@ package com.example.jua_kaligo;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -167,6 +168,10 @@ public class AdapterProductSeller extends RecyclerView.Adapter<AdapterProductSel
             @Override
             public void onClick(View v) {
                 //open edit product activity, pass product id
+                bottomSheetDialog.dismiss();
+                Intent intent = new Intent(context,EditProductActivity.class);
+                intent.putExtra("productId", id);
+                context.startActivity(intent);
 
             }
         });
@@ -174,6 +179,7 @@ public class AdapterProductSeller extends RecyclerView.Adapter<AdapterProductSel
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bottomSheetDialog.dismiss();
                 //show delete confirm dialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Delete")
