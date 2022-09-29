@@ -12,11 +12,17 @@ import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -176,6 +182,7 @@ public class AdapterProductSeller extends RecyclerView.Adapter<AdapterProductSel
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 //delete
+                                deleteProduct(id);//product id
 
                             }
                         })
@@ -201,6 +208,29 @@ public class AdapterProductSeller extends RecyclerView.Adapter<AdapterProductSel
 
             }
         });
+    }
+
+    private void deleteProduct(String id) {
+        //delete product using its id
+
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference.child(firebaseAuth.getUid()).child("Products").child(id).removeValue()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        //product deleted
+                        Toast.makeText(context, "Product deleted...", Toast.LENGTH_SHORT).show();
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        //failed deleting product
+                        Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
     }
 
     @Override
