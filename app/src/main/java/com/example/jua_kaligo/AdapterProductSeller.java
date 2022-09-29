@@ -7,12 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -82,9 +84,32 @@ public class AdapterProductSeller extends RecyclerView.Adapter<AdapterProductSel
             public void onClick(View v) {
                 // handle item clicks and show item details (in bottom sheet)
                 //detailsBottomSheet(modelProduct); //here modelProduct contains details of clicked product
+                detailsBottomSheet(modelProduct); // here modelProduct contains details of clicked product 
             }
         } );
 
+    }
+
+    private void detailsBottomSheet(ModelProduct modelProduct) {
+        // bottom sheet
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context);
+        // inflate view for bottom sheet
+        View view = LayoutInflater.from(context).inflate(R.layout.bs_product_details_seller, null);
+        // set view to bottom sheet
+        bottomSheetDialog.setContentView(view);
+
+        //init view of bottom sheet
+        ImageButton backBtn = view.findViewById(R.id.backBtn);
+        ImageButton deleteBtn = view.findViewById(R.id.deleteBtn);
+        ImageButton editBtn = view.findViewById(R.id.editBtn);
+        ImageView productIconIv = view.findViewById(R.id.productIconIv);
+        TextView discountNoteTv = view.findViewById(R.id.discountNoteTv);
+        TextView titleTv = view.findViewById(R.id.titleTv);
+        TextView descriptionTv = view.findViewById(R.id.descriptionTv);
+        TextView categoryTv = view.findViewById(R.id.categoryTv);
+        TextView quantityTv = view.findViewById(R.id.quantityTv);
+        TextView discountedPriceTv = view.findViewById(R.id.discountedPriceTv);
+        TextView originalPriceTv = view.findViewById(R.id.originalPriceTv);
     }
 
     @Override
