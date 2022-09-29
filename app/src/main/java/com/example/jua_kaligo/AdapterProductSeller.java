@@ -1,6 +1,8 @@
 package com.example.jua_kaligo;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -110,6 +112,95 @@ public class AdapterProductSeller extends RecyclerView.Adapter<AdapterProductSel
         TextView quantityTv = view.findViewById(R.id.quantityTv);
         TextView discountedPriceTv = view.findViewById(R.id.discountedPriceTv);
         TextView originalPriceTv = view.findViewById(R.id.originalPriceTv);
+
+        //get data
+        String id = modelProduct.getProductId ( );
+        String uid = modelProduct.getUid ( );
+        String discountAvailable = modelProduct.getDiscountAvailable ( );
+        String discountNote = modelProduct.getDiscountNote ( );
+        String discountPrice = modelProduct.getDiscountPrice ( );
+        String productCategory = modelProduct.getProductCategory ( );
+        String productDescription = modelProduct.getProductDescription ( );
+        String icon = modelProduct.getProductIcon ( );
+        String quantity = modelProduct.getProductQuantity ( );
+        String title = modelProduct.getProductTitle ( );
+        String timestamp = modelProduct.getTimestamp ( );
+        String originalPrice = modelProduct.getOriginalPrice ( );
+
+        //set data
+        titleTv.setText(title);
+        descriptionTv.setText(productDescription);
+        categoryTv.setText(productCategory);
+        quantityTv.setText(quantity);
+        discountNoteTv.setText(discountNote);
+        discountedPriceTv.setText("Ksh."+ discountPrice);
+        originalPriceTv.setText("Ksh."+ originalPrice);
+
+        if(discountAvailable.equals ( "true" )){
+            // product is on discount
+            discountedPriceTv.setVisibility ( View.VISIBLE );
+            discountNoteTv.setVisibility ( View.VISIBLE );
+            originalPriceTv.setPaintFlags (originalPriceTv.getPaintFlags () | Paint.STRIKE_THRU_TEXT_FLAG );
+        }
+        else {
+            // product is not on discount
+            discountedPriceTv.setVisibility ( View.GONE );
+            discountNoteTv.setVisibility ( View.GONE );
+        }
+        try {
+            Picasso.get ().load ( icon ).placeholder ( R.drawable.ic_shopping_cart_primary ).into (productIconIv);
+        }
+        catch(Exception e){
+            productIconIv.setImageResource ( R.drawable.ic_shopping_cart_primary );
+        }
+        //show dialog
+        bottomSheetDialog.show();
+
+        //edit click
+        editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //open edit product activity, pass product id
+
+            }
+        });
+        //delete click
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //show delete confirm dialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Delete")
+                        .setMessage("Are you sure you want to delete product "+title+"?")
+                        .setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //delete
+
+                            }
+                        })
+                        .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //cancel, dismiss dialog
+                                dialog.dismiss();
+
+                            }
+                        })
+                        .show();
+
+            }
+        });
+        //back click
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //dismiss bottom sheet
+                bottomSheetDialog.dismiss();
+
+            }
+        });
     }
 
     @Override
