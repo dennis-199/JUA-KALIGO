@@ -73,6 +73,66 @@
             android:text="10% OFF"
             android:textColor="@color/colorGreen"
             android:textSize="11sp"/>
+        <TextView
+            android:id="@+id/titleTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Product Title"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/descriptionTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="20dp"
+            android:text="Product Description"
+            android:textColor="@color/colorBlack" />
+        <TextView
+            android:id="@+id/categoryTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Category"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/colorBlack"/>
+        <TextView
+            android:id="@+id/quantityTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Quantity"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/colorBlack"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:id="@+id/discountedPriceTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ksh. 10"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/colorGray02"
+                android:layout_marginRight="10dp" />
+
+            <TextView
+                android:id="@+id/originalPriceTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ksh.15"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@id/discountedPriceTv"
+                android:textColor="@color/colorGray02"
+                android:layout_toRightOf="@id/discountedPriceTv" />
+
+
+        </RelativeLayout>
     </LinearLayout>
 
 </RelativeLayout>
