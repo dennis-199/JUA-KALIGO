@@ -27,24 +27,11 @@
         android:layout_marginTop="100dp"
         android:orientation="vertical">
 
-        <com.blogspot.atifsoftwares.circularimageview.CircularImageView
-            android:id="@+id/profileIv"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_below="@+id/iconIv"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_baseline_person"
-            app:c_border="true"
-            app:c_border_color="@color/colorPrimary"
-            app:c_border_width="1dp"
-            tools:ignore="NotSibling" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Shop profile"
-            android:layout_gravity="center_horizontal"/>
+        <ImageView
+            android:layout_width="170dp"
+            android:layout_height="180dp"
+            android:src="@drawable/logo"
+            android:layout_gravity="center"/>
 
 
         <LinearLayout
