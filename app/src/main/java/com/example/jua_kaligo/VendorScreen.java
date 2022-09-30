@@ -75,6 +75,9 @@ public class VendorScreen extends AppCompatActivity {
         progressDialog.setCanceledOnTouchOutside ( false );
         profileIv = findViewById ( R.id.profileIv );
 
+        cameraPermissions = new String[]{Manifest.permission.CAMERA , Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        storagePermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
         user = FirebaseAuth.getInstance().getCurrentUser();
        reference2 = FirebaseDatabase.getInstance().getReference("Users");
        userID = user.getUid();
@@ -118,15 +121,15 @@ public class VendorScreen extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(bottomNavMethod);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment2, new HomeVendorFragment()).commit();
 
-//        logoutBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //make offline
-//                //sign out
-//                //go to login activity
-//                makeMeOffline();
-//            }
-//        });
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //make offline
+                //sign out
+                //go to login activity
+                makeMeOffline();
+            }
+        });
         profileIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -242,33 +245,33 @@ public class VendorScreen extends AppCompatActivity {
         super.onActivityResult ( requestCode , resultCode , data );
     }
 
-//    private void makeMeOffline() {
-//        // after logging out, make user offline
-//        progressDialog.setMessage ( "Logging out user..." );
-//
-//        HashMap<String, Object> hashMap = new HashMap <> (  );
-//        hashMap.put("online","false");
-//
-//        //update value to db
-//        DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
-//        ref.child(firebaseAuth.getUid()).updateChildren(hashMap)
-//                .addOnSuccessListener ( new OnSuccessListener< Void >( ) {
-//                    @Override
-//                    public void onSuccess(Void unused) {
-//                        // update successfully
-//                        firebaseAuth.signOut ();
-//                        checkUser ();
-//                    }
-//                } )
-//                .addOnFailureListener ( new OnFailureListener( ) {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        //failed updating
-//                        progressDialog.dismiss ();
-//                        Toast.makeText ( VendorScreen.this , ""+e.getMessage () , Toast.LENGTH_SHORT ).show ( );
-//                    }
-//                } );
-//    }
+    private void makeMeOffline() {
+        // after logging out, make user offline
+        progressDialog.setMessage ( "Logging out user..." );
+
+        HashMap<String, Object> hashMap = new HashMap <> (  );
+        hashMap.put("online","false");
+
+        //update value to db
+        DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
+        ref.child(firebaseAuth.getUid()).updateChildren(hashMap)
+                .addOnSuccessListener ( new OnSuccessListener< Void >( ) {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        // update successfully
+                        firebaseAuth.signOut ();
+
+                    }
+                } )
+                .addOnFailureListener ( new OnFailureListener( ) {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        //failed updating
+                        progressDialog.dismiss ();
+                        Toast.makeText ( VendorScreen.this , ""+e.getMessage () , Toast.LENGTH_SHORT ).show ( );
+                    }
+                } );
+    }
 
 //    private void checkUser() {
 //        FirebaseUser user= firebaseAuth.getCurrentUser ();
