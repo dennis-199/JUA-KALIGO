@@ -123,14 +123,16 @@ public class VendorInformation extends AppCompatActivity {
         String address = intent.getStringExtra("address");
         String accountType = "Vendors";
         String online= "true";
+        String Phone = "+254"+phone.getText().toString().trim();
         String uid= mAuth.getUid();
+        String profileImage = "";
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
 
                     // if code is correct and task is succesful we are sending user to a new activity
-                    Vendor vendor = new Vendor(fullN,phoneN,IDNumber,Location,country,state,city,address,accountType,online,uid);
+                    Vendor vendor = new Vendor(fullN,phoneN,IDNumber,Location,country,state,city,address,accountType,online,Phone,uid,profileImage);
 
                     FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(vendor).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
