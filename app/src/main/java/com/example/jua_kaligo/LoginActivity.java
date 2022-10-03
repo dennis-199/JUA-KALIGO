@@ -111,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
         String address = intent.getStringExtra("address");
         String accountType = "Customer";
         String online= "true";
+        String Phone = "+254"+phone.getText().toString().trim();
         String uid= mAuth.getUid();
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -119,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                     // if code is correct and task is succesful we are sending user to a new activity
 
 
-                    Customer customer=new Customer(fullNames,phoneNum,idNum,Location,country,state,city,address,accountType,online,uid);
+                    Customer customer=new Customer(fullNames,phoneNum,idNum,Location,country,state,city,address,accountType,online,Phone,uid);
 
                     FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(customer).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
