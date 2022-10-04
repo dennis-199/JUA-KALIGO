@@ -6,10 +6,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".account_Ven">
     <ImageButton
-        android:id="@+id/gpsBtn"
+        android:id="@+id/editProfileBtn"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/ic_gps_fixed"
+        android:src="@drawable/ic_baseline_edit"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="10dp"
         android:layout_gravity="end"
@@ -37,7 +37,7 @@
                 android:src="@drawable/ic_baseline_person"/>
 
 
-            <EditText
+            <TextView
                 android:id="@+id/shopNameEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="@color/colorGray" />
 
-            <EditText
+            <TextView
                 android:id="@+id/phoneEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
                 android:inputType="phone"
                 android:padding="10dp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/deliveryFeeEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,11 +94,11 @@
                 android:drawableStart="@drawable/ic_baseline_store_gray"
                 android:drawableLeft="@drawable/ic_baseline_store_gray"
                 android:drawablePadding="5dp"
-                android:hint="Delivery Fee"
-                android:textColorHint="@color/colorGray"
-                android:textColor="@color/colorPrimary"
+                android:hint="ID NUMBER "
                 android:inputType="numberDecimal"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorGray" />
 
             <LinearLayout
                 android:id="@+id/addressLl"
@@ -107,7 +107,7 @@
                 android:layout_below="@id/deliveryFeeEt"
                 android:orientation="horizontal">
 
-                <EditText
+                <TextView
                     android:id="@+id/countryEt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
                     android:padding="10dp"
                     android:drawableLeft="@drawable/ic_location" />
 
-                <EditText
+                <TextView
                     android:id="@+id/stateEt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -139,7 +139,7 @@
                     android:padding="10dp"
                     android:drawableLeft="@drawable/ic_location" />
 
-                <EditText
+                <TextView
                     android:id="@+id/cityEt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -157,7 +157,7 @@
 
             </LinearLayout>
 
-            <EditText
+            <TextView
                 android:id="@+id/addressEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -173,27 +173,11 @@
                 android:drawableLeft="@drawable/ic_location"
                 android:drawablePadding="5dp"
                 android:hint="Address"
-                android:textColorHint="@color/colorGray"
-                android:textColor="@color/colorPrimary"
                 android:inputType="textPostalAddress|textMultiLine"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorGray" />
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/shopOpenSwitch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/addressEt"
-                android:layout_margin="5dp"
-                android:text="Shop open"/>
-
-            <Button
-                android:id="@+id/updateBtn"
-                android:backgroundTint="@color/backcolor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/shopOpenSwitch"
-                android:layout_centerHorizontal="true"
-                android:text="Update" />
 
         </RelativeLayout>
 
