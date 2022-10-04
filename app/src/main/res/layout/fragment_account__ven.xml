@@ -5,6 +5,16 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".account_Ven">
+    <ImageButton
+        android:id="@+id/gpsBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_gps_fixed"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:layout_gravity="end"
+        android:background="@null"
+        android:layout_alignParentRight="true" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -95,7 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/deliveryFeeEt"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
                 <EditText
                     android:id="@+id/countryEt"
