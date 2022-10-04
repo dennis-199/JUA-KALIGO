@@ -1,11 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".account_Ven">
+    tools:context="ProfileEditSellerActivity">
 
+    <RelativeLayout
+        android:id="@+id/toolbarRl"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:padding="10dp"
+        android:background="@drawable/shape_rect01">
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_arrow_back_black_24dp"
+            android:background="@null"
+            android:contentDescription="BackButton" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Edit Vendor"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/black"/>
+
+        <ImageButton
+            android:id="@+id/gpsBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_gps_fixed"
+            android:layout_alignParentEnd="true"
+            android:background="@null"
+            android:layout_alignParentRight="true" />
+
+
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,33 +50,28 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <ImageButton
-                android:id="@+id/editProfileBtn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_baseline_edit"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="10dp"
-                android:layout_gravity="end"
-                android:background="@null"
-                android:layout_alignParentRight="true" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Edit profile "
-                android:layout_alignParentEnd="true"
-                android:gravity="end"
-                android:layout_marginTop="24dp"/>
+
+            <com.blogspot.atifsoftwares.circularimageview.CircularImageView
+                android:id="@+id/profileIv"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                app:c_border="true"
+                app:c_border_color="@color/colorPrimary"
+                app:c_border_width="1dp"
+                android:src="@drawable/ic_baseline_person"/>
 
 
-            <TextView
+
+            <EditText
                 android:id="@+id/shopNameEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:layout_below="@id/profileIv"
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="45dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="5dp"
@@ -55,7 +85,7 @@
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="@color/colorGray" />
 
-            <TextView
+            <EditText
                 android:id="@+id/phoneEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -67,8 +97,8 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/shape_rect02"
-                android:drawableStart="@drawable/ic_baseline_person_24"
-                android:drawableLeft="@drawable/ic_baseline_person_24"
+                android:drawableStart="@drawable/ic_baseline_person"
+                android:drawableLeft="@drawable/ic_baseline_person"
                 android:drawablePadding="5dp"
                 android:hint="Phone"
                 android:textColorHint="@color/colorGray"
@@ -76,7 +106,7 @@
                 android:inputType="phone"
                 android:padding="10dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/deliveryFeeEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -88,14 +118,14 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/shape_rect02"
-                android:drawableStart="@drawable/ic_baseline_store_gray"
-                android:drawableLeft="@drawable/ic_baseline_store_gray"
+                android:drawableStart="@drawable/ic_baseline_perm_identity"
+                android:drawableLeft="@drawable/ic_baseline_perm_identity"
                 android:drawablePadding="5dp"
-                android:hint="ID NUMBER "
-                android:inputType="numberDecimal"
-                android:padding="10dp"
+                android:hint="Delivery Fee"
+                android:textColorHint="@color/colorGray"
                 android:textColor="@color/colorPrimary"
-                android:textColorHint="@color/colorGray" />
+                android:inputType="numberDecimal"
+                android:padding="10dp" />
 
             <LinearLayout
                 android:id="@+id/addressLl"
@@ -104,7 +134,7 @@
                 android:layout_below="@id/deliveryFeeEt"
                 android:orientation="vertical">
 
-                <TextView
+                <EditText
                     android:id="@+id/countryEt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -120,7 +150,7 @@
                     android:padding="10dp"
                     android:drawableLeft="@drawable/ic_location" />
 
-                <TextView
+                <EditText
                     android:id="@+id/stateEt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -136,7 +166,7 @@
                     android:padding="10dp"
                     android:drawableLeft="@drawable/ic_location" />
 
-                <TextView
+                <EditText
                     android:id="@+id/cityEt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -154,7 +184,7 @@
 
             </LinearLayout>
 
-            <TextView
+            <EditText
                 android:id="@+id/addressEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -170,14 +200,30 @@
                 android:drawableLeft="@drawable/ic_location"
                 android:drawablePadding="5dp"
                 android:hint="Address"
-                android:inputType="textPostalAddress|textMultiLine"
-                android:padding="10dp"
+                android:textColorHint="@color/colorGray"
                 android:textColor="@color/colorPrimary"
-                android:textColorHint="@color/colorGray" />
+                android:inputType="textPostalAddress|textMultiLine"
+                android:padding="10dp" />
 
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/shopOpenSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/addressEt"
+                android:layout_margin="5dp"
+                android:text="Shop open"/>
+
+            <Button
+                android:id="@+id/updateBtn"
+                android:backgroundTint="@color/backcolor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/shopOpenSwitch"
+                android:layout_centerHorizontal="true"
+                android:text="Update" />
 
         </RelativeLayout>
 
     </ScrollView>
 
-</FrameLayout>
+</RelativeLayout>

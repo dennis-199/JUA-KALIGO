@@ -58,7 +58,7 @@ import java.util.Locale;
 
 
 public class account_Ven extends Fragment {
-    private ImageButton backBtn, gpsBtn;
+    private ImageButton backBtn, gpsBtn,editProfileBtn;
     private ImageView profileIv;
     private TextView nameEt, idnumber, phoneEt, countryEt, stateEt, cityEt, addressEt;
     private SwitchCompat shopOpenSwitch;
@@ -92,8 +92,7 @@ public class account_Ven extends Fragment {
         //stateEt = view.findViewById(R.id.stateEt);
         //cityEt = view.findViewById(R.id.cityEt);
         //addressEt = view.findViewById(R.id.addressEt);
-
-
+        editProfileBtn = view.findViewById ( R.id.editProfileBtn);
 
         firebaseAuth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -133,6 +132,13 @@ public class account_Ven extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+        editProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ProfileEditSellerActivity.class);
+                startActivity(intent);
             }
         });
 
