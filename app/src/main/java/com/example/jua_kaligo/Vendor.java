@@ -1,17 +1,17 @@
 package com.example.jua_kaligo;
 
 public class Vendor {
-    public String fullN, phoneN, IDNumber,Location,country,state,city,address,accountType,online,Phone,uid,profileImage,shopOpen;
+    public String fullN, KRApin, IDNumber,Gender,country,state,city,address,accountType,online,Phone,uid,profileImage,shopOpen;
     public Vendor(){
 
     }
-    public Vendor(String fullN, String phoneno, String idnumber,  String Location,String country,
+    public Vendor(String fullN, String KRApin, String idnumber,  String Gender,String country,
                   String state,String city,String address,String accountType,String online,String Phone, String uid, String profileImage,
                   String shopOpen){
         this.fullN = fullN;
-        this.phoneN = phoneno;
+        this.KRApin = KRApin;
         this.IDNumber = idnumber;
-        this.Location = Location;
+        this.Gender = Gender;
         this.country = country;
         this.state = state;
         this.city = city;

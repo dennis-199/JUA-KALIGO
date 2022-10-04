@@ -44,23 +44,12 @@
     <string name="accept_barter_payments">Accept Barter Payments</string>
     <string name="allow_saved_cards">Allow saved cards</string>
     <string-array name="region">
-        <item>Westlands</item>
-        <item>Dagoretti North</item>
-        <item>Dagoretti South</item>
-        <item>Langata</item>
-        <item>Kibra</item>
-        <item>Roysambu</item>
-        <item>Kasarani</item>
-        <item>Ruaraka</item>
-        <item>Embakasi South</item>
-        <item>Embakasi North</item>
-        <item>Embakasi Central</item>
-        <item>Embakasi East</item>
-        <item>Embakasi West</item>
-        <item>Makadara</item>
-        <item>Kamukunji</item>
-        <item>Starehe</item>
-        <item>Mathare</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Non binary</item>
+        <item>Binary</item>
+        <item>Other </item>
+
     </string-array>
     <string-array name="business">
         <item>Welding</item>

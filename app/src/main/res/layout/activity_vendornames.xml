@@ -67,11 +67,11 @@
 
                 android:background="@drawable/shape_rect02"
 
-                android:hint="@string/phone_number"
+                android:hint="KRA PIN "
                 android:padding="10dp"
                 android:gravity="center"
                 android:textStyle="italic"
-                android:drawableStart="@drawable/ic_baseline_phone_24"
+                android:drawableStart="@drawable/ic_baseline_fiber_pin"
                 />
 
 

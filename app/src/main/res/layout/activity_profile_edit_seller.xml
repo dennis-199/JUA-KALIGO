@@ -85,6 +85,7 @@
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="@color/colorGray" />
 
+
             <EditText
                 android:id="@+id/phoneEt"
                 android:layout_width="match_parent"
@@ -105,9 +106,8 @@
                 android:textColor="@color/colorPrimary"
                 android:inputType="phone"
                 android:padding="10dp" />
-
             <EditText
-                android:id="@+id/deliveryFeeEt"
+                android:id="@+id/kraPin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/phoneEt"
@@ -118,14 +118,35 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/shape_rect02"
+                android:drawableStart="@drawable/ic_baseline_fiber_pin"
+                android:drawableLeft="@drawable/ic_baseline_fiber_pin"
+                android:drawablePadding="5dp"
+                android:hint="KRA PIN"
+                android:textColorHint="@color/colorGray"
+                android:textColor="@color/colorPrimary"
+                android:inputType="phone"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/deliveryFeeEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/kraPin"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/shape_rect02"
                 android:drawableStart="@drawable/ic_baseline_perm_identity"
                 android:drawableLeft="@drawable/ic_baseline_perm_identity"
                 android:drawablePadding="5dp"
-                android:hint="Delivery Fee"
-                android:textColorHint="@color/colorGray"
-                android:textColor="@color/colorPrimary"
+                android:hint="ID Number "
                 android:inputType="numberDecimal"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorGray" />
 
             <LinearLayout
                 android:id="@+id/addressLl"
@@ -200,18 +221,42 @@
                 android:drawableLeft="@drawable/ic_location"
                 android:drawablePadding="5dp"
                 android:hint="Address"
-                android:textColorHint="@color/colorGray"
-                android:textColor="@color/colorPrimary"
                 android:inputType="textPostalAddress|textMultiLine"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorGray" />
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Gender "
+                android:layout_below="@id/addressEt"
+                android:layout_marginRight="100dp"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/black"/>
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@id/location"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/shape_rect02"/>
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/shopOpenSwitch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/addressEt"
-                android:layout_margin="5dp"
-                android:text="Shop open"/>
+                android:layout_below="@id/spinner"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Shop open" />
 
             <Button
                 android:id="@+id/updateBtn"

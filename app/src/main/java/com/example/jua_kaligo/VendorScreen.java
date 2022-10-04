@@ -93,6 +93,7 @@ public class VendorScreen extends AppCompatActivity {
                 Calendar c = Calendar.getInstance();
                 int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
                 String fullname = userprofile.fullN;
+                String profileImage = userprofile.profileImage;
 
                 if(timeOfDay >= 0 && timeOfDay < 12){
                     greetingTextView.setText("Good Morning ");
@@ -106,6 +107,14 @@ public class VendorScreen extends AppCompatActivity {
                 }else if(timeOfDay >= 21 && timeOfDay < 24){
                     greetingTextView.setText("Good Night ");
                     full_nameTextview.setText(fullname+"!");
+                }
+
+                try {
+                    Picasso.get().load(profileImage).placeholder(R.drawable.ic_baseline_store_gray).into(profileIv);
+
+                }catch (Exception e){
+                    profileIv.setImageResource(R.drawable.ic_baseline_store_gray);
+
                 }
                 //postbutton.setVisibility(View.INVISIBLE);
             }
@@ -130,120 +139,11 @@ public class VendorScreen extends AppCompatActivity {
                 makeMeOffline();
             }
         });
-        profileIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //pick image
-                showImagePickDialog ( );
-            }
-        });
-
-    }
-
-    private void showImagePickDialog() {
-        //options to display in dialog
-        String[] options = {"Camera" , "Gallery"};
-        //dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder ( this );
-        builder.setTitle ( "Pick Image" )
-                .setItems ( options , new DialogInterface.OnClickListener ( ) {
-                    @Override
-                    public void onClick(DialogInterface dialog , int which) {
-                        if (which == 0) {
-                            //camera clicked
-                            if (checkCameraPermission ( )) {
-                                //camera permissions allowed
-                                pickFromCamera ( );
-
-                            } else {
-                                //not allowed, request
-                                requestCameraPermission ( );
-
-                            }
-
-                        } else {
-                            //gallery clicked
-                            if (checkStoragePermission ( )) {
-                                //storage permissions allowed
-                                pickFromGallery ( );
-
-                            } else {
-                                //not allowed, request
-                                requestStoragePermission ( );
-
-                            }
-
-                        }
-
-                    }
-                } )
-                .show ( );
-    }
-    private void pickFromGallery() {
-        Intent intent = new Intent ( Intent.ACTION_PICK );
-        intent.setType ( "image/*" );
-        startActivityForResult ( intent , IMAGE_PICK_GALLERY_CODE );
-
-    }
-
-    private void pickFromCamera() {
-        ContentValues contentValues = new ContentValues ( );
-        contentValues.put ( MediaStore.Images.Media.TITLE , "Temp_Image Title" );
-        contentValues.put ( MediaStore.Images.Media.DESCRIPTION , "Temp_Image Description" );
-
-        image_uri = getContentResolver ( ).insert ( MediaStore.Images.Media.EXTERNAL_CONTENT_URI , contentValues );
-
-        Intent intent = new Intent ( MediaStore.ACTION_IMAGE_CAPTURE );
-        intent.putExtra ( MediaStore.EXTRA_OUTPUT , image_uri );
-        startActivityForResult ( intent , IMAGE_PICK_CAMERA_CODE );
-
-    }
-
-
-
-    private boolean checkStoragePermission() {
-        boolean result = ContextCompat.checkSelfPermission ( this , Manifest.permission.WRITE_EXTERNAL_STORAGE ) ==
-                (PackageManager.PERMISSION_GRANTED);
-
-        return result;
-    }
-
-    private void requestStoragePermission() {
-        ActivityCompat.requestPermissions ( this , storagePermissions , STORAGE_REQUEST_CODE );
 
 
     }
 
-    private boolean checkCameraPermission() {
-        boolean result = ContextCompat.checkSelfPermission ( this , Manifest.permission.CAMERA ) ==
-                (PackageManager.PERMISSION_GRANTED);
 
-        boolean result1 = ContextCompat.checkSelfPermission ( this , Manifest.permission.WRITE_EXTERNAL_STORAGE ) ==
-                (PackageManager.PERMISSION_GRANTED);
-
-        return result && result1;
-    }
-
-    private void requestCameraPermission() {
-        ActivityCompat.requestPermissions ( this , cameraPermissions , CAMERA_REQUEST_CODE );
-
-
-    }
-    @Override
-    protected void onActivityResult(int requestCode , int resultCode , @Nullable Intent data) {
-        if (resultCode == RESULT_OK) {
-            if (requestCode == IMAGE_PICK_GALLERY_CODE) {
-
-                image_uri = data.getData ( );
-
-                profileIv.setImageURI ( image_uri );
-
-            } else if (requestCode == IMAGE_PICK_CAMERA_CODE) {
-                profileIv.setImageURI ( image_uri );
-            }
-        }
-        super.onActivityResult ( requestCode , resultCode , data );
-    }
 
     private void makeMeOffline() {
         // after logging out, make user offline
