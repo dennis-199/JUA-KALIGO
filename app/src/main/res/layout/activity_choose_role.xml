@@ -73,8 +73,18 @@
                 android:textColor="@color/black"
                 android:textStyle="bold" />
 
+
+
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log in instead"
+        android:layout_alignParentBottom="true"
+        android:onClick="Gotologin"
+        android:layout_marginBottom="18dp"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

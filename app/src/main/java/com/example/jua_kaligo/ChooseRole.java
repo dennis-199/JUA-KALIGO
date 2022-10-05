@@ -33,4 +33,9 @@ public class ChooseRole extends AppCompatActivity {
         Intent intent = new Intent(ChooseRole.this, vendornames.class);
         startActivity(intent);
     }
+
+    public void Gotologin(View view) {
+        Intent intent = new Intent(ChooseRole.this, SignIn.class);
+        startActivity(intent);
+    }
 }

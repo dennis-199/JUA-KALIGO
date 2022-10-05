@@ -95,35 +95,35 @@ public class SignIn extends AppCompatActivity {
         });
     }
     private void signInWithCredential(PhoneAuthCredential credential){
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-
-                            // after logging in, make user online
-                            progressDialog.setMessage ( "Checking user..." );
-
-                            HashMap<String, Object> hashMap = new HashMap <> (  );
-                            hashMap.put("online","true");
-
-                            //update value to db
-                            DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
-                            ref.child(firebaseAuth.getUid()).updateChildren(hashMap)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void unused) {
-                                            checkUserType();
-                                        }
-                                    }).addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(SignIn.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
+        mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+                    reference.child(mAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            String accountType = ""+snapshot.child("accountType").getValue();
+                            progressDialog.setMessage("Logging in ...");
+                            progressDialog.show();
+                            if(accountType.equals("Customer")){
+                                startActivity(new Intent(SignIn.this,MainScreen.class));
+                                finish();
+                            }else{
+                                // user is vendor
+                                startActivity(new Intent(SignIn.this,VendorScreen.class));
+                                finish();
+                            }
                         }
-                    }
-                });
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+            }
+        });
     }
     private void sendVerificationCode(String number){
         // this method is used for getting
