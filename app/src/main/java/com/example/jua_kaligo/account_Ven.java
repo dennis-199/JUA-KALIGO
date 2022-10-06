@@ -112,7 +112,7 @@ public class account_Ven extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Vendor userprofile = snapshot.getValue(Vendor.class);
 
-                String shopname = userprofile.fullN;
+                String shopname = userprofile.shopName;
                 String phoneno = userprofile.Phone;
                 String Idnumber = userprofile.IDNumber;
                 String Country = userprofile.country;

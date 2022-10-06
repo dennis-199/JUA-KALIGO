@@ -94,7 +94,7 @@ public class VendorScreen extends AppCompatActivity {
 
                 Calendar c = Calendar.getInstance();
                 int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
-                String fullname = userprofile.fullN;
+                String fullname = userprofile.shopName;
                 String profileImage = userprofile.profileImage;
 
                 if(timeOfDay >= 0 && timeOfDay < 12){
