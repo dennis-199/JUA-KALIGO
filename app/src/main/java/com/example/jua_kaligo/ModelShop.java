@@ -1,28 +1,27 @@
 package com.example.jua_kaligo;
 
 public class ModelShop {
-    private String uid,email,name,shopName,Phone,deliveryFee,country,city,state,address,latitude,longitude,timestamp,accountType,online,shopOpen,profileImage;
+    private String shopName, KRApin, IDNumber,Gender,country,state,city,address,accountType,online,Phone,uid,profileImage,shopOpen;
 
     public ModelShop() {
     }
-    public ModelShop(String uid , String email , String name , String shopName , String Phone , String deliveryFee , String country , String city , String state , String address , String latitude , String longitude , String timestamp , String accountType , String online , String shopOpen , String profileImage) {
-        this.uid = uid;
-//        this.email = email;
-//        this.name = name;
+    public ModelShop(String shopName, String KRApin, String idnumber,  String Gender,String country,
+                     String state,String city,String address,String accountType,String online,String Phone, String uid, String profileImage,
+                     String shopOpen) {
         this.shopName = shopName;
-        this.Phone = Phone;
-        this.deliveryFee = deliveryFee;
+        this.KRApin = KRApin;
+        this.IDNumber = idnumber;
+        this.Gender = Gender;
         this.country = country;
-        this.city = city;
         this.state = state;
+        this.city = city;
         this.address = address;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.timestamp = timestamp;
         this.accountType = accountType;
         this.online = online;
-        this.shopOpen = shopOpen;
+        this.Phone = Phone;
+        this.uid = uid;
         this.profileImage = profileImage;
+        this.shopOpen = shopOpen;
     }
     public String getUid() {
         return uid;
@@ -68,9 +67,9 @@ public class ModelShop {
 //        return deliveryFee;
 //    }
 
-    public void setDeliveryFee(String deliveryFee) {
-        this.deliveryFee = deliveryFee;
-    }
+//    public void setDeliveryFee(String deliveryFee) {
+//        this.deliveryFee = deliveryFee;
+//    }
 
     public String getCountry() {
         return country;
@@ -104,29 +103,29 @@ public class ModelShop {
         this.address = address;
     }
 
-    public String getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
-
-    public String getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
+//    public String getLatitude() {
+//        return latitude;
+//    }
+//
+//    public void setLatitude(String latitude) {
+//        this.latitude = latitude;
+//    }
+//
+//    public String getLongitude() {
+//        return longitude;
+//    }
+//
+//    public void setLongitude(String longitude) {
+//        this.longitude = longitude;
+//    }
+//
+//    public String getTimestamp() {
+//        return timestamp;
+//    }
+//
+//    public void setTimestamp(String timestamp) {
+//        this.timestamp = timestamp;
+//    }
 
     public String getAccountType() {
         return accountType;

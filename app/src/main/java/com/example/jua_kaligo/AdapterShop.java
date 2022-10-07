@@ -42,13 +42,13 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.HolderShop>{
         String country = modelShop.getCountry();
 //        String deliveryFee = modelShop.getDeliveryFee();
 //        String email = modelShop.getEmail();
-        String latitude = modelShop.getLatitude();
-        String longitude = modelShop.getLongitude();
+        //String latitude = modelShop.getLatitude();
+        //String longitude = modelShop.getLongitude();
         String online = modelShop.getOnline();
 //        String name = modelShop.getName();
         String phone = modelShop.getPhone();
         final String uid = modelShop.getUid();
-        String timestamp = modelShop.getTimestamp();
+        //String timestamp = modelShop.getTimestamp();
         String shopOpen = modelShop.getShopOpen();
         String state = modelShop.getState();
         String profileImage = modelShop.getProfileImage();
