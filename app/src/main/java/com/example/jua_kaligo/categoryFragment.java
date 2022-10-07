@@ -30,7 +30,7 @@ public class categoryFragment extends Fragment {
 
     private RecyclerView shopsRv, ordersRv;
     private FirebaseAuth firebaseAuth;
-    private ArrayList<ModelShop> shopsList;
+    private ArrayList<Vendor> shopsList;
     private AdapterShop adapterShop;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,69 +38,107 @@ public class categoryFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_category, container, false);
 
         firebaseAuth = FirebaseAuth.getInstance ();
-        loadshopdetails();
-        return rootView;
-    }
+        //loadshopdetails();
+        shopsRv = (RecyclerView)rootView.findViewById(R.id.shopsRv);
 
-    private void loadshopdetails() {
-        DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
-        ref.orderByChild("uid").equalTo(firebaseAuth.getUid())
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-                        for(DataSnapshot ds: datasnapshot.getChildren()){
-                            String accountType = ""+ds.child ( "accountType" ).getValue ();
-                            String city = ""+ds.child ( "city" ).getValue ();
 
-                            // load shops that are in the city
-                            loadShops(city);
-                        }
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-    }
-
-    private void loadShops(String myCity) {
-        // init list
         shopsList = new ArrayList<>();
-
         DatabaseReference ref =FirebaseDatabase.getInstance().getReference("Users");
         ref.orderByChild("accountType").equalTo("Vendors")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        // clear list before adding
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                         shopsList.clear();
-                        for(DataSnapshot ds: snapshot.getChildren()){
-                            ModelShop modelShop = ds.getValue(ModelShop.class);
+                        for(DataSnapshot ds: dataSnapshot.getChildren()){
+                            Vendor modelShop = ds.getValue(Vendor.class);
 
                             String shopCity = ""+ds.child("city").getValue();
-                            // show only user city shops
-                            if(shopCity.equals(myCity)){
-                                shopsList.add(modelShop);
-                            }
-                            // to display all shops remove if statement
+
+                            //  if (shopCity.equals(myCity)){
+                            shopsList.add(modelShop);
+                            // }
+
+                            // if you want to see all shops, skip the if statement and this
                             // shopsList.add(modelShop);
-
                         }
-                        // set up adapter
-                        adapterShop = new AdapterShop(getContext(), shopsList);
-                        // set adapter to recycler view
-                        shopsRv.setAdapter(adapterShop);
+                        adapterShop = new AdapterShop(getActivity(), shopsList);
 
+                        shopsRv.setAdapter(adapterShop);
                     }
 
                     @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
                 });
+
+        return rootView;
     }
+
+//    private void loadshopdetails() {
+//        DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
+//        ref.orderByChild("uid").equalTo(firebaseAuth.getUid())
+//                .addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+//                        for(DataSnapshot ds: datasnapshot.getChildren()){
+//                            String name = ""+ds.child ( "name" ).getValue ();
+//                            String email = ""+ds.child ( "email" ).getValue ();
+//                            String Phone = ""+ds.child ( "Phone" ).getValue ();
+//                            String profileImage = ""+ds.child ( "profileImage" ).getValue ();
+//                            String accountType = ""+ds.child ( "accountType" ).getValue ();
+//                            String city = ""+ds.child ( "city" ).getValue ();
+//
+//                            // load shops that are in the city
+//                            loadShops(city);
+//                        }
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+//    }
+
+//    private void loadShops(String myCity) {
+//        // init list
+//        shopsList = new ArrayList<>();
+//
+//        DatabaseReference ref =FirebaseDatabase.getInstance().getReference("Users");
+//        ref.orderByChild("accountType").equalTo("Vendors")
+//                .addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        // clear list before adding
+//                        shopsList.clear();
+//                        for(DataSnapshot ds: snapshot.getChildren()){
+//                            Vendor modelShop = ds.getValue(Vendor.class);
+//
+//                            String shopCity = ""+ds.child("city").getValue();
+//                            // show only user city shops
+//                            //if(shopCity.equals(myCity)){
+//                                shopsList.add(modelShop);
+//                            //}
+//                            // to display all shops remove if statement
+//                            // shopsList.add(modelShop);
+//
+//                        }
+//                        // set up adapter
+//                        AdapterShop adapterShop= new AdapterShop(getActivity().getApplicationContext(), shopsList);
+//                        // set adapter to recycler view
+//                        shopsRv.setAdapter(adapterShop);
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+//    }
 
 
 }

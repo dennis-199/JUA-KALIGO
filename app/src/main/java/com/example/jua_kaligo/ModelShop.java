@@ -1,13 +1,14 @@
 package com.example.jua_kaligo;
 
 public class ModelShop {
-    private String shopName, KRApin, IDNumber,Gender,country,state,city,address,accountType,online,Phone,uid,profileImage,shopOpen;
+    private String shopName, KRApin, IDNumber,Gender,country,state,city,address,accountType,online,Phone,uid,profileImage,shopOpen,timestamp
+            ,latitude,longitude,deliveryFee,name,email;
 
     public ModelShop() {
     }
     public ModelShop(String shopName, String KRApin, String idnumber,  String Gender,String country,
                      String state,String city,String address,String accountType,String online,String Phone, String uid, String profileImage,
-                     String shopOpen) {
+                     String shopOpen, String timestamp, String latitude,String longitude, String deliveryFee, String name, String email) {
         this.shopName = shopName;
         this.KRApin = KRApin;
         this.IDNumber = idnumber;
@@ -22,87 +23,134 @@ public class ModelShop {
         this.uid = uid;
         this.profileImage = profileImage;
         this.shopOpen = shopOpen;
+        this.timestamp = timestamp;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.deliveryFee = deliveryFee;
+        this.name = name;
+        this.email = email;
     }
-    public String getUid() {
-        return uid;
-    }
 
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
-//    public String getEmail() {
-//        return email;
-//    }
-
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
-
-//    public String getName() {
-//        return name;
+//    public String getShopName() {
+//        return shopName;
 //    }
 //
-//    public void setName(String name) {
-//        this.name = name;
+//    public void setShopName(String shopName) {
+//        this.shopName = shopName;
 //    }
-
-    public String getShopName() {
-        return shopName;
-    }
-
-    public void setShopName(String shopName) {
-        this.shopName = shopName;
-    }
-
-    public String getPhone() {
-        return Phone;
-    }
-
-    public void setPhone(String phone) {
-        this.Phone = phone;
-    }
-
-//    public String getDeliveryFee() {
-//        return deliveryFee;
+//
+//    public String getKRApin() {
+//        return KRApin;
 //    }
-
-//    public void setDeliveryFee(String deliveryFee) {
-//        this.deliveryFee = deliveryFee;
+//
+//    public void setKRApin(String KRApin) {
+//        this.KRApin = KRApin;
 //    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
+//
+//    public String getIDNumber() {
+//        return IDNumber;
+//    }
+//
+//    public void setIDNumber(String IDNumber) {
+//        this.IDNumber = IDNumber;
+//    }
+//
+//    public String getGender() {
+//        return Gender;
+//    }
+//
+//    public void setGender(String gender) {
+//        Gender = gender;
+//    }
+//
+//    public String getCountry() {
+//        return country;
+//    }
+//
+//    public void setCountry(String country) {
+//        this.country = country;
+//    }
+//
+//    public String getState() {
+//        return state;
+//    }
+//
+//    public void setState(String state) {
+//        this.state = state;
+//    }
+//
+//    public String getCity() {
+//        return city;
+//    }
+//
+//    public void setCity(String city) {
+//        this.city = city;
+//    }
+//
+//    public String getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(String address) {
+//        this.address = address;
+//    }
+//
+//    public String getAccountType() {
+//        return accountType;
+//    }
+//
+//    public void setAccountType(String accountType) {
+//        this.accountType = accountType;
+//    }
+//
+//    public String getOnline() {
+//        return online;
+//    }
+//
+//    public void setOnline(String online) {
+//        this.online = online;
+//    }
+//
+//    public String getPhone() {
+//        return Phone;
+//    }
+//
+//    public void setPhone(String phone) {
+//        Phone = phone;
+//    }
+//
+//    public String getUid() {
+//        return uid;
+//    }
+//
+//    public void setUid(String uid) {
+//        this.uid = uid;
+//    }
+//
+//    public String getProfileImage() {
+//        return profileImage;
+//    }
+//
+//    public void setProfileImage(String profileImage) {
+//        this.profileImage = profileImage;
+//    }
+//
+//    public String getShopOpen() {
+//        return shopOpen;
+//    }
+//
+//    public void setShopOpen(String shopOpen) {
+//        this.shopOpen = shopOpen;
+//    }
+//
+//    public String getTimestamp() {
+//        return timestamp;
+//    }
+//
+//    public void setTimestamp(String timestamp) {
+//        this.timestamp = timestamp;
+//    }
+//
 //    public String getLatitude() {
 //        return latitude;
 //    }
@@ -119,43 +167,27 @@ public class ModelShop {
 //        this.longitude = longitude;
 //    }
 //
-//    public String getTimestamp() {
-//        return timestamp;
+//    public String getDeliveryFee() {
+//        return deliveryFee;
 //    }
 //
-//    public void setTimestamp(String timestamp) {
-//        this.timestamp = timestamp;
+//    public void setDeliveryFee(String deliveryFee) {
+//        this.deliveryFee = deliveryFee;
 //    }
-
-    public String getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(String accountType) {
-        this.accountType = accountType;
-    }
-
-    public String getOnline() {
-        return online;
-    }
-
-    public void setOnline(String online) {
-        this.online = online;
-    }
-
-    public String getShopOpen() {
-        return shopOpen;
-    }
-
-    public void setShopOpen(String shopOpen) {
-        this.shopOpen = shopOpen;
-    }
-
-    public String getProfileImage() {
-        return profileImage;
-    }
-
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
-    }
+//
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+//
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
 }

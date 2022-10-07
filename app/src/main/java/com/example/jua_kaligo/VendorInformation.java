@@ -115,16 +115,16 @@ public class VendorInformation extends AppCompatActivity {
         Intent intent = getIntent();
 
         String shopName = intent.getStringExtra("FullName");
-        String KRApin = intent.getStringExtra("PhoneNumber");
-        String IDNumber = intent.getStringExtra("ID_NUMBER");
-        String Gender = intent.getStringExtra("Location");
+        String kRApin = intent.getStringExtra("PhoneNumber");
+        String iDNumber = intent.getStringExtra("ID_NUMBER");
+        String gender = intent.getStringExtra("Location");
         String country = intent.getStringExtra("country");
         String state = intent.getStringExtra("state");
         String city = intent.getStringExtra("city");
         String address = intent.getStringExtra("address");
         String accountType = "Vendors";
         String online= "true";
-        String Phone = "+254"+phone.getText().toString().trim();
+        String phones = "+254"+phone.getText().toString().trim();
         String uid= mAuth.getUid();
         String profileImage = "";
         String shopOpen = "true";
@@ -140,7 +140,7 @@ public class VendorInformation extends AppCompatActivity {
                 if (task.isSuccessful()) {
 
                     // if code is correct and task is succesful we are sending user to a new activity
-                    Vendor vendor = new Vendor(shopName,KRApin,IDNumber,Gender,country,state,city,address,accountType,online,Phone,uid,profileImage,shopOpen
+                    Vendor vendor = new Vendor(shopName,kRApin,iDNumber,gender,country,state,city,address,accountType,online,phones,uid,profileImage,shopOpen
                     ,timestamp,latitude,longitude,deliveryFee,name,email);
 
                     FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(vendor).addOnCompleteListener(new OnCompleteListener<Void>() {

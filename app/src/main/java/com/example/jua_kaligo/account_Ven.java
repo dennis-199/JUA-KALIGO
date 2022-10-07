@@ -113,8 +113,8 @@ public class account_Ven extends Fragment {
                 Vendor userprofile = snapshot.getValue(Vendor.class);
 
                 String shopname = userprofile.shopName;
-                String phoneno = userprofile.Phone;
-                String Idnumber = userprofile.IDNumber;
+                String phoneno = userprofile.phones;
+                String Idnumber = userprofile.iDNumber;
                 String Country = userprofile.country;
                 String county = userprofile.state;
                 String City = userprofile.city;

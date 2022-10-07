@@ -17,9 +17,9 @@ import java.util.ArrayList;
 
 public class AdapterShop extends RecyclerView.Adapter<AdapterShop.HolderShop>{
     private Context context;
-    public ArrayList<ModelShop> shopsList;
+    public ArrayList<Vendor> shopsList;
 
-    public AdapterShop(Context context, ArrayList<ModelShop> shopsList) {
+    public AdapterShop(Context context, ArrayList<Vendor> shopsList) {
         this.context = context;
         this.shopsList = shopsList;
     }
@@ -34,21 +34,20 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.HolderShop>{
     @Override
     public void onBindViewHolder(@NonNull HolderShop holder, int position) {
 
-        ModelShop modelShop = shopsList.get(position);
+        Vendor modelShop = shopsList.get(position);
         String accountType = modelShop.getAccountType();
         String address = modelShop.getAddress();
         String city = modelShop.getCity();
-
         String country = modelShop.getCountry();
-//        String deliveryFee = modelShop.getDeliveryFee();
-//        String email = modelShop.getEmail();
-        //String latitude = modelShop.getLatitude();
-        //String longitude = modelShop.getLongitude();
+        String deliveryFee = modelShop.getDeliveryFee();
+        String email = modelShop.getEmail();
+        String latitude = modelShop.getLatitude();
+        String longitude = modelShop.getLongitude();
         String online = modelShop.getOnline();
-//        String name = modelShop.getName();
-        String phone = modelShop.getPhone();
+        String name = modelShop.getName();
+        String phone = modelShop.getPhones();
         final String uid = modelShop.getUid();
-        //String timestamp = modelShop.getTimestamp();
+        String timestamp = modelShop.getTimestamp();
         String shopOpen = modelShop.getShopOpen();
         String state = modelShop.getState();
         String profileImage = modelShop.getProfileImage();
@@ -93,7 +92,7 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.HolderShop>{
 
     // view holder
 
-    class HolderShop extends RecyclerView.ViewHolder{
+    public static class HolderShop extends RecyclerView.ViewHolder{
 
         // ui view for shop
 

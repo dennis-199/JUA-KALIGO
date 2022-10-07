@@ -14,8 +14,4 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/row_shop"/>
 
-
-
-
-
 </RelativeLayout>
