@@ -114,6 +114,9 @@ public class LocationVenActivity extends AppCompatActivity implements LocationLi
         // send location details to new page
         //set addresses
 
+        if (latitude == 0.0 || longitude == 0.0) {
+            Toast.makeText ( this , "Please click GPS button to detect location..." , Toast.LENGTH_SHORT ).show ( );
+        }
         String country = countryEt.getText().toString();
         String state = stateEt.getText().toString();
         String city = cityEt.getText().toString();
@@ -125,6 +128,8 @@ public class LocationVenActivity extends AppCompatActivity implements LocationLi
         intent.putExtra("state",state);
         intent.putExtra("city",city);
         intent.putExtra("address",address);
+        intent.putExtra("latitude",latitude);
+        intent.putExtra("longitude",longitude);
 
         startActivity(intent);
 

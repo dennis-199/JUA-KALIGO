@@ -111,6 +111,7 @@ public class VendorInformation extends AppCompatActivity {
 
     private void signInWithCredential(PhoneAuthCredential credential) {
         // checking if the code entered is correct
+
         Intent intent = getIntent();
 
         String shopName = intent.getStringExtra("FullName");
@@ -127,13 +128,20 @@ public class VendorInformation extends AppCompatActivity {
         String uid= mAuth.getUid();
         String profileImage = "";
         String shopOpen = "true";
+        String deliveryFee = "100";
+        final String timestamp = "" + System.currentTimeMillis ( );
+        String latitude = intent.getStringExtra("latitude");
+        String longitude = intent.getStringExtra("longitude");
+        String name = "Dennis Ochieng";
+        String email = "Juakalistore@gmail.com";
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
 
                     // if code is correct and task is succesful we are sending user to a new activity
-                    Vendor vendor = new Vendor(shopName,KRApin,IDNumber,Gender,country,state,city,address,accountType,online,Phone,uid,profileImage,shopOpen);
+                    Vendor vendor = new Vendor(shopName,KRApin,IDNumber,Gender,country,state,city,address,accountType,online,Phone,uid,profileImage,shopOpen
+                    ,timestamp,latitude,longitude,deliveryFee,name,email);
 
                     FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(vendor).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
