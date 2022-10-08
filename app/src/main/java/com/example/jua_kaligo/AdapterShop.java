@@ -1,6 +1,7 @@
 package com.example.jua_kaligo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,6 +83,15 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.HolderShop>{
             holder.shopIv.setImageResource(R.drawable.ic_baseline_store_gray);
 
         }
+        // handle click listener for shop details
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent ( context, ShopDetailsActivity.class );
+                intent.putExtra ( "shopUid",uid );
+                context.startActivity ( intent );
+            }
+        });
 
     }
 
