@@ -4,14 +4,21 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -47,7 +54,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
 
     //progress dialog
     private ProgressDialog progressDialog;
-    //private AdapterProductUser adapterProductUser;
+    private AdapterProductUser adapterProductUser;
     private ArrayList< ModelProduct > productsList;
 
     //private ArrayList<ModelCartItem> cartItemsList;
@@ -87,8 +94,34 @@ public class ShopDetailsActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance ();
 
         loadMyInfo();
+
+        // loading shop details
+
         loadShopDetails();
         loadShopProducts();
+
+        // search
+        searchProductEt.addTextChangedListener ( new TextWatcher( ) {
+            @Override
+            public void beforeTextChanged(CharSequence s , int start , int count , int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s , int start , int before , int count) {
+                try{
+                    adapterProductUser.getFilter ().filter ( s );
+                }
+                catch(Exception e) {
+                    e.printStackTrace ();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        } );
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,13 +136,59 @@ public class ShopDetailsActivity extends AppCompatActivity {
                 // cart
             }
         });
+        callBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialPhone();
+            }
+        });
+        mapBtn.setOnClickListener ( new View.OnClickListener ( ) {
+            @Override
+            public void onClick(View v) {
+                openMap();
+            }
+        } );
+        filterProductsBtn.setOnClickListener ( new View.OnClickListener ( ) {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder (ShopDetailsActivity.this );
+                builder.setTitle ( "Choose Category:" )
+                        .setItems ( Constants.productCategories1 , new DialogInterface.OnClickListener ( ) {
+                            @Override
+                            public void onClick(DialogInterface dialog , int which) {
+                                //get selected item
+                                String selected = Constants.productCategories1[which];
+                                filteredProductsTv.setText ( (selected) );
+                                if(selected.equals ( "All" )) {
+                                    loadShopProducts ();
+                                }
+                                else {
+                                    // load filtered
+                                    adapterProductUser.getFilter ().filter ( selected );
+                                }
+                            }
+                        } ).show ();
 
+            }
+        } );
+
+    }
+
+    private void openMap() {
+        String address = "https://maps.google.com/maps?saddr="+ myLatitude + "," + myLongitude + "&daddr=" + shopLatitude + "," + shopLongitude;
+        Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse ( address ));
+        startActivity ( intent );
+    }
+
+    private void dialPhone() {
+        startActivity ( new Intent(Intent.ACTION_DIAL, Uri.parse ( "tel:"+Uri.encode ( shopPhone )))  );
+        Toast.makeText ( this , ""+shopPhone , Toast.LENGTH_SHORT ).show ( );
     }
 
     private void loadMyInfo() {
 
         DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
-        ref.orderByChild ( "uid" ).equalTo ( firebaseAuth.getUid () )
+        ref.orderByChild ( shopUid ).equalTo ( firebaseAuth.getUid () )
                 .addValueEventListener ( new ValueEventListener( ) {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -141,15 +220,15 @@ public class ShopDetailsActivity extends AppCompatActivity {
                 String name = "" + snapshot.child ( "name" ).getValue ( );
                 shopName = "" + snapshot.child ( "shopName" ).getValue ( );
                 shopEmail = "" + snapshot.child ( "email" ).getValue ( );
-                shopPhone = "" + snapshot.child ( "Phone" ).getValue ( );
+                shopPhone = "" + snapshot.child ( "phones" ).getValue ( );
                 shopAddress = "" + snapshot.child ( "address" ).getValue ( );
-                shopLatitude = "" + snapshot.child ( "latitude" ).getValue ( );
-                shopLongitude = "" + snapshot.child ( "longitude" ).getValue ( );
+                //shopLatitude = "" + snapshot.child ( "latitude" ).getValue ( );
+                //shopLongitude = "" + snapshot.child ( "longitude" ).getValue ( );
                 deliveryFee = "" + snapshot.child ( "deliveryFee" ).getValue ( );
                 String profileImage = "" + snapshot.child ( "profileImage" ).getValue ( );
                 String shopOpen = "" + snapshot.child ( "shopOpen" ).getValue ( );
 
-                // set data
+                 //set data
 
                 shopNameTv.setText ( shopName );
                 emailTv.setText ( shopEmail );
@@ -179,5 +258,30 @@ public class ShopDetailsActivity extends AppCompatActivity {
         } );
     }
     private void loadShopProducts() {
+        // init list
+        productsList = new ArrayList <> (  );
+
+        DatabaseReference reference = FirebaseDatabase.getInstance ().getReference ("Users");
+        reference.child ( shopUid).child ( "Products" )
+                .addValueEventListener ( new ValueEventListener ( ) {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        // clear list before adding products
+                        productsList.clear ();
+                        for(DataSnapshot ds: snapshot.getChildren ()){
+                            ModelProduct modelProduct = ds.getValue ( ModelProduct.class );
+                            productsList.add ( modelProduct );
+                        }
+                        //setup adapter
+                        adapterProductUser = new AdapterProductUser ( ShopDetailsActivity.this,productsList );
+                        //set adapter
+                        productsRv.setAdapter(adapterProductUser);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                } );
     }
 }

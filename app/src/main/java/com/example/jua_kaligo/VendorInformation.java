@@ -31,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class VendorInformation extends AppCompatActivity {
@@ -73,6 +74,7 @@ public class VendorInformation extends AppCompatActivity {
 
 
         mAuth = FirebaseAuth.getInstance();
+
         edtPhone = findViewById(R.id.phone_number);
         edtOTP = findViewById(R.id.idEdtOtp);
         verifyOTPBtn = findViewById(R.id.idBtnVerify);
@@ -111,6 +113,7 @@ public class VendorInformation extends AppCompatActivity {
 
     private void signInWithCredential(PhoneAuthCredential credential) {
         // checking if the code entered is correct
+        //mAuth = FirebaseAuth.getInstance();
 
         Intent intent = getIntent();
 
@@ -126,6 +129,7 @@ public class VendorInformation extends AppCompatActivity {
         String online= "true";
         String phones = "+254"+phone.getText().toString().trim();
         String uid= mAuth.getUid();
+
         String profileImage = "";
         String shopOpen = "true";
         String deliveryFee = "100";
@@ -140,13 +144,40 @@ public class VendorInformation extends AppCompatActivity {
                 if (task.isSuccessful()) {
 
                     // if code is correct and task is succesful we are sending user to a new activity
-                    Vendor vendor = new Vendor(shopName,kRApin,iDNumber,gender,country,state,city,address,accountType,online,phones,uid,profileImage,shopOpen
-                    ,timestamp,latitude,longitude,deliveryFee,name,email);
+                    //Vendor vendor = new Vendor(shopName,kRApin,iDNumber,gender,country,state,city,address,accountType,online,phones,uid,profileImage,shopOpen
+                   // ,timestamp,latitude,longitude,deliveryFee,name,email);
 
-                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(vendor).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    // testing
+                    //setup data to save
+                    HashMap < String, Object > hashMap = new HashMap <> ( );
+                    hashMap.put ( "uid" , "" + mAuth.getUid ( ) );
+                    hashMap.put ( "email" , "Juakali@store.com" );
+                    hashMap.put("kRApin",""+kRApin);
+                    hashMap.put ( "name" , "Jua store"  );
+                    hashMap.put("gender", ""+gender);
+                    hashMap.put("iDNumber",""+iDNumber);
+                    hashMap.put ( "shopName" , "" + shopName );
+                    hashMap.put ( "phones" , "" + phones );
+                    hashMap.put ( "deliveryFee" , "100" );
+                    hashMap.put ( "country" , "" + country );
+                    hashMap.put ( "city" , "" + city );
+                    hashMap.put ( "state" , "" + state );
+                    hashMap.put ( "address" , "" + address );
+                    hashMap.put ( "latitude" , "" + latitude );
+                    hashMap.put ( "longitude" , "" + longitude );
+                    hashMap.put ( "timestamp" , "" + timestamp );
+                    hashMap.put ( "accountType" , "Vendors" );
+                    hashMap.put ( "online" , "true" );
+                    hashMap.put ( "shopOpen" , "true" );
+                    hashMap.put ( "profileImage" , "" );
+
+
+
+                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
+
                                 Toast.makeText(VendorInformation.this, "You have been registered successfully ", Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(VendorInformation.this, VendorScreen.class);
                                 startActivity(i);

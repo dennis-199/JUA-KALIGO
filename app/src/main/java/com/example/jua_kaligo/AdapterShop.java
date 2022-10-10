@@ -17,6 +17,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class AdapterShop extends RecyclerView.Adapter<AdapterShop.HolderShop>{
+
     private Context context;
     public ArrayList<Vendor> shopsList;
 
@@ -34,6 +35,7 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.HolderShop>{
 
     @Override
     public void onBindViewHolder(@NonNull HolderShop holder, int position) {
+
 
         Vendor modelShop = shopsList.get(position);
         String accountType = modelShop.getAccountType();
