@@ -202,12 +202,12 @@ public class AdapterProductUser extends RecyclerView.Adapter<AdapterProductUser.
             @Override
             public void onClick(View v) {
                 String title = titleTv.getText ().toString ().trim ();
-                String priceEach = originalPriceTv.getText().toString().trim().replace("ksh","");
-                String price = finalPriceTv.getText ().toString ().trim ().replace ( "Ksh","" );
+                String priceEach = price;
+                String totalPrice = finalPriceTv.getText ().toString ().trim ().replace ( "Ksh","" );
                 String quantity = quantityTv.getText ().toString ().trim ();
 
                 // add to SQLLite Db
-                addToCart(productId,title,priceEach,price,quantity);
+                addToCart(productId,title,priceEach,totalPrice,quantity);
 
                 dialog.dismiss ();
             }
