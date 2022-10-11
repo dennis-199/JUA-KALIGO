@@ -23,6 +23,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,6 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import p32929.androideasysql_library.Column;
 import p32929.androideasysql_library.EasyDB;
@@ -270,6 +273,94 @@ public class ShopDetailsActivity extends AppCompatActivity {
                 allTotalPrice = 0.00;
             }
         });
+        // place order
+        checkoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //first validate delivery address
+                if (myLatitude.equals("") || myLatitude.equals("null") || myLongitude.equals("") || myLongitude.equals("null")){
+                    //user didn't enter address in profile
+                    Toast.makeText(ShopDetailsActivity.this, "Please enter your address in your profile before placing order...", Toast.LENGTH_SHORT).show();
+                    return;//don't proceed further
+                }
+                if (myPhone.equals("") || myPhone.equals("null")){
+                    //user didn't enter phone number in profile
+                    Toast.makeText(ShopDetailsActivity.this, "Please enter your phone number in your profile before placing order...", Toast.LENGTH_SHORT).show();
+                    return;//don't proceed further
+                }
+                if (cartItemsList.size() == 0){
+                    //cart list is empty
+                    Toast.makeText(ShopDetailsActivity.this, "No item in cart", Toast.LENGTH_SHORT).show();
+                    return;//don't proceed further
+
+                }
+                submitOrder();
+            }
+        });
+    }
+
+    private void submitOrder() {
+        //show progress dialog
+        progressDialog.setMessage("Placing order...");
+        progressDialog.show();
+
+        //for order id and order time
+        String timestamp = ""+System.currentTimeMillis();
+
+        String cost = allTotalPriceTv.getText().toString().trim().replace("Ksh","");
+
+        //setup order data
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("orderId", ""+timestamp);
+        hashMap.put("orderTime", ""+timestamp);
+        hashMap.put("orderStatus", "In Progress");
+        hashMap.put("orderCost", ""+cost);
+        hashMap.put("orderBy", ""+firebaseAuth.getUid());
+        hashMap.put("orderTo", ""+shopUid);
+        hashMap.put("latitude", ""+myLatitude);
+        hashMap.put("longitude", ""+myLongitude);
+        //add to db
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(shopUid).child("orders");
+        ref.child(timestamp).setValue(hashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        //order info added now add order items
+                        for (int i = 0; i < cartItemsList.size(); i++) {
+                            String pId = cartItemsList.get(i).getpId();
+                            String id = cartItemsList.get(i).getId();
+                            String cost = cartItemsList.get(i).getCost();
+                            String name = cartItemsList.get(i).getName();
+                            String price = cartItemsList.get(i).getPrice();
+                            String quantity = cartItemsList.get(i).getQuantity();
+
+                            HashMap<String, String> hashMap1 = new HashMap<>();
+                            hashMap1.put("pId", pId);
+                            hashMap1.put("name", name);
+                            hashMap1.put("cost", cost);
+                            hashMap1.put("price", price);
+                            hashMap1.put("quantity", quantity);
+
+                            ref.child(timestamp).child("Items").child(pId).setValue(hashMap1);
+
+                        }
+                        progressDialog.dismiss();
+                        Toast.makeText(ShopDetailsActivity.this, "Order Placed Successfully...", Toast.LENGTH_SHORT).show();
+
+
+                        //prepareNotificationMessage (timestamp);
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                        //failed placing order
+                        progressDialog.dismiss();
+                        Toast.makeText(ShopDetailsActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
     }
 
     private void openMap() {
