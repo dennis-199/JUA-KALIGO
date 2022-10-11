@@ -1,6 +1,7 @@
 package com.example.jua_kaligo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class AdapterOrderUser extends RecyclerView.Adapter<AdapterOrderUser.HolderOrderUser>{
+public class AdapterOrderUser extends RecyclerView.Adapter<AdapterOrderUser.HolderOrderUser> {
 
     private Context context;
     private ArrayList<ModelOrderUser> orderUserList;
@@ -39,7 +40,6 @@ public class AdapterOrderUser extends RecyclerView.Adapter<AdapterOrderUser.Hold
 
     @Override
     public void onBindViewHolder(@NonNull HolderOrderUser holder, int position) {
-
         //get data
         ModelOrderUser modelOrderUser = orderUserList.get(position);
         String orderId = modelOrderUser.getOrderId();
@@ -74,6 +74,18 @@ public class AdapterOrderUser extends RecyclerView.Adapter<AdapterOrderUser.Hold
 
         holder.dateTv.setText(formatDate);
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, OrderDetailsUsersActivity.class);
+                intent.putExtra("orderTo", orderTo);
+                intent.putExtra("orderId", orderId);
+                context.startActivity(intent);
+
+            }
+        });
+
     }
 
     private void loadShopInfo(ModelOrderUser modelOrderUser, HolderOrderUser holder) {
@@ -100,6 +112,7 @@ public class AdapterOrderUser extends RecyclerView.Adapter<AdapterOrderUser.Hold
 
     //view holder class
     class HolderOrderUser extends RecyclerView.ViewHolder{
+
         //views of layout
         private TextView orderIdTv, dateTv, shopNameTv, amountTv, statusTv;
 

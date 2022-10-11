@@ -118,6 +118,12 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
         String state = stateEt.getText().toString();
         String city = cityEt.getText().toString();
         String address = addressEt.getText().toString();
+        //String latitude = latitude
+        if (latitude == 0.0 || longitude == 0.0) {
+            Toast.makeText ( this , "Please click GPS button to detect location..." , Toast.LENGTH_SHORT ).show ( );
+        }
+
+
 
         Intent intent = new Intent(LocationActivity.this, LoginActivity.class);
         intent.putExtras(getIntent().getExtras());
@@ -125,6 +131,9 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
         intent.putExtra("state",state);
         intent.putExtra("city",city);
         intent.putExtra("address",address);
+        //intent.putExtra("latitude",latitude);
+        //intent.putExtra("longitude",longitude);
+
 
         startActivity(intent);
 

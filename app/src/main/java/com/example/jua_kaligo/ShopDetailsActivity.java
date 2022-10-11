@@ -23,6 +23,11 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,8 +38,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import p32929.androideasysql_library.Column;
 import p32929.androideasysql_library.EasyDB;
@@ -64,14 +72,13 @@ public class ShopDetailsActivity extends AppCompatActivity {
     private AdapterProductUser adapterProductUser;
     private ArrayList< ModelProduct > productsList;
 
-    // cart
     private ArrayList<ModelCartItem> cartItemsList;
     private AdapterCartItem adapterCartItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shop_details);
+        super.onCreate ( savedInstanceState );
+        setContentView ( R.layout.activity_shop_details );
 
         //init UI views
 
@@ -98,22 +105,30 @@ public class ShopDetailsActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Please wait");
         progressDialog.setCanceledOnTouchOutside(false);
+
         shopUid = getIntent ().getStringExtra ( "shopUid" );
         firebaseAuth = FirebaseAuth.getInstance ();
-
         loadMyInfo();
-
-        // loading shop details
-
         loadShopDetails();
         loadShopProducts();
+        loadReviews();
+
+        easyDB =  EasyDB.init(this,"ITEMS_DB")
+                .setTableName("ITEMS_TABLE")
+                .addColumn(new Column("Item_Id", new String[]{"text","unique"}))
+                .addColumn(new Column("Item_PID", new String[]{"text","not null"}))
+                .addColumn(new Column("Item_Name", new String[]{"text","not null"}))
+                .addColumn(new Column("Item_Price_Each", new String[]{"text","not null"}))
+                .addColumn(new Column("Item_Price", new String[]{"text","not null"}))
+                .addColumn(new Column("Item_Quantity", new String[]{"text","not null"}))
+                .doneTableColumn();
 
         //each shop has its own products and orders so if user add items to cart and go back and open cart in different shop then cart should be different
         //so delete cart data whenever user opens this activity
         deleteCartData();
+        cartCount ();
 
-        // search
-        searchProductEt.addTextChangedListener ( new TextWatcher( ) {
+        searchProductEt.addTextChangedListener ( new TextWatcher ( ) {
             @Override
             public void beforeTextChanged(CharSequence s , int start , int count , int after) {
 
@@ -135,32 +150,36 @@ public class ShopDetailsActivity extends AppCompatActivity {
             }
         } );
 
-        backBtn.setOnClickListener(new View.OnClickListener() {
+        backBtn.setOnClickListener ( new View.OnClickListener ( ) {
             @Override
             public void onClick(View v) {
                 // go back to previous activity
                 onBackPressed ();
             }
-        });
-        cartBtn.setOnClickListener(new View.OnClickListener() {
+        } );
+
+        cartBtn.setOnClickListener ( new View.OnClickListener ( ) {
             @Override
             public void onClick(View v) {
-                // show cart dialogue
                 showCartDialog();
+
             }
-        });
-        callBtn.setOnClickListener(new View.OnClickListener() {
+        } );
+
+        callBtn.setOnClickListener ( new View.OnClickListener ( ) {
             @Override
             public void onClick(View v) {
                 dialPhone();
             }
-        });
+        } );
+
         mapBtn.setOnClickListener ( new View.OnClickListener ( ) {
             @Override
             public void onClick(View v) {
                 openMap();
             }
         } );
+
         filterProductsBtn.setOnClickListener ( new View.OnClickListener ( ) {
             @Override
             public void onClick(View v) {
@@ -185,32 +204,78 @@ public class ShopDetailsActivity extends AppCompatActivity {
             }
         } );
 
+        //handle review button click, open review activity
+
+        reviewBtn.setOnClickListener ( new View.OnClickListener ( ) {
+            @Override
+            public void onClick(View v) {
+                // pass shop uid to show its reviews
+                Intent intent = new Intent(ShopDetailsActivity.this,ShopReviewsActivity.class);
+                intent.putExtra ("shopUid",shopUid  );
+                startActivity ( intent );
+            }
+        } );
     }
+
+    private float ratingSum =0;
+    private void loadReviews() {
+
+        DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
+        ref.child ( shopUid ).child ( "Ratings" )
+                .addValueEventListener ( new ValueEventListener ( ) {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        // clear list before adding data into it
+                        ratingSum=0;
+                        for(DataSnapshot ds: dataSnapshot.getChildren ()){
+                            float rating = Float.parseFloat ( ""+ds.child ( "ratings" ).getValue () );
+                            ratingSum = ratingSum+rating;
+
+
+                        }
+                        long numberOfReviews = dataSnapshot.getChildrenCount ();
+                        float avgRating = ratingSum/numberOfReviews;
+
+                        ratingBar.setRating ( avgRating );
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                } );
+    }
+
 
     private void deleteCartData() {
 
-        EasyDB easyDB =  EasyDB.init(this,"ITEMS_DB")
-                .setTableName("ITEMS_TABLE")
-                .addColumn(new Column("Item_Id", new String[]{"text","unique"}))
-                .addColumn(new Column("Item_PID", new String[]{"text","not null"}))
-                .addColumn(new Column("Item_Name", new String[]{"text","not null"}))
-                .addColumn(new Column("Item_Price_Each", new String[]{"text","not null"}))
-                .addColumn(new Column("Item_Price", new String[]{"text","not null"}))
-                .addColumn(new Column("Item_Quantity", new String[]{"text","not null"}))
-                .doneTableColumn();
-        easyDB.deleteAllDataFromTable();// delete all records from cart
+        easyDB.deleteAllDataFromTable();//delete all records from cart
 
     }
 
+    public void cartCount(){
+
+        int count = easyDB.getAllData ( ).getCount ();
+        if (count<=0){
+            cartCountTv.setVisibility ( View.GONE );
+        }
+        else {
+            cartCountTv.setVisibility ( View.VISIBLE );
+            cartCountTv.setText ( ""+count );
+        }
+    }
+
+
     public double allTotalPrice = 0.00;
     public TextView sTotalTv, dFeeTv, allTotalPriceTv;
-    private void showCartDialog() {
 
+    private void showCartDialog() {
         //init list
         cartItemsList = new ArrayList<>();
-        // inflate cart layout
+
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_cart, null);
-        // init views
+
         TextView shopNameTv = view.findViewById(R.id.shopNameTv);
         RecyclerView cartItemsRv = view.findViewById(R.id.cartItemsRv);
         sTotalTv = view.findViewById(R.id.sTotalTv);
@@ -258,9 +323,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
         //set to recyclerview
         cartItemsRv.setAdapter(adapterCartItem);
 
-        dFeeTv.setText("Ksh."+deliveryFee);
-        sTotalTv.setText("Ksh."+String.format("%.2f", allTotalPrice));
-        allTotalPriceTv.setText("Ksh."+(allTotalPrice + Double.parseDouble(deliveryFee.replace("Ksh",""))));
+
 
         //show dialog
         AlertDialog dialog = builder.create();
@@ -273,7 +336,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
                 allTotalPrice = 0.00;
             }
         });
-        // place order
+        //place order
         checkoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -297,6 +360,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
                 submitOrder();
             }
         });
+
     }
 
     private void submitOrder() {
@@ -319,8 +383,9 @@ public class ShopDetailsActivity extends AppCompatActivity {
         hashMap.put("orderTo", ""+shopUid);
         hashMap.put("latitude", ""+myLatitude);
         hashMap.put("longitude", ""+myLongitude);
+
         //add to db
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(shopUid).child("orders");
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(shopUid).child("Orders");
         ref.child(timestamp).setValue(hashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -348,13 +413,14 @@ public class ShopDetailsActivity extends AppCompatActivity {
                         Toast.makeText(ShopDetailsActivity.this, "Order Placed Successfully...", Toast.LENGTH_SHORT).show();
 
 
-                        //prepareNotificationMessage (timestamp);
+                        prepareNotificationMessage (timestamp);
+
 
                     }
-                }).addOnFailureListener(new OnFailureListener() {
+                })
+                .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-
                         //failed placing order
                         progressDialog.dismiss();
                         Toast.makeText(ShopDetailsActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -370,21 +436,22 @@ public class ShopDetailsActivity extends AppCompatActivity {
     }
 
     private void dialPhone() {
-        startActivity ( new Intent(Intent.ACTION_DIAL, Uri.parse ( "tel:"+Uri.encode ( shopPhone )))  );
+
+        startActivity ( new Intent (Intent.ACTION_DIAL, Uri.parse ( "tel:"+Uri.encode ( shopPhone )))  );
         Toast.makeText ( this , ""+shopPhone , Toast.LENGTH_SHORT ).show ( );
+
     }
 
     private void loadMyInfo() {
-
         DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
-        ref.orderByChild ( shopUid ).equalTo ( firebaseAuth.getUid () )
-                .addValueEventListener ( new ValueEventListener( ) {
+        ref.orderByChild ( "uid" ).equalTo ( firebaseAuth.getUid () )
+                .addValueEventListener ( new ValueEventListener ( ) {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot ds: dataSnapshot.getChildren ()) {
                             String name = "" + ds.child ( "name" ).getValue ( );
                             String email = "" + ds.child ( "email" ).getValue ( );
-                            myPhone = "" + ds.child ( "Phone" ).getValue ( );
+                            myPhone = "" + ds.child ( "phone" ).getValue ( );
                             String profileImage = "" + ds.child ( "profileImage" ).getValue ( );
                             String accountType = "" + ds.child ( "accountType" ).getValue ( );
                             String city = "" + ds.child ( "city" ).getValue ( );
@@ -400,7 +467,9 @@ public class ShopDetailsActivity extends AppCompatActivity {
                     }
                 } );
     }
+
     private void loadShopDetails() {
+
         DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
         ref.child ( shopUid ).addValueEventListener ( new ValueEventListener ( ) {
             @Override
@@ -411,13 +480,13 @@ public class ShopDetailsActivity extends AppCompatActivity {
                 shopEmail = "" + snapshot.child ( "email" ).getValue ( );
                 shopPhone = "" + snapshot.child ( "phones" ).getValue ( );
                 shopAddress = "" + snapshot.child ( "address" ).getValue ( );
-                //shopLatitude = "" + snapshot.child ( "latitude" ).getValue ( );
-                //shopLongitude = "" + snapshot.child ( "longitude" ).getValue ( );
+                shopLatitude = "" + snapshot.child ( "latitude" ).getValue ( );
+                shopLongitude = "" + snapshot.child ( "longitude" ).getValue ( );
                 deliveryFee = "" + snapshot.child ( "deliveryFee" ).getValue ( );
                 String profileImage = "" + snapshot.child ( "profileImage" ).getValue ( );
                 String shopOpen = "" + snapshot.child ( "shopOpen" ).getValue ( );
 
-                 //set data
+                // set data
 
                 shopNameTv.setText ( shopName );
                 emailTv.setText ( shopEmail );
@@ -445,7 +514,9 @@ public class ShopDetailsActivity extends AppCompatActivity {
 
             }
         } );
+
     }
+
     private void loadShopProducts() {
         // init list
         productsList = new ArrayList <> (  );
@@ -473,4 +544,81 @@ public class ShopDetailsActivity extends AppCompatActivity {
                     }
                 } );
     }
+
+    private void prepareNotificationMessage(String orderId){
+        // when user places order, send notification to seller
+
+        //prepare data for notification
+        //String NOTIFICATION_TOPIC = "/topics/" + Constants.FCM_TOPIC;//must be same as subscribed by user
+        String NOTIFICATION_TITLE = "New Order "+ orderId;
+        String NOTIFICATIONS_MESSAGE = "Congratulations....! You have a new order";
+        String NOTIFICATION_TYPE = "NewOrder";
+
+        //prepare json (what to send and where to send)
+        JSONObject notificationsJo = new JSONObject();
+        JSONObject notificationBodyJo = new JSONObject();
+        try {
+            //what to send
+            notificationBodyJo.put("notificationType", NOTIFICATION_TYPE);
+            notificationBodyJo.put("buyerUid", firebaseAuth.getUid ());//current user uid is buyer uid
+            notificationBodyJo.put("sellerUid", shopUid);
+            notificationBodyJo.put("orderId", orderId);
+            notificationBodyJo.put("notificationTitle", NOTIFICATION_TITLE);
+            notificationBodyJo.put("notificationMessage", NOTIFICATIONS_MESSAGE);
+            //where to send
+           // notificationsJo.put("to", NOTIFICATION_TOPIC);//to all who subscribed to this topic
+            notificationsJo.put("data", notificationBodyJo);
+
+
+        }
+        catch (Exception e){
+            Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+
+        }
+
+        sendFcmNotification(notificationsJo, orderId);
+    }
+
+    private void sendFcmNotification(JSONObject notificationsJo, String orderId) {
+        //send volley request
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest("https://fcm.googleapis.com/fcm/send", notificationsJo, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                // for sending fcm start order details activity
+
+                Intent intent = new Intent(ShopDetailsActivity.this, OrderDetailsUsersActivity.class);
+                intent.putExtra("orderTo", shopUid);
+                intent.putExtra("orderId", orderId);
+                startActivity(intent);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // if failed sending fcm, still  start order details activity
+
+                Intent intent = new Intent(ShopDetailsActivity.this, OrderDetailsUsersActivity.class);
+                intent.putExtra("orderTo", shopUid);
+                intent.putExtra("orderId", orderId);
+                startActivity(intent);
+
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+
+                //put required headers
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type","application/json");
+               // headers.put("Authorization","key=" +Constants.FCM_KEY);
+
+                return headers;
+            }
+        };
+
+        //enquire the volley request
+        Volley.newRequestQueue(this).add(jsonObjectRequest);
+    }
+
+
 }

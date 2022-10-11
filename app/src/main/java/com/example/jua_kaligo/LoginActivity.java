@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.chaos.view.PinView;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
@@ -21,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.hbb20.CountryCodePicker;
 
@@ -104,11 +107,15 @@ public class LoginActivity extends AppCompatActivity {
         String fullNames = intent.getStringExtra("FullName");
         String phoneNum = intent.getStringExtra("PhoneNumber");
         String idNum = intent.getStringExtra("ID_NUMBER");
-        String Location = intent.getStringExtra("Location");
+        String Gender = intent.getStringExtra("Location");
         String country = intent.getStringExtra("country");
         String state = intent.getStringExtra("state");
         String city = intent.getStringExtra("city");
         String address = intent.getStringExtra("address");
+        String phones = "+254"+phone.getText().toString().trim();
+        //String latitude = intent.getStringExtra("latitude");
+        //String longitude = intent.getStringExtra("longitude");
+
         String accountType = "Customer";
         String online= "true";
         String Phone = "+254"+phone.getText().toString().trim();
@@ -120,26 +127,65 @@ public class LoginActivity extends AppCompatActivity {
                     // if code is correct and task is succesful we are sending user to a new activity
 
 
-                    Customer customer=new Customer(fullNames,phoneNum,idNum,Location,country,state,city,address,accountType,online,Phone,uid);
+                    //Customer customer=new Customer(fullNames,phoneNum,idNum,Location,country,state,city,address,accountType,online,Phone,uid);
 
-                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(customer).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    final String timestamp = "" + System.currentTimeMillis ( );
+                    //setup data to save
+                    HashMap < String, Object > hashMap = new HashMap <> ( );
+                    hashMap.put ( "uid" , "" + mAuth.getUid ( ) );
+                    hashMap.put ( "idnumberuser" , "" + idNum );
+                    hashMap.put ( "name" , "" + fullNames );
+                    hashMap.put ( "phone" , "" + phones );
+                    hashMap.put ( "country" , "" + country );
+                    hashMap.put ( "city" , "" + city );
+                    hashMap.put ( "state" , "" + state );
+                    hashMap.put ( "address" , "" + address );
+                    hashMap.put ( "genderuser" , "" + Gender );
+                    hashMap.put ( "latitude" , "36.8219" );
+                    hashMap.put ( "longitude" , "1.2921" );
+                    hashMap.put ( "timestamp" , "" + timestamp );
+                    hashMap.put ( "accountType" , "Customer" );
+                    hashMap.put ( "online" , "true" );
+                    hashMap.put ( "profileImage" , "" );
+
+                    DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
+                    ref.child( mAuth.getUid ( ) ).setValue ( hashMap ).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()){
-                                progressDialog.setMessage("Creating account...");
+                        public void onSuccess(Void unused) {
+                            progressDialog.setMessage("Creating account...");
                                 progressDialog.show();
 
                                 Toast.makeText(LoginActivity.this, "You have been registered successfully ", Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(LoginActivity.this,MainScreen.class);
                                 startActivity(i);
                                 finish();
-                                //saveFirebaseData();
-                            }else {
-                                progressDialog.dismiss();
-                                Toast.makeText(LoginActivity.this, "Failed to Register, Retry", Toast.LENGTH_SHORT).show();
-                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
+                            Toast.makeText(LoginActivity.this, "Failed to Register, Retry", Toast.LENGTH_SHORT).show();
                         }
                     });
+
+//                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(customer).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Void> task) {
+//                            if(task.isSuccessful()){
+//                                progressDialog.setMessage("Creating account...");
+//                                progressDialog.show();
+//
+//                                Toast.makeText(LoginActivity.this, "You have been registered successfully ", Toast.LENGTH_SHORT).show();
+//                                Intent i = new Intent(LoginActivity.this,MainScreen.class);
+//                                startActivity(i);
+//                                finish();
+//                                //saveFirebaseData();
+//                            }else {
+//                                progressDialog.dismiss();
+//                                Toast.makeText(LoginActivity.this, "Failed to Register, Retry", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    });
 
                 }else {
                     Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();

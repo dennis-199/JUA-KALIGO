@@ -24,6 +24,12 @@
         tools:replace="android:icon"
         tools:targetApi="31">
         <activity
+            android:name=".ShopReviewsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OrderDetailsUsersActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserOrdersActivity"
             android:exported="false" />
         <activity

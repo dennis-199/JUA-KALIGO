@@ -76,7 +76,7 @@ public class MainScreen extends AppCompatActivity {
 
                 Calendar c = Calendar.getInstance();
                 int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
-                String fullname = userprofile.fullNames;
+                String fullname = userprofile.name;
 
                 if(timeOfDay >= 0 && timeOfDay < 12){
                     greetingTextView.setText("Good Morning ");
