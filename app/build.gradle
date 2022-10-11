@@ -68,7 +68,7 @@ dependencies {
     implementation 'com.hbb20:ccp:2.5.1'
 
     //sql lite
-    //implementation 'com.github.p32929:AndroidEasySQL-Library:1.4.1'
+    implementation 'com.github.p32929:AndroidEasySQL-Library:1.4.1'
 
     // circular view
     implementation 'com.github.mohammadatif:CircularImageView:1.0.0'
