@@ -33,6 +33,7 @@
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/activity_main_screen.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/activity_maps.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/activity_mpesa.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/activity_order_details_users.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/activity_payment.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/activity_post.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/activity_profile_edit_seller.xml" value="0.24166666666666667" />
@@ -60,6 +61,7 @@
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/fragment_trade.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/row_cartitem.xml" value="0.240625" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/row_order_user.xml" value="0.240625" />
+        <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/row_ordereditem.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/row_product_seller.xml" value="0.22" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/row_product_user.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/row_shop.xml" value="0.240625" />
