@@ -68,6 +68,15 @@ public class OrderDetailsUsersActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        writeReviewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(OrderDetailsUsersActivity.this,WriteReviewActivity.class);
+                intent1.putExtra ( "shopUid", orderTo ); //to write review we must have shopUid of the shop
+                startActivity ( intent1 );
+            }
+        });
     }
 
     private void loadOrderedItems() {
