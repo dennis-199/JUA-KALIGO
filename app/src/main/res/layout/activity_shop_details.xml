@@ -72,6 +72,7 @@
                 android:layout_below="@id/openClosedTv"
                 android:textColor="@color/colorWhite"
                 android:layout_marginStart="3dp"/>
+
             <RatingBar
                 android:id="@+id/ratingBar"
                 style="@style/Widget.AppCompat.RatingBar.Small"
@@ -81,7 +82,7 @@
                 android:layout_alignParentEnd="true"
                 android:numStars="5"
                 android:progressBackgroundTint="@color/colorGray"
-                android:progressTint="@color/colorWhite"/>
+                android:progressTint="@color/colorWhite" />
 
 
             <TextView
