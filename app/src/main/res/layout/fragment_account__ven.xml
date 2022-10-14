@@ -15,6 +15,17 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <com.blogspot.atifsoftwares.circularimageview.CircularImageView
+                android:id="@+id/profileIv"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                app:c_border="true"
+                app:c_border_color="@color/colorPrimary"
+                app:c_border_width="1dp"
+                android:src="@drawable/ic_baseline_person"/>
             <ImageButton
                 android:id="@+id/editProfileBtn"
                 android:layout_width="30dp"
@@ -38,10 +49,10 @@
                 android:id="@+id/shopNameEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:layout_below="@id/profileIv"
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="45dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="5dp"
