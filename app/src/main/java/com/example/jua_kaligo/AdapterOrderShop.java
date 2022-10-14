@@ -84,10 +84,10 @@ public class AdapterOrderShop extends RecyclerView.Adapter<AdapterOrderShop.Hold
             @Override
             public void onClick(View v) {
 
-//                Intent intent = new Intent(context, OrderDetailsSellerActivity.class);
-//                intent.putExtra("orderId",orderId);
-//                intent.putExtra("orderBy",orderBy);
-//                context.startActivity(intent);
+                Intent intent = new Intent(context, OrderDetailsSellerActivity.class);
+                intent.putExtra("orderId",orderId);
+                intent.putExtra("orderBy",orderBy);
+                context.startActivity(intent);
             }
         });
 
