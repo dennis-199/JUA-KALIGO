@@ -42,7 +42,7 @@ public class MainScreen extends AppCompatActivity {
     private String userID;
     private TextView textView, fullname;
     FloatingActionButton postbutton;
-    private ImageButton logoutBtn;
+    private ImageButton logoutBtn,settingsBtn;
     private ProgressDialog progressDialog;
 
 
@@ -54,6 +54,15 @@ public class MainScreen extends AppCompatActivity {
         postbutton = findViewById(R.id.postButton);
         logoutBtn = findViewById(R.id.logoutBtn);
         mAuth = FirebaseAuth.getInstance();
+
+        settingsBtn = findViewById(R.id.settingsBtn);
+
+        settingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainScreen.this, SettingsActivity.class));
+            }
+        });
 
         // try here
         user = FirebaseAuth.getInstance().getCurrentUser();

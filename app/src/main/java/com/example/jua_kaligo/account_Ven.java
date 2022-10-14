@@ -58,7 +58,7 @@ import java.util.Locale;
 
 
 public class account_Ven extends Fragment {
-    private ImageButton backBtn, gpsBtn,editProfileBtn, reviewsBtn;
+    private ImageButton backBtn, gpsBtn,editProfileBtn, reviewsBtn,settingsBtn;
     private ImageView profileIv;
     private TextView nameEt, idnumber, phoneEt, countryEt, stateEt, cityEt, addressEt;
     private SwitchCompat shopOpenSwitch;
@@ -93,6 +93,14 @@ public class account_Ven extends Fragment {
         //cityEt = view.findViewById(R.id.cityEt);
         //addressEt = view.findViewById(R.id.addressEt);
         editProfileBtn = view.findViewById ( R.id.editProfileBtn);
+        settingsBtn = view.findViewById(R.id.settingsBtn);
+
+        settingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), SettingsActivity.class));
+            }
+        });
 
         reviewsBtn= view.findViewById(R.id.reviewsBtn);
 

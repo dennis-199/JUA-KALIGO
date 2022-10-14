@@ -60,8 +60,8 @@
                 android:contentDescription="LogoutButton" />
             <ImageView
                 android:id="@+id/orderview"
-                android:layout_width="60dp"
-                android:layout_height="80dp"
+                android:layout_width="45dp"
+                android:layout_height="70dp"
                 android:src="@drawable/order"
                 android:background="@null"
                 android:layout_gravity="center_horizontal"
