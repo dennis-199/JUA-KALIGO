@@ -50,7 +50,7 @@ public class VendorScreen extends AppCompatActivity {
     private ImageButton logoutBtn;
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
-    private ImageView profileIv;
+    private ImageView profileIv, orderview;
 
 
     private static final int CAMERA_REQUEST_CODE = 200;
@@ -76,6 +76,16 @@ public class VendorScreen extends AppCompatActivity {
         progressDialog.setTitle ( "Please Wait" );
         progressDialog.setCanceledOnTouchOutside ( false );
         profileIv = findViewById ( R.id.profileIv );
+        orderview = findViewById(R.id.orderview);
+
+        orderview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent =new Intent(VendorScreen.this, VendorViewOrdersActivity.class);
+                startActivity(intent);
+            }
+        });
 
         cameraPermissions = new String[]{Manifest.permission.CAMERA , Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -83,6 +93,8 @@ public class VendorScreen extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
        reference2 = FirebaseDatabase.getInstance().getReference("Users");
        userID = user.getUid();
+
+
 
         final TextView greetingTextView = (TextView) findViewById(R.id.greetings2);
         final TextView full_nameTextview = (TextView) findViewById(R.id.names2);

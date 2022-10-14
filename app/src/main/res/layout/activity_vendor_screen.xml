@@ -58,15 +58,25 @@
                 android:background="@null"
                 android:layout_gravity="end"
                 android:contentDescription="LogoutButton" />
+            <ImageView
+                android:id="@+id/orderview"
+                android:layout_width="60dp"
+                android:layout_height="80dp"
+                android:src="@drawable/order"
+                android:background="@null"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="125dp"
+                android:contentDescription="OrderButton" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment2"
-        android:layout_below="@id/table"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/table"
         app:defaultNavHost="true"
         app:navGraph="@navigation/ven_nav" />
 
