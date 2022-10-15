@@ -549,7 +549,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
         // when user places order, send notification to seller
 
         //prepare data for notification
-        //String NOTIFICATION_TOPIC = "/topics/" + Constants.FCM_TOPIC;//must be same as subscribed by user
+        String NOTIFICATION_TOPIC = "/topics/" + Constants.FCM_TOPIC;//must be same as subscribed by user
         String NOTIFICATION_TITLE = "New Order "+ orderId;
         String NOTIFICATIONS_MESSAGE = "Congratulations....! You have a new order";
         String NOTIFICATION_TYPE = "NewOrder";
@@ -566,7 +566,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
             notificationBodyJo.put("notificationTitle", NOTIFICATION_TITLE);
             notificationBodyJo.put("notificationMessage", NOTIFICATIONS_MESSAGE);
             //where to send
-           // notificationsJo.put("to", NOTIFICATION_TOPIC);//to all who subscribed to this topic
+            notificationsJo.put("to", NOTIFICATION_TOPIC);//to all who subscribed to this topic
             notificationsJo.put("data", notificationBodyJo);
 
 
@@ -592,7 +592,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
                 startActivity(intent);
 
             }
-        }, new Response.ErrorListener() {
+        },new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 // if failed sending fcm, still  start order details activity
@@ -610,7 +610,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
                 //put required headers
                 Map<String, String> headers = new HashMap<>();
                 headers.put("Content-Type","application/json");
-               // headers.put("Authorization","key=" +Constants.FCM_KEY);
+                headers.put("Authorization","key=" +Constants.FCM_KEY);
 
                 return headers;
             }

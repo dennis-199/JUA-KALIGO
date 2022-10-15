@@ -1,7 +1,7 @@
 package com.example.jua_kaligo;
 
 public class Constants {
-    public static final String FCM_KEY = "AAAA3A4_qRU:APA91bETzHaX7_JjYhBBfyYIGKzH9ooV8pJoyBOiPuvgiZZ9TZ4GdIQycW_xq7qPoEe7_Vkzo0_2v0yU9gAO3TbolhpTYSjdRSU6PG2-VeMFBTbYNrlfwIYnPd5biwrYLM4TL4EyNBHq";
+    public static final String FCM_KEY = "AAAAuZMkAmo:APA91bHXejG1ajMHZQOXEUBw2RVgHOnlmwdw_cqhNwhbJggAD7XjdtSwf5od2B8rBsZhicjeNpNbDdc5KFO7Hh8THwjRuIJRpCLKbJhZiegV-8c6wO7BYUFycUuYr9AlBLrQSebRSeQx";
     public static final String FCM_TOPIC = "PUSH_NOTIFICATIONS";
 
     // product categories

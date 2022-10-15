@@ -17,6 +17,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,11 +31,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class OrderDetailsSellerActivity extends AppCompatActivity {
     private ImageButton backBtn, editBtn, mapBtn;
@@ -128,7 +136,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                     public void onSuccess(Void unused) {
                         Toast.makeText(OrderDetailsSellerActivity.this, message,Toast.LENGTH_SHORT);
 
-                        //prepareNotificationMessage(orderId, message);
+                        prepareNotificationMessage(orderId, message);
 
                     }
                 })
@@ -284,5 +292,74 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    private void prepareNotificationMessage(String orderId, String message){
+        // when user send order status, send notification to buyer
+
+        //prepare data for notification
+        String NOTIFICATION_TOPIC = "/topics/" + Constants.FCM_TOPIC;//must be same as subscribed by user
+        String NOTIFICATION_TITLE = "Your Order "+ orderId;
+        String NOTIFICATIONS_MESSAGE = ""+message;
+        String NOTIFICATION_TYPE = "OrderStatusChanged";
+
+        //prepare json (what to send and where to send)
+        JSONObject notificationsJo = new JSONObject();
+        JSONObject notificationBodyJo = new JSONObject();
+        try {
+            //what to send
+            //what to send
+            notificationBodyJo.put("notificationType", NOTIFICATION_TYPE);
+            notificationBodyJo.put("buyerUid", orderBy);//current user uid is buyer uid
+            notificationBodyJo.put("sellerUid", firebaseAuth.getUid());
+            notificationBodyJo.put("orderId", orderId);
+            notificationBodyJo.put("notificationTitle", NOTIFICATION_TITLE);
+            notificationBodyJo.put("notificationMessage", NOTIFICATIONS_MESSAGE);
+            //where to send
+            notificationsJo.put("to", NOTIFICATION_TOPIC);//to all who subscribed to this topic
+            notificationsJo.put("data", notificationBodyJo);
+
+
+        }
+        catch (Exception e){
+            Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+
+        }
+
+        sendFcmNotification(notificationsJo);
+    }
+
+    private void sendFcmNotification(JSONObject notificationsJo) {
+        //send volley request
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest("https://fcm.googleapis.com/fcm/send", notificationsJo, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                // for sending fcm start order details activity
+
+
+
+            }
+        },new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // if failed sending fcm, still  start order details activity
+
+
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+
+                //put required headers
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type","application/json");
+                headers.put("Authorization","key=" +Constants.FCM_KEY);
+
+                return headers;
+            }
+        };
+
+        //enquire the volley request
+        Volley.newRequestQueue(this).add(jsonObjectRequest);
     }
 }
