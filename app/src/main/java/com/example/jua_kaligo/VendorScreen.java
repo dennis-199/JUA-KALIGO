@@ -94,7 +94,7 @@ public class VendorScreen extends AppCompatActivity {
         popupMenu.getMenu().add("Settings");
         popupMenu.getMenu().add("Reviews");
         popupMenu.getMenu().add("Promotion Codes");
-        popupMenu.getMenu().add("Logout ");
+        popupMenu.getMenu().add("Logout");
         // handle menu item click
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
@@ -109,12 +109,29 @@ public class VendorScreen extends AppCompatActivity {
 
                 }else if(menuitem.getTitle() == "Promotion Codes"){
                     //start promotions list
+                    startActivity(new Intent(VendorScreen.this,PromotionCodesActivity.class));
 
                 }else if(menuitem.getTitle() == "Logout"){
-                    makeMeOffline();
+
+
+                    HashMap<String, Object> hashMap = new HashMap <> (  );
+                    hashMap.put("online","false");
+                    //update value to db
+                    DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
+                    ref.child(firebaseAuth.getUid()).updateChildren(hashMap)
+                            .addOnSuccessListener ( new OnSuccessListener< Void >( ) {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    // update successfully
+                                    firebaseAuth.signOut ();
+                                    startActivity(new Intent(VendorScreen.this, ChooseRole.class));
+
+                                }
+                            } );
+
 
                 }
-                return false;
+                return true;
             }
         });
 
@@ -122,6 +139,8 @@ public class VendorScreen extends AppCompatActivity {
         moreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // show popupmenu
+                popupMenu.show();
 
             }
         });
