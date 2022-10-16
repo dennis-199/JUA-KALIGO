@@ -23,6 +23,10 @@
         android:theme="@style/Theme.JUAKALIGO"
         tools:replace="android:icon"
         tools:targetApi="31">
+        <activity
+            android:name=".PromotionCodesActivity"
+            android:exported="false" />
+
         <service
             android:name=".MyFirebaseMessaging"
             android:exported="false">
@@ -30,6 +34,7 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
         <activity
             android:name=".SettingsActivity"
             android:exported="false" />
@@ -144,7 +149,6 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
 
 </manifest>

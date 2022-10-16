@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,7 +48,7 @@ public class VendorScreen extends AppCompatActivity {
     private DatabaseReference reference, reference2;
     private FirebaseUser user;
     private String userID;
-    private ImageButton logoutBtn,moreBtn;
+    private ImageButton moreBtn;
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
     private ImageView profileIv, orderview;
@@ -70,13 +71,13 @@ public class VendorScreen extends AppCompatActivity {
         setContentView(R.layout.activity_vendor_screen);
 
         mAuth = FirebaseAuth.getInstance();
-        logoutBtn = findViewById ( R.id.logoutBtn);
         firebaseAuth = FirebaseAuth.getInstance ();
         progressDialog = new ProgressDialog( this );
         progressDialog.setTitle ( "Please Wait" );
         progressDialog.setCanceledOnTouchOutside ( false );
         profileIv = findViewById ( R.id.profileIv );
         orderview = findViewById(R.id.orderview);
+        moreBtn = findViewById(R.id.moreBtn);
 
         orderview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +85,44 @@ public class VendorScreen extends AppCompatActivity {
 
                 Intent intent =new Intent(VendorScreen.this, VendorViewOrdersActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        // pop up menu
+        PopupMenu popupMenu = new PopupMenu(VendorScreen.this,moreBtn);
+        // add menu items to our menu
+        popupMenu.getMenu().add("Settings");
+        popupMenu.getMenu().add("Reviews");
+        popupMenu.getMenu().add("Promotion Codes");
+        popupMenu.getMenu().add("Logout ");
+        // handle menu item click
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuitem) {
+                if(menuitem.getTitle() == "Settings"){
+                    startActivity(new Intent(VendorScreen.this,SettingsActivity.class));
+
+                }else if(menuitem.getTitle() == "Reviews"){
+                    Intent intent = new Intent(VendorScreen.this, ShopReviewsActivity.class);
+                    intent.putExtra("shopUid",""+firebaseAuth.getUid());
+                    startActivity(intent);
+
+                }else if(menuitem.getTitle() == "Promotion Codes"){
+                    //start promotions list
+
+                }else if(menuitem.getTitle() == "Logout"){
+                    makeMeOffline();
+
+                }
+                return false;
+            }
+        });
+
+        // show more options settings, reviews, promotion codes and logout
+        moreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
@@ -144,15 +183,7 @@ public class VendorScreen extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(bottomNavMethod);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment2, new HomeVendorFragment()).commit();
 
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //make offline
-                //sign out
-                //go to login activity
-                makeMeOffline();
-            }
-        });
+
 
 
 

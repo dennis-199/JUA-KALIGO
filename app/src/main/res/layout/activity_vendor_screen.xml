@@ -49,15 +49,7 @@
                     android:textSize="21sp"
                     android:textStyle="bold"/>
             </LinearLayout>
-            <ImageButton
-                android:id="@+id/logoutBtn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_baseline_power_settings_new_24"
-                android:layout_alignParentEnd="true"
-                android:background="@null"
-                android:layout_gravity="end"
-                android:contentDescription="LogoutButton" />
+
             <ImageView
                 android:id="@+id/orderview"
                 android:layout_width="45dp"
@@ -65,14 +57,14 @@
                 android:src="@drawable/order"
                 android:background="@null"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="125dp"
+                android:layout_marginStart="140dp"
                 android:contentDescription="OrderButton" />
             <ImageButton
                 android:id="@+id/moreBtn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="end"
-                android:layout_marginEnd="25dp"
+                android:layout_marginEnd="0dp"
                 android:background="null"
                 android:src="@drawable/ic_baseline_more"/>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
