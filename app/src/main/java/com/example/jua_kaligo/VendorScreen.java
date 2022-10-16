@@ -47,7 +47,7 @@ public class VendorScreen extends AppCompatActivity {
     private DatabaseReference reference, reference2;
     private FirebaseUser user;
     private String userID;
-    private ImageButton logoutBtn;
+    private ImageButton logoutBtn,moreBtn;
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
     private ImageView profileIv, orderview;
