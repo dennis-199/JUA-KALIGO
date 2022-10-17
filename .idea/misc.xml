@@ -16,6 +16,7 @@
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/drawable/shape_rect01.xml" value="0.122" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/drawable/shape_rect02.xml" value="0.1155" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/drawable/shape_rect06.xml" value="0.122" />
+        <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/drawable/shape_rect_12.xml" value="0.1" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/font/.xml" value="0.19907407407407407" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/font/alex_brush.xml" value="0.11822916666666666" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/font/arizonia.xml" value="0.11822916666666666" />
@@ -56,7 +57,7 @@
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/activity_write_review.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/bs_product_details_seller.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/categories.xml" value="0.10416666666666667" />
-        <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/dialog_cart.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/dialog_cart.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/dialog_quantity.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/fragment_account.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Daniel Ochieng/AndroidStudioProjects/JUAKALIGO/app/src/main/res/layout/fragment_account__ven.xml" value="0.24166666666666667" />
