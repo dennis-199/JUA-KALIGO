@@ -1,14 +1,25 @@
 package com.example.jua_kaligo;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -16,9 +27,17 @@ public class AdapterPromotionShop extends RecyclerView.Adapter<AdapterPromotionS
     private Context context;
     private ArrayList<ModelPromotion> promotionArrayList;
 
+    private ProgressDialog progressDialog;
+    private FirebaseAuth firebaseAuth;
+
     public AdapterPromotionShop(Context context, ArrayList<ModelPromotion> promotionArrayList) {
         this.context = context;
         this.promotionArrayList = promotionArrayList;
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Please wait");
+        progressDialog.setCanceledOnTouchOutside(false);
     }
 
     @NonNull
@@ -49,7 +68,73 @@ public class AdapterPromotionShop extends RecyclerView.Adapter<AdapterPromotionS
         holder.promoCodeTv.setText("Code: "+promoCode);
         holder.expireDateTv.setText("Expire Date: "+expireDate);
 
+        /* handle clcik edit */
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                editDeleteDialog(modelPromotion, holder);
+            }
+        });
+
+
+    }
+
+    private void editDeleteDialog(ModelPromotion modelPromotion, HolderPromotionShop holder) {
+        // options to display in dialog
+        String[] options = {"Edit", "Delete"};
+        // dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Choose Option")
+                .setItems(options, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        // handle clicks
+                        if(i==0){
+                            // edit clicked
+                            editpromoCode(modelPromotion);
+                        }else if(i==1){
+                            // delete clicked
+                            deletePromoCode(modelPromotion);
+
+                        }
+                    }
+                }).show();
+    }
+
+    private void deletePromoCode(ModelPromotion modelPromotion) {
+        //show progress dialogue
+        progressDialog.setMessage("Deleting Promotion Code...");
+        progressDialog.show();
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        ref.child(firebaseAuth.getUid()).child("Promotions").child(modelPromotion.getId())
+                .removeValue()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+
+                        // deleted
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Deleted...", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                        // failed deleting
+                        progressDialog.dismiss();
+                        Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
+    private void editpromoCode(ModelPromotion modelPromotion) {
+        // start and pass data to AddPromotionCodeActivity to edit
+        Intent intent = new Intent(context, AddPromotionCodeActivity.class);
+        intent.putExtra("promoId",modelPromotion.getId());
+        context.startActivity(intent);
     }
 
     @Override
