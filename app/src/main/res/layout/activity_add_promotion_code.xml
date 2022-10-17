@@ -54,5 +54,72 @@
         android:padding="10dp"
         android:textColor="@color/black"
         android:textColorHint="@color/colorGray02"/>
+    <EditText
+        android:id="@+id/promoDescriptionEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/promoCodeEt"
+        android:layout_margin="5dp"
+        android:background="@drawable/shape_rect02"
+        android:drawableStart="@drawable/ic_discount_gray"
+        android:drawablePadding="5dp"
+        android:hint="Promotion Description"
+        android:inputType="textCapSentences|textMultiLine"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/colorGray02"/>
+
+    <EditText
+        android:id="@+id/promoPriceEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/promoDescriptionEt"
+        android:layout_margin="5dp"
+        android:background="@drawable/shape_rect02"
+        android:drawableStart="@drawable/ic_baseline_shopping_gray"
+        android:drawablePadding="5dp"
+        android:hint="Promotion Price"
+        android:inputType="numberDecimal"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/colorGray02"/>
+    <EditText
+        android:id="@+id/minimumOrderPriceEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/promoPriceEt"
+        android:layout_margin="5dp"
+        android:background="@drawable/shape_rect02"
+        android:drawableStart="@drawable/ic_baseline_shopping_gray"
+        android:drawablePadding="5dp"
+        android:hint="Minimum Order Price"
+        android:inputType="numberDecimal"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/colorGray02"/>
+    <TextView
+        android:id="@+id/expireDateTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/minimumOrderPriceEt"
+        android:layout_margin="5dp"
+        android:background="@drawable/shape_rect02"
+        android:drawableStart="@drawable/ic_baseline_calendar_gray"
+        android:drawablePadding="5dp"
+        android:hint="Expire Date"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/colorGray02"/>
+    <Button
+        android:id="@+id/addBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/expireDateTv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:text="ADD"
+        android:minWidth="150dp"
+        style="@style/Widget.AppCompat.Button.Colored"/>
 
 </RelativeLayout>
