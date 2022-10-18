@@ -406,6 +406,18 @@ public class ShopDetailsActivity extends AppCompatActivity {
             }
         });
 
+        // apply code
+        applyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isPromoCodeApplied = true;
+                applyBtn.setText("Applied");
+
+                priceWithDiscount();
+
+            }
+        });
+
     }
 
     private void priceWithDiscount(){
@@ -449,7 +461,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
                                 promoTimestamp = ""+ds.child("timestamp").getValue();
                                 promoCode = ""+ds.child("promoCode").getValue();
                                 promoDescription = ""+ds.child("description").getValue();
-                                promoExpDate = ""+ds.child("expireDte").getValue();
+                                promoExpDate = ""+ds.child("expireDate").getValue();
                                 promoMinimumOrderPrice = ""+ds.child("minimumOrderPrice").getValue();
                                 promoPrice = ""+ds.child("promoPrice").getValue();
 
@@ -485,7 +497,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
         int month = calendar.get(Calendar.MONTH)+1;
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        String todayDate = day +"/"+month+"/"+year;
+        String todayDate = day+"/"+month+"/"+year;
         /*-- check for expire  date */
         try {
             SimpleDateFormat sdformat = new SimpleDateFormat("dd/MM/yyyy");
@@ -510,7 +522,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
 
         }catch (Exception e){
             // if anything goes wrong while comparing current date and expiry date
-            Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "error"+e.getMessage(), Toast.LENGTH_SHORT).show();
             applyBtn.setVisibility(View.GONE);
             promoDescriptionTv.setVisibility(View.GONE);
             promoDescriptionTv.setText("");
@@ -555,6 +567,17 @@ public class ShopDetailsActivity extends AppCompatActivity {
         hashMap.put("orderTo", ""+shopUid);
         hashMap.put("latitude", ""+myLatitude);
         hashMap.put("longitude", ""+myLongitude);
+        hashMap.put("deliveryFee", ""+deliveryFee);
+
+        if(isPromoCodeApplied){
+            // promo applied
+            hashMap.put("discount",""+promoPrice);
+        }else {
+            // promo not applied
+            hashMap.put("discount","0");
+        }
+
+
 
         //add to db
         final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(shopUid).child("Orders");
