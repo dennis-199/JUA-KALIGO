@@ -92,6 +92,23 @@
                     android:tint="@color/white"
                     android:backgroundTint="@color/backcolor"
                     app:fabSize="mini"/>
+                <TextView
+                    android:id="@+id/promoDescriptionTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/promoCodeEt"
+                    android:hint="Promo Code Description"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/colorGray01"
+                    android:textSize="14sp"/>
+                <Button
+                    android:id="@+id/applyBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/promoDescriptionTv"
+                    android:text="Apply"
+                    android:textColor="@color/white"/>
 
             </RelativeLayout>
 
@@ -107,6 +124,7 @@
 
             <TextView
                 android:id="@+id/sTotalTv"
+                android:layout_below="@id/promoRl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
@@ -117,10 +135,30 @@
                 android:layout_alignParentRight="true" />
 
             <TextView
+                android:id="@+id/discountLabelTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/sTotalLabelTv"
+                android:padding="5dp"
+                android:text="Discount"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/discountTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/sTotalLabelTv"
+                android:layout_alignParentEnd="true"
+                android:padding="5dp"
+                android:text="ksh2.00"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <TextView
                 android:id="@+id/dFeeLabelTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/sTotalLabelTv"
+                android:layout_below="@+id/discountLabelTv"
                 android:padding="5dp"
                 android:text="Delivery Fee"
                 android:textStyle="bold"
@@ -130,7 +168,7 @@
                 android:id="@+id/dFeeTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/sTotalLabelTv"
+                android:layout_below="@+id/discountLabelTv"
                 android:padding="5dp"
                 android:text="Ksh12"
                 android:textStyle="bold"
