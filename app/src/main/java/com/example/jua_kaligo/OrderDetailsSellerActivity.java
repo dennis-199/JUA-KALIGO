@@ -198,6 +198,15 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                         String deliveryFee = ""+dataSnapshot.child("deliveryFee").getValue();
                         String latitude = ""+dataSnapshot.child("latitude").getValue();
                         String longitude = ""+dataSnapshot.child("longitude").getValue();
+                        String discount = ""+dataSnapshot.child("discount").getValue();
+
+                        if(discount.equals("null") || discount.equals("0")){
+                            //
+                            discount = "& Discount ksh0";
+                        }else {
+                            discount = "& Discount ksh"+discount;
+
+                        }
 
                         Calendar calender = Calendar.getInstance();
                         calender.setTimeInMillis(Long.parseLong(orderTime));
@@ -215,7 +224,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                         }
                         orderIdTv.setText(orderId);
                         orderStatusTv.setText(orderStatus);
-                        amountTv.setText("Ksh"+orderCost+"[Including delivery fee Ksh"+deliveryFee+"]");
+                        amountTv.setText("Ksh"+orderCost+"[Including delivery fee Ksh"+deliveryFee+""+discount+"]");
                         dateTv.setText(dateFormatted);
 
                         findAddress(latitude,longitude);
