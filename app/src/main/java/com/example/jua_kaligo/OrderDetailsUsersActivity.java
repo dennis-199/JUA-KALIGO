@@ -10,6 +10,7 @@ import android.location.Geocoder;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -31,6 +32,7 @@ public class OrderDetailsUsersActivity extends AppCompatActivity {
     private ImageButton backBtn,writeReviewBtn;
     private TextView orderIdTv, dateTv, orderStatusTv, shopNameTv, totalItemsTv, amountTv, addressTv;
     private RecyclerView itemsRv;
+    private Button mpesaPay;
 
     private FirebaseAuth firebaseAuth;
 
@@ -52,6 +54,7 @@ public class OrderDetailsUsersActivity extends AppCompatActivity {
         addressTv = findViewById(R.id.addressTv);
         itemsRv = findViewById(R.id.itemsRv);
         writeReviewBtn = findViewById ( R.id.writeReviewBtn );
+        mpesaPay = findViewById(R.id.mpesaPay);
 
         Intent intent = getIntent();
         orderTo = intent.getStringExtra("orderTo");
@@ -61,6 +64,8 @@ public class OrderDetailsUsersActivity extends AppCompatActivity {
         loadShopInfo();
         loadOrderDetails();
         loadOrderedItems();
+
+
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,6 +160,16 @@ public class OrderDetailsUsersActivity extends AppCompatActivity {
                         //include delivery fee later
                         amountTv.setText(""+orderCost+"[Including delivery fee Ksh"+deliveryFee+""+discount+"]");
                         dateTv.setText(formattedDate);
+
+                        //pay button
+                        mpesaPay.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent1 = new Intent(OrderDetailsUsersActivity.this, MpesaActivity.class);
+                                intent1.putExtra("orderCost",orderCost);
+                                startActivity(intent1);
+                            }
+                        });
 
                         findAddress(latitude,longitude);
 

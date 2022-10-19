@@ -197,6 +197,13 @@
 
         </TableLayout>
     </androidx.cardview.widget.CardView>
+    <Button
+        android:id="@+id/mpesaPay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Pay"
+        android:layout_gravity="center_horizontal"/>
 
     <TextView
         android:layout_width="match_parent"
