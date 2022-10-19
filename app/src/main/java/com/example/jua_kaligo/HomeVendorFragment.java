@@ -33,7 +33,7 @@ import java.util.ArrayList;
 public class HomeVendorFragment extends Fragment {
     private TextView nameTv, shopNameTv, emailTv, tabProductsTv, tabOrdersTv,filteredProductsTv, filteredOrdersTv;
     private EditText searchProductEt;
-    private ImageButton logoutBtn,editProfileBtn, addProductBtn,filterProductsBtn,filterOrderBtn, reviewsBtn, settingsBtn;
+    private ImageButton editProfileBtn, addProductBtn,filterProductsBtn,filterOrderBtn, reviewsBtn, settingsBtn;
     private ImageView profileIv;
     private RelativeLayout productsRl,ordersRl;
     private RecyclerView productsRv, ordersRv;
@@ -63,7 +63,7 @@ public class HomeVendorFragment extends Fragment {
         //tabOrdersTv = findViewById ( R.id.tabOrdersTv );
         filteredProductsTv = view.findViewById ( R.id.filteredProductsTv );
         searchProductEt = view.findViewById ( R.id.searchProductEt );
-        logoutBtn = view.findViewById ( R.id.logoutBtn);
+
         //editProfileBtn = findViewById ( R.id.editProfileBtn);
         addProductBtn = view.findViewById ( R.id.addProductBtn);
         filterProductsBtn=view.findViewById(R.id.filterProductBtn);

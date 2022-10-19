@@ -24,25 +24,16 @@
                 android:src="@drawable/ic_baseline_person_24"
                 app:c_border="true"
                 app:c_border_color="@color/white" />
+
             <ImageButton
-                android:id="@+id/logoutBtn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_baseline_power"
-                android:background="@color/white"
-                android:layout_gravity="end"
-                android:layout_marginEnd="5dp"
-                android:layout_marginTop="5dp"/>
-            <ImageButton
-                android:id="@+id/settingsBtn"
+                android:id="@+id/moreBtn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="end"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="45dp"
-                android:src="@drawable/ic_baseline_settings"
+                android:layout_marginEnd="0dp"
                 android:background="@null"
-                />
+                android:src="@drawable/ic_baseline_more"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

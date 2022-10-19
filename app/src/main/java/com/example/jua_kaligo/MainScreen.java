@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class MainScreen extends AppCompatActivity {
     private FirebaseUser user;
     private DatabaseReference reference, reference2;
     private String userID;
+    private ImageButton moreBtn;
     private TextView textView, fullname;
     FloatingActionButton postbutton;
     private ImageButton logoutBtn,settingsBtn;
@@ -55,18 +57,19 @@ public class MainScreen extends AppCompatActivity {
         setContentView(R.layout.activity_main_screen);
 
         postbutton = findViewById(R.id.postButton);
-        logoutBtn = findViewById(R.id.logoutBtn);
+
         mAuth = FirebaseAuth.getInstance();
         profileIv = findViewById(R.id.profileIv);
+        moreBtn = findViewById(R.id.moreBtn);
 
-        settingsBtn = findViewById(R.id.settingsBtn);
-
-        settingsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainScreen.this, SettingsActivity.class));
-            }
-        });
+//        settingsBtn = findViewById(R.id.settingsBtn);
+//
+//        settingsBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(MainScreen.this, SettingsActivity.class));
+//            }
+//        });
 
         // try here
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -82,6 +85,59 @@ public class MainScreen extends AppCompatActivity {
 
         final TextView greetingTextView = (TextView) findViewById(R.id.greetings);
         final TextView full_nameTextview = (TextView) findViewById(R.id.names);
+
+        // pop up menu
+        PopupMenu popupMenu = new PopupMenu(MainScreen.this,moreBtn);
+        // add menu items to our menu
+        popupMenu.getMenu().add("Orders");
+        popupMenu.getMenu().add("Settings");
+        popupMenu.getMenu().add("Logout");
+
+        // handle menu item click
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuitem) {
+                if(menuitem.getTitle() == "Orders"){
+                    startActivity(new Intent(MainScreen.this,UserOrdersActivity.class));
+
+                }else if(menuitem.getTitle() == "Settings") {
+                    Intent intent = new Intent(MainScreen.this, SettingsActivity.class);
+                    intent.putExtra("shopUid", "" + firebaseAuth.getUid());
+                    startActivity(intent);
+
+                }else if(menuitem.getTitle() == "Logout"){
+
+
+                    HashMap<String, Object> hashMap = new HashMap <> (  );
+                    hashMap.put("online","false");
+                    //update value to db
+                    DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
+                    ref.child(firebaseAuth.getUid()).updateChildren(hashMap)
+                            .addOnSuccessListener ( new OnSuccessListener< Void >( ) {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    // update successfully
+                                    firebaseAuth.signOut ();
+                                    startActivity(new Intent(MainScreen.this, ChooseRole.class));
+
+                                }
+                            } );
+
+
+                }
+                return true;
+            }
+        });
+
+        // show more options settings, reviews, promotion codes and logout
+        moreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // show popupmenu
+                popupMenu.show();
+
+            }
+        });
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -123,34 +179,34 @@ public class MainScreen extends AppCompatActivity {
           //  postbutton.setVisibility(View.INVISIBLE);
         //}
 
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // do this
-                // after logging out, make user offline
-                progressDialog.setMessage ( "Logging out user..." );
-
-                HashMap<String, Object> hashMap = new HashMap <> (  );
-                hashMap.put("online","false");
-                // update value to db
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
-                ref.child(firebaseAuth.getUid()).updateChildren(hashMap)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                firebaseAuth.signOut();
-                                startActivity(new Intent(MainScreen.this, SignIn.class));
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                progressDialog.dismiss ();
-                                Toast.makeText(MainScreen.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-            }
-        });
+//        logoutBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // do this
+//                // after logging out, make user offline
+//                progressDialog.setMessage ( "Logging out user..." );
+//
+//                HashMap<String, Object> hashMap = new HashMap <> (  );
+//                hashMap.put("online","false");
+//                // update value to db
+//                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+//                ref.child(firebaseAuth.getUid()).updateChildren(hashMap)
+//                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                            @Override
+//                            public void onSuccess(Void unused) {
+//                                firebaseAuth.signOut();
+//                                startActivity(new Intent(MainScreen.this, SignIn.class));
+//                            }
+//                        }).addOnFailureListener(new OnFailureListener() {
+//                            @Override
+//                            public void onFailure(@NonNull Exception e) {
+//                                progressDialog.dismiss ();
+//                                Toast.makeText(MainScreen.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
+//
+//            }
+//        });
 
 
         bottomNavigationView = findViewById(R.id.navigation);
