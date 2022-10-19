@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.jua_kaligo.utils.ApiClient;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MpesaActivity extends AppCompatActivity{
     private ApiClient mApiClient;
@@ -20,7 +21,7 @@ public class MpesaActivity extends AppCompatActivity{
     private ImageButton backBtn;
 
     @BindView(R.id.etAmount)
-    TextView mAmount;
+    EditText mAmount;
     @BindView(R.id.etPhone)
     EditText mPhone;
     @BindView(R.id.btnPay)
@@ -31,6 +32,10 @@ public class MpesaActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mpesa);
 
+        ButterKnife.bind(this);
+
+        String amount = getIntent().getStringExtra("orderCost");
+        mAmount.setText(amount);
 
         backBtn = findViewById(R.id.backBtn);
 
