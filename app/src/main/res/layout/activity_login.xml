@@ -20,30 +20,34 @@
         android:text="5/5"
         android:textColor="@color/white"
         android:backgroundTint="@color/backcolor"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="0dp"
         android:gravity="center"
         android:textStyle="bold"
         android:textSize="24sp"/>
 
 
 
-        <ImageView
-            android:id="@+id/image2"
-            android:layout_below="@id/progre"
-            android:layout_centerHorizontal="true"
+        <com.blogspot.atifsoftwares.circularimageview.CircularImageView
+            android:id="@+id/profileIv"
             android:layout_width="100dp"
-            android:layout_height="170dp"
-            android:src="@drawable/logo"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/progre"
+            android:layout_centerHorizontal="true"
+            app:c_border="true"
+            app:c_border_color="@color/colorPrimary"
+            app:c_border_width="1dp"
+            android:src="@drawable/ic_baseline_person_24"
+            tools:ignore="NotSibling" />
 
         <LinearLayout
             android:layout_width="330dp"
             android:layout_height="45dp"
             android:id="@+id/lay1"
-            android:layout_marginTop="30dp"
-            android:layout_below="@id/image2"
+            android:layout_marginTop="70dp"
+            android:layout_below="@id/profileIv"
             android:gravity="center_horizontal"
 
             android:layout_centerHorizontal="true"

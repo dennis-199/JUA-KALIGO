@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -44,6 +46,7 @@ public class MainScreen extends AppCompatActivity {
     FloatingActionButton postbutton;
     private ImageButton logoutBtn,settingsBtn;
     private ProgressDialog progressDialog;
+    private ImageView profileIv;
 
 
     @Override
@@ -54,6 +57,7 @@ public class MainScreen extends AppCompatActivity {
         postbutton = findViewById(R.id.postButton);
         logoutBtn = findViewById(R.id.logoutBtn);
         mAuth = FirebaseAuth.getInstance();
+        profileIv = findViewById(R.id.profileIv);
 
         settingsBtn = findViewById(R.id.settingsBtn);
 
@@ -74,6 +78,7 @@ public class MainScreen extends AppCompatActivity {
         progressDialog = new ProgressDialog ( this );
         progressDialog.setTitle ( "Please Wait" );
         progressDialog.setCanceledOnTouchOutside ( false );
+        loadprofile();
 
         final TextView greetingTextView = (TextView) findViewById(R.id.greetings);
         final TextView full_nameTextview = (TextView) findViewById(R.id.names);
@@ -154,6 +159,38 @@ public class MainScreen extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment, new Homefragment()).commit();
 
     }
+
+    private void loadprofile() {
+        DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
+        ref.orderByChild ( "uid" ).equalTo ( firebaseAuth.getUid () )
+                .addValueEventListener ( new ValueEventListener ( ) {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot ds: dataSnapshot.getChildren ()){
+
+                            String profileImage = ""+ds.child ( "profileImage" ).getValue ();
+
+
+
+                            try {
+                                Picasso.get().load(profileImage).placeholder(R.drawable.ic_baseline_person_24).into(profileIv);
+
+                            }
+                            catch (Exception e){
+                                profileIv.setImageResource(R.drawable.ic_baseline_person_24);
+                            }
+
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                } );
+    }
+
     private BottomNavigationView.OnNavigationItemSelectedListener bottomNavMethod = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
