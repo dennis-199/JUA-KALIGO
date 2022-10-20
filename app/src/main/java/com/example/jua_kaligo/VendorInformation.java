@@ -1,13 +1,23 @@
 package com.example.jua_kaligo;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.ActivityOptions;
+import android.app.ProgressDialog;
+import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.view.View;
@@ -18,9 +28,14 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.hbb20.CountryCodePicker;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -72,6 +87,9 @@ public class VendorInformation extends AppCompatActivity {
     // string for storing our verification ID
     private String verificationId;
 
+    // pprogress dilaogue
+    private ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,20 +102,38 @@ public class VendorInformation extends AppCompatActivity {
 
         scrollView = findViewById(R.id.sign_up_scrollview);
 
+        profileIv = findViewById(R.id.profileIv);
+
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner2 = (Spinner) findViewById(R.id.spinner2);
         // Turn off phone auth app verification.
         // START
         String country_code = countryCodePicker.getSelectedCountryCode().toString();
 
+        // permissions
+        locationPermissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+        cameraPermissions = new String[]{Manifest.permission.CAMERA , Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        storagePermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
 
         mAuth = FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Registering");
+        progressDialog.setCanceledOnTouchOutside(false);
 
         edtPhone = findViewById(R.id.phone_number);
         edtOTP = findViewById(R.id.idEdtOtp);
         verifyOTPBtn = findViewById(R.id.idBtnVerify);
         generateOTPBtn = findViewById(R.id.idBtnGetOtp);
         // setting on click listener
+        profileIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //pick image
+                showImagePickDialog();
+
+            }
+        });
         generateOTPBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,11 +158,159 @@ public class VendorInformation extends AppCompatActivity {
                 } else {
                     // if otp is not empty call method to verify
                     verifyCode(edtOTP.getText().toString());
+                    progressDialog.setMessage("Verifying OTP");
+                    progressDialog.show();
                 }
             }
 
         });
 
+    }
+
+    private void showImagePickDialog() {
+        //options to display in dialog
+        String[] options = {"Camera", "Gallery"};
+        //dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Pick Image")
+                .setItems(options, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (which == 0) {
+                            //camera clicked
+                            if (checkCameraPermission()) {
+                                //camera permissions allowed
+                                pickFromCamera();
+
+                            } else {
+                                //not allowed, request
+                                requestCameraPermission();
+
+                            }
+
+                        } else {
+                            //gallery clicked
+                            if (checkStoragePermission()) {
+                                //storage permissions allowed
+                                pickFromGallery();
+
+                            } else {
+                                //not allowed, request
+                                requestStoragePermission();
+
+                            }
+
+                        }
+
+                    }
+                })
+                .show();
+    }
+    private void pickFromGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, IMAGE_PICK_GALLERY_CODE);
+
+    }
+
+    private void pickFromCamera() {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(MediaStore.Images.Media.TITLE, "Temp_Image Title");
+        contentValues.put(MediaStore.Images.Media.DESCRIPTION, "Temp_Image Description");
+
+        image_uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri);
+        startActivityForResult(intent, IMAGE_PICK_CAMERA_CODE);
+
+    }
+
+    private boolean checkStoragePermission(){
+        boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
+                (PackageManager.PERMISSION_GRANTED);
+
+        return result;
+    }
+
+    private void requestStoragePermission(){
+        ActivityCompat.requestPermissions(this, storagePermissions, STORAGE_REQUEST_CODE );
+
+
+    }
+    private boolean checkCameraPermission(){
+        boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) ==
+                (PackageManager.PERMISSION_GRANTED);
+
+        boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
+                (PackageManager.PERMISSION_GRANTED);
+
+        return result && result1;
+    }
+
+    private void requestCameraPermission(){
+        ActivityCompat.requestPermissions(this, cameraPermissions, CAMERA_REQUEST_CODE );
+
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+
+            case CAMERA_REQUEST_CODE: {
+                if (grantResults.length > 0) {
+                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    boolean storageAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+                    if (cameraAccepted && storageAccepted) {
+                        //permission allowed
+                        pickFromCamera();
+
+
+                    } else {
+                        //permission denied
+                        Toast.makeText(this, "Camera permissions are necessary...", Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+            }
+            break;
+            case STORAGE_REQUEST_CODE: {
+                if (grantResults.length > 0) {
+
+                    boolean storageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    if (storageAccepted) {
+                        //permission allowed
+                        pickFromGallery();
+
+                    } else {
+                        //permission denied
+                        Toast.makeText(this, "Storage permission is necessary...", Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+            }
+            break;
+        }
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (resultCode==RESULT_OK){
+            if (requestCode == IMAGE_PICK_GALLERY_CODE){
+
+                image_uri = data.getData();
+
+                profileIv.setImageURI(image_uri);
+
+            }
+            else if (requestCode == IMAGE_PICK_CAMERA_CODE){
+                profileIv.setImageURI(image_uri);
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void signInWithCredential(PhoneAuthCredential credential) {
@@ -167,44 +351,111 @@ public class VendorInformation extends AppCompatActivity {
 
                     // testing
                     //setup data to save
-                    HashMap < String, Object > hashMap = new HashMap <> ( );
-                    hashMap.put ( "uid" , "" + mAuth.getUid ( ) );
-                    hashMap.put ( "email" , "Juakali@store.com" );
-                    hashMap.put("kRApin",""+kRApin);
-                    hashMap.put ( "name" , "Jua store"  );
-                    hashMap.put("gender", ""+gender);
-                    hashMap.put("iDNumber",""+iDNumber);
-                    hashMap.put ( "shopName" , "" + shopName );
-                    hashMap.put ( "phones" , "" + phones );
-                    hashMap.put ( "deliveryFee" , "100" );
-                    hashMap.put ( "country" , "" + country );
-                    hashMap.put ( "city" , "" + city );
-                    hashMap.put ( "state" , "" + state );
-                    hashMap.put ( "address" , "" + address );
-                    hashMap.put ( "latitude" , "" + latitude );
-                    hashMap.put ( "longitude" , "" + longitude );
-                    hashMap.put ( "timestamp" , "" + timestamp );
-                    hashMap.put ( "accountType" , "Vendors" );
-                    hashMap.put ( "online" , "true" );
-                    hashMap.put ( "shopOpen" , "true" );
-                    hashMap.put ( "profileImage" , "" );
+                    if (image_uri == null){
+                        HashMap < String, Object > hashMap = new HashMap <> ( );
+                        hashMap.put ( "uid" , "" + mAuth.getUid ( ) );
+                        hashMap.put ( "email" , "Juakali@store.com" );
+                        hashMap.put("kRApin",""+kRApin);
+                        hashMap.put ( "name" , "Jua store"  );
+                        hashMap.put("gender", ""+gender);
+                        hashMap.put("iDNumber",""+iDNumber);
+                        hashMap.put ( "shopName" , "" + shopName );
+                        hashMap.put ( "phones" , "" + phones );
+                        hashMap.put ( "deliveryFee" , "100" );
+                        hashMap.put ( "country" , "" + country );
+                        hashMap.put ( "city" , "" + city );
+                        hashMap.put ( "state" , "" + state );
+                        hashMap.put ( "address" , "" + address );
+                        hashMap.put ( "latitude" , "36.8125" );
+                        hashMap.put ( "longitude" , "1.3093");
+                        hashMap.put ( "timestamp" , "" + timestamp );
+                        hashMap.put ( "accountType" , "Vendors" );
+                        hashMap.put ( "online" , "true" );
+                        hashMap.put ( "shopOpen" , "true" );
+                        hashMap.put ( "profileImage" , "" );
 
 
 
-                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()){
+                        FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    progressDialog.setMessage("Creating account...");
+                                    progressDialog.show();
 
-                                Toast.makeText(VendorInformation.this, "You have been registered successfully ", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(VendorInformation.this, VendorScreen.class);
-                                startActivity(i);
-                                finish();
-                            }else{
-                                Toast.makeText(VendorInformation.this, "Failed to Register, Retry", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(VendorInformation.this, "You have been registered successfully ", Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(VendorInformation.this, VendorScreen.class);
+                                    startActivity(i);
+                                    finish();
+                                }else{
+                                    progressDialog.dismiss();
+
+                                    Toast.makeText(VendorInformation.this, "Failed to Register, Retry", Toast.LENGTH_SHORT).show();
+                                }
                             }
-                        }
-                    });
+                        });
+
+                    }else{
+                        String filepathAndName = "profile_images/" + "" + mAuth.getUid ();
+                        //upload image
+                        StorageReference storageReference = FirebaseStorage.getInstance ().getReference (filepathAndName);
+                        storageReference.putFile(image_uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                // get url of uploaded image
+                                Task <Uri> uriTask = taskSnapshot.getStorage ().getDownloadUrl ();
+                                while (! uriTask.isSuccessful ());
+                                Uri downloadImageUri = uriTask.getResult ();
+
+                                if (uriTask.isSuccessful ()){
+                                    HashMap < String, Object > hashMap = new HashMap <> ( );
+                                    hashMap.put ( "uid" , "" + mAuth.getUid ( ) );
+                                    hashMap.put ( "email" , "Juakali@store.com" );
+                                    hashMap.put("kRApin",""+kRApin);
+                                    hashMap.put ( "name" , "Jua store"  );
+                                    hashMap.put("gender", ""+gender);
+                                    hashMap.put("iDNumber",""+iDNumber);
+                                    hashMap.put ( "shopName" , "" + shopName );
+                                    hashMap.put ( "phones" , "" + phones );
+                                    hashMap.put ( "deliveryFee" , "100" );
+                                    hashMap.put ( "country" , "" + country );
+                                    hashMap.put ( "city" , "" + city );
+                                    hashMap.put ( "state" , "" + state );
+                                    hashMap.put ( "address" , "" + address );
+                                    hashMap.put ( "latitude" , "" + latitude );
+                                    hashMap.put ( "longitude" , "" + longitude );
+                                    hashMap.put ( "timestamp" , "" + timestamp );
+                                    hashMap.put ( "accountType" , "Vendors" );
+                                    hashMap.put ( "online" , "true" );
+                                    hashMap.put ( "shopOpen" , "true" );
+                                    hashMap.put ( "profileImage" , ""+downloadImageUri);
+
+                                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+
+                                                Toast.makeText(VendorInformation.this, "You have been registered successfully ", Toast.LENGTH_SHORT).show();
+                                                Intent i = new Intent(VendorInformation.this, VendorScreen.class);
+                                                startActivity(i);
+                                                finish();
+                                            }else{
+                                                Toast.makeText(VendorInformation.this, "Failed to Register, Retry", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+
+                                }
+
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+
+                            }
+                        });
+                    }
+
 
 
                 } else {
