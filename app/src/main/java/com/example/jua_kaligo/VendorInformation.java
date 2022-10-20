@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,6 +13,7 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -41,12 +43,28 @@ public class VendorInformation extends AppCompatActivity {
     EditText phone, fullname, IDnumber;
     CountryCodePicker countryCodePicker;
 
+    private ImageView profileIv;
     // variable for FirebaseAuth class
     private FirebaseAuth mAuth;
 
     // variable for our text input
     // field for phone and OTP.
     private EditText edtPhone, edtOTP;
+
+    //permission constants
+    private static final int LOCATION_REQUEST_CODE = 100;
+    private static final int CAMERA_REQUEST_CODE = 200;
+    private static final int STORAGE_REQUEST_CODE = 300;
+    //image pick constants
+    private static final int IMAGE_PICK_GALLERY_CODE = 400;
+    private static final int IMAGE_PICK_CAMERA_CODE = 500;
+
+    //permission arrays
+    private String[] locationPermissions;
+    private String[] cameraPermissions;
+    private String[] storagePermissions;
+    //image picked uri
+    private Uri image_uri;
 
     // buttons for generating OTP and verifying OTP
     private Button verifyOTPBtn, generateOTPBtn;
