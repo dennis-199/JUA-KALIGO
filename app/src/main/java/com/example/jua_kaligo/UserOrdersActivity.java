@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -53,6 +56,34 @@ public class UserOrdersActivity extends AppCompatActivity {
 
         //init order list
         ordersList = new ArrayList<>();
+        // pop up menu
+        PopupMenu popupMenu = new PopupMenu(UserOrdersActivity.this,moreBtn);
+        // add menu items to our menu
+        popupMenu.getMenu().add("BarGraph");
+        popupMenu.getMenu().add("Reviews");
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuitem) {
+                if(menuitem.getTitle() == "BarGraph"){
+                    startActivity(new Intent(UserOrdersActivity.this,BarChartActivity.class));
+
+                }else if(menuitem.getTitle() == "Reviews"){
+                    Intent intent = new Intent(UserOrdersActivity.this, ShopReviewsActivity.class);
+                    intent.putExtra("shopUid",""+firebaseAuth.getUid());
+                    startActivity(intent);
+
+                }
+                return false;
+            }
+        });
+        moreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // show popupmenu
+                popupMenu.show();
+
+            }
+        });
 
         //get orders
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
