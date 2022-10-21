@@ -422,8 +422,8 @@ public class VendorInformation extends AppCompatActivity {
                                     hashMap.put ( "city" , "" + city );
                                     hashMap.put ( "state" , "" + state );
                                     hashMap.put ( "address" , "" + address );
-                                    hashMap.put ( "latitude" , "" + latitude );
-                                    hashMap.put ( "longitude" , "" + longitude );
+                                    hashMap.put ( "latitude" , "36.8125" );
+                                    hashMap.put ( "longitude" , "1.3093" );
                                     hashMap.put ( "timestamp" , "" + timestamp );
                                     hashMap.put ( "accountType" , "Vendors" );
                                     hashMap.put ( "online" , "true" );

@@ -29,7 +29,7 @@ import java.util.Locale;
 public class OrderDetailsUsersActivity extends AppCompatActivity {
     private String orderTo, orderId;
 
-    private ImageButton backBtn,writeReviewBtn;
+    private ImageButton backBtn,writeReviewBtn,moreBtn;
     private TextView orderIdTv, dateTv, orderStatusTv, shopNameTv, totalItemsTv, amountTv, addressTv;
     private RecyclerView itemsRv;
     private Button mpesaPay;

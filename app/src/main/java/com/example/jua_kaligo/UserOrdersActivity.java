@@ -24,7 +24,7 @@ public class UserOrdersActivity extends AppCompatActivity {
     private ArrayList<ModelOrderUser> ordersList;
     private AdapterOrderUser adapterOrderUser;
 
-    private ImageButton backBtn,writeReviewBtn;
+    private ImageButton backBtn,writeReviewBtn,moreBtn;
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
@@ -35,6 +35,7 @@ public class UserOrdersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_orders);
 
         ordersRv = findViewById(R.id.ordersRv);
+        moreBtn = findViewById(R.id.moreBtn);
         firebaseAuth = FirebaseAuth.getInstance ();
         progressDialog = new ProgressDialog ( this );
         progressDialog.setTitle ( "Please Wait" );
