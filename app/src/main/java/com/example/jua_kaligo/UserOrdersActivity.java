@@ -60,16 +60,15 @@ public class UserOrdersActivity extends AppCompatActivity {
         PopupMenu popupMenu = new PopupMenu(UserOrdersActivity.this,moreBtn);
         // add menu items to our menu
         popupMenu.getMenu().add("BarGraph");
-        popupMenu.getMenu().add("Reviews");
+        popupMenu.getMenu().add("PieChart");
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuitem) {
                 if(menuitem.getTitle() == "BarGraph"){
                     startActivity(new Intent(UserOrdersActivity.this,BarChartActivity.class));
 
-                }else if(menuitem.getTitle() == "Reviews"){
-                    Intent intent = new Intent(UserOrdersActivity.this, ShopReviewsActivity.class);
-                    intent.putExtra("shopUid",""+firebaseAuth.getUid());
+                }else if(menuitem.getTitle() == "PieChart"){
+                    Intent intent = new Intent(UserOrdersActivity.this, PieChartActivity.class);
                     startActivity(intent);
 
                 }
