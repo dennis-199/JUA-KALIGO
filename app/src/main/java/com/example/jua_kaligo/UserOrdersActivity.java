@@ -33,6 +33,7 @@ public class UserOrdersActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
     private TextView textView;
+    int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,12 +106,13 @@ public class UserOrdersActivity extends AppCompatActivity {
                                         for (DataSnapshot ds: dataSnapshot.getChildren()){
                                             ModelOrderUser modelOrderUser = ds.getValue(ModelOrderUser.class);
 
-
                                             //add to list
                                             ordersList.add(modelOrderUser);
 
 
                                         }
+
+
                                         //setup adapter
                                         adapterOrderUser = new AdapterOrderUser(UserOrdersActivity.this, ordersList);
                                         //set to recyclerview

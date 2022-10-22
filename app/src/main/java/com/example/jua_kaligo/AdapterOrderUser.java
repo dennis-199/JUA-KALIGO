@@ -40,6 +40,7 @@ public class AdapterOrderUser extends RecyclerView.Adapter<AdapterOrderUser.Hold
 
     @Override
     public void onBindViewHolder(@NonNull HolderOrderUser holder, int position) {
+        int i;
         //get data
         ModelOrderUser modelOrderUser = orderUserList.get(position);
         String orderId = modelOrderUser.getOrderId();
@@ -58,6 +59,8 @@ public class AdapterOrderUser extends RecyclerView.Adapter<AdapterOrderUser.Hold
         holder.orderIdTv.setText("OrderID:"+orderId);
         //change order status text color
         if (orderStatus.equals("In Progress")){
+           // int r = i++;
+
             holder.statusTv.setTextColor(context.getResources().getColor(R.color.colorPrimary));
         }
         else if (orderStatus.equals("Completed")){
