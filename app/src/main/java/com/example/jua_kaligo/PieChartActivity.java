@@ -1,6 +1,7 @@
 package com.example.jua_kaligo;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -15,13 +16,16 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class PieChartActivity extends AppCompatActivity {
     PieChart pieChart;
@@ -29,6 +33,7 @@ public class PieChartActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
+    int progress ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,72 +56,19 @@ public class PieChartActivity extends AppCompatActivity {
         pieChart.setTransparentCircleRadius(31f);
 
         // get progress count
+
+        //
+        //DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("Users");
+
+        //
         //get orders
-        int progress = 0;
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot ds: dataSnapshot.getChildren()){
-                    String uid = ""+ds.getRef().getKey();
-
-                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(uid).child("Orders");
-                    ref.orderByChild("orderBy").equalTo(firebaseAuth.getUid())
-                            .addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    if (dataSnapshot.exists()){
-                                        for (DataSnapshot ds: dataSnapshot.getChildren()){
-                                            String orderStatus =""+dataSnapshot.child("orderStatus").getValue();
-
-                                            if(orderStatus.equals("In Progress")){
-                                                int i = 0;
-                                                i = i +1;
-
-
-                                            }else if(orderStatus.equals("Completed")){
-
-
-                                            }else if(orderStatus.equals("Cancelled")){
-
-
-                                            }
-
-
-                                        }
-                                        //setup adapter
-
-                                    }
-
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                }
-                            });
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        // end of progress count
-
         ArrayList<PieEntry> yValues = new ArrayList<>();
-        read = 20;
+        //read = progress;
 
 
-        yValues.add(new PieEntry(read, "Completed"));
+        yValues.add(new PieEntry(20f, "Completed"));
         yValues.add(new PieEntry(30f, "In Progress"));
         yValues.add(new PieEntry(24f, "Cancelled"));
-
-
 
         pieChart.animateY(1400, Easing.EaseInOutQuad);
 
@@ -130,5 +82,13 @@ public class PieChartActivity extends AppCompatActivity {
         data.setValueTextColor(Color.BLACK);
 
         pieChart.setData(data);
+
+        // end of progress count
+
+
+
+
+
+
     }
 }

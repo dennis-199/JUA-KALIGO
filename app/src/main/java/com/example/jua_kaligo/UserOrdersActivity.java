@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +32,7 @@ public class UserOrdersActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class UserOrdersActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog ( this );
         progressDialog.setTitle ( "Please Wait" );
         progressDialog.setCanceledOnTouchOutside ( false );
+        textView = findViewById(R.id.textView);
 
         backBtn = findViewById(R.id.backBtn);
 
@@ -101,6 +104,7 @@ public class UserOrdersActivity extends AppCompatActivity {
                                     if (dataSnapshot.exists()){
                                         for (DataSnapshot ds: dataSnapshot.getChildren()){
                                             ModelOrderUser modelOrderUser = ds.getValue(ModelOrderUser.class);
+
 
                                             //add to list
                                             ordersList.add(modelOrderUser);
