@@ -1,5 +1,6 @@
 package com.example.jua_kaligo;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,11 +12,19 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RatingBar;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import p32929.androideasysql_library.EasyDB;
 
 
 public class Homefragment extends Fragment {
@@ -41,47 +50,67 @@ public class Homefragment extends Fragment {
 
 
 
-    public Homefragment() {
-        // Required empty public constructor
-    }
+    // declare UI views
 
+    private ImageView shopIv;
+    private TextView shopNameTv, phoneTv,emailTv, openClosedTv,
+            deliveryFeeTv, addressTv, filteredProductsTv, cartCountTv;
+    private ImageButton callBtn, mapBtn,cartBtn,backBtn,filterProductsBtn,reviewBtn;
+    private EditText searchProductEt;
+    private RecyclerView productsRv;
+    private RatingBar ratingBar;
 
+    private String shopUid;
+    private String myLatitude, myLongitude, myPhone;
+    private String shopName, shopEmail, shopPhone, shopAddress, shopLatitude, shopLongitude;
+    public String deliveryFee;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    private FirebaseAuth firebaseAuth;
+    private EasyDB easyDB;
 
-        // Initialize dataset, this data would usually come from a local content provider or
-        // remote server.
-        initDataset();
-    }
+    //progress dialog
+    private ProgressDialog progressDialog;
+    private AdapterProductUser adapterProductUser;
+    private ArrayList< ModelProduct > productsList;
+
+    private ArrayList<ModelCartItem> cartItemsList;
+    private AdapterCartItem adapterCartItem;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_homefragment, container, false);
-        rootView.setTag(TAG);
 
-        // BEGIN_INCLUDE(initializeRecyclerView)
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+        //init UI views
 
-        // LinearLayoutManager is used here, this will layout the elements in a similar fashion
-        // to the way ListView would layout elements. The RecyclerView.LayoutManager defines how
-        // elements are laid out.
-        mLayoutManager = new LinearLayoutManager(getActivity());
+        shopIv = rootView.findViewById ( R.id.shopIv );
+        shopNameTv = rootView.findViewById ( R.id.shopNameTv );
+        phoneTv = rootView.findViewById ( R.id.phoneTv );
+        emailTv = rootView.findViewById ( R.id.emailTv );
+        openClosedTv = rootView.findViewById ( R.id.openClosedTv );
+        deliveryFeeTv = rootView.findViewById ( R.id.deliveryFeeTv );
+        addressTv = rootView.findViewById ( R.id.addressTv );
+        callBtn = rootView.findViewById ( R.id.callBtn );
+        mapBtn = rootView.findViewById ( R.id.mapBtn );
+        cartBtn = rootView.findViewById ( R.id.cartBtn );
+        backBtn = rootView.findViewById ( R.id.backBtn );
+        searchProductEt = rootView.findViewById ( R.id.searchProductEt );
+        filterProductsBtn = rootView.findViewById ( R.id.filterProductsBtn );
+        filteredProductsTv = rootView.findViewById ( R.id.filteredProductsTv );
+        productsRv = rootView.findViewById ( R.id.productsRv );
+        cartCountTv = rootView.findViewById ( R.id.cartCountTv );
+        reviewBtn = rootView.findViewById ( R.id.reviewBtn );
+        ratingBar = rootView.findViewById ( R.id.ratingBar );
 
-        mCurrentLayoutManagerType = LayoutManagerType.GRID_LAYOUT_MANAGER;
+        //init progress dialog
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Please wait");
+        progressDialog.setCanceledOnTouchOutside(false);
 
-        if (savedInstanceState != null) {
-            // Restore saved layout manager type.
-            mCurrentLayoutManagerType = (LayoutManagerType) savedInstanceState
-                    .getSerializable(KEY_LAYOUT_MANAGER);
-        }
-        setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
+        //shopUid = getIntent ().getStringExtra ( "shopUid" );
+        firebaseAuth = FirebaseAuth.getInstance ();
 
-        mAdapter = new Adapter(mDataset);
-        // Set CustomAdapter as the adapter for RecyclerView.
-        mRecyclerView.setAdapter(mAdapter);
-        // END_INCLUDE(initializeRecyclerView)
+
+
 
 
 
@@ -90,54 +119,5 @@ public class Homefragment extends Fragment {
         return rootView;
     }
 
-    /**
-     * Set RecyclerView's LayoutManager to the one given.
-     *
-     * @param layoutManagerType Type of layout manager to switch to.
-     */
-    public void setRecyclerViewLayoutManager(LayoutManagerType layoutManagerType) {
-        int scrollPosition = 0;
 
-        // If a layout manager has already been set, get current scroll position.
-        if (mRecyclerView.getLayoutManager() != null) {
-            scrollPosition = ((LinearLayoutManager) mRecyclerView.getLayoutManager())
-                    .findFirstCompletelyVisibleItemPosition();
-        }
-
-        switch (layoutManagerType) {
-            case GRID_LAYOUT_MANAGER:
-                mLayoutManager = new GridLayoutManager(getActivity(), SPAN_COUNT);
-                mCurrentLayoutManagerType = LayoutManagerType.GRID_LAYOUT_MANAGER;
-                break;
-            case LINEAR_LAYOUT_MANAGER:
-                mLayoutManager = new LinearLayoutManager(getActivity());
-                mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
-                break;
-            default:
-                mLayoutManager = new LinearLayoutManager(getActivity());
-                mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
-        }
-
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.scrollToPosition(scrollPosition);
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        // Save currently selected layout manager.
-        savedInstanceState.putSerializable(KEY_LAYOUT_MANAGER, mCurrentLayoutManagerType);
-        super.onSaveInstanceState(savedInstanceState);
-    }
-
-    /**
-     * Generates Strings for RecyclerView's adapter. This data would usually come
-     * from a local content provider or remote server.
-     */
-    private void initDataset() {
-        mDataset = new String[DATASET_COUNT];
-        for (int i = 0; i < DATASET_COUNT; i++) {
-            mDataset[i] = "This is element #" + i;
-
-        }
-    }
 }
