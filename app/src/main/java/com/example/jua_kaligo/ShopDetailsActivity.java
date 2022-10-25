@@ -715,7 +715,6 @@ public class ShopDetailsActivity extends AppCompatActivity {
     private void loadShopProducts() {
         // init list
         productsList = new ArrayList <> (  );
-
         DatabaseReference reference = FirebaseDatabase.getInstance ().getReference ("Users");
         reference.child ( shopUid).child ( "Products" )
                 .addValueEventListener ( new ValueEventListener ( ) {
