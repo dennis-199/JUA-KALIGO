@@ -93,22 +93,11 @@ public class account_Ven extends Fragment {
         //cityEt = view.findViewById(R.id.cityEt);
         //addressEt = view.findViewById(R.id.addressEt);
         editProfileBtn = view.findViewById ( R.id.editProfileBtn);
-        settingsBtn = view.findViewById(R.id.settingsBtn);
 
-        settingsBtn.setOnClickListener(new View.OnClickListener() {
+        editProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), SettingsActivity.class));
-            }
-        });
-
-        reviewsBtn= view.findViewById(R.id.reviewsBtn);
-
-        reviewsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ShopReviewsActivity.class);
-                intent.putExtra("shopUid",""+firebaseAuth.getUid());
+                Intent intent = new Intent(getActivity(), ProfileEditSellerActivity.class);
                 startActivity(intent);
             }
         });
@@ -153,13 +142,7 @@ public class account_Ven extends Fragment {
 
             }
         });
-        editProfileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ProfileEditSellerActivity.class);
-                startActivity(intent);
-            }
-        });
+
 
         return view;
     }

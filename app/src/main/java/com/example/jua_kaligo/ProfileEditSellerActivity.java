@@ -170,8 +170,8 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
         Gender = spinner.getSelectedItem().toString();
         online= "true";
         accountType = "Vendors";
-        uid= firebaseAuth.getUid();
-        profileImage = "";
+        //uid= firebaseAuth.getUid();
+        //profileImage = "";
 
         updateProfile();
     }
@@ -234,18 +234,18 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
                                 HashMap<String, Object> hashMap = new HashMap<>();
                                 //hashMap.put("name",""+name);
 
-//                                hashMap.put("Phone",""+Phone);
-//                                hashMap.put("KRApin",""+KRApin);
-//                                hashMap.put("fullN",""+fullN);
-//                                hashMap.put("IDNumber",""+IDNumber);
-//                                hashMap.put("country",""+country);
-//                                hashMap.put("state",""+state);
-//                                hashMap.put("city",""+city);
-//                                hashMap.put("Gender",""+Gender);
-//                                hashMap.put("address",""+address);
-//                                hashMap.put("latitude",""+latitude);
-//                                hashMap.put("longitude",""+longitude);
-//                                hashMap.put("shopOpen",""+shopOpen);
+                                hashMap.put("phones",""+Phone);
+                                hashMap.put("KRApin",""+KRApin);
+                                hashMap.put("fullN",""+fullN);
+                                hashMap.put("IDNumber",""+IDNumber);
+                                hashMap.put("country",""+country);
+                                hashMap.put("state",""+state);
+                                hashMap.put("city",""+city);
+                                hashMap.put("Gender",""+Gender);
+                                hashMap.put("address",""+address);
+                                hashMap.put("latitude",""+latitude);
+                                hashMap.put("longitude",""+longitude);
+                                hashMap.put("shopOpen",""+shopOpen);
                                 hashMap.put("profileImage",""+downloadImageUri);
 
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
@@ -303,11 +303,11 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
                             String country = "" + ds.child("country").getValue();
                             String deliveryFee = "" + ds.child("deliveryFee").getValue();
                             String email = "" + ds.child("email").getValue();
-                            latitude = Double.parseDouble("" + ds.child("latitude").getValue());
-                            longitude = Double.parseDouble("" + ds.child("longitude").getValue());
+                            //latitude = "" + ds.child("latitude").getValue();
+                            //longitude = Double.parseDouble("" + ds.child("longitude").getValue());
                             String name = "" + ds.child("name").getValue();
                             String online = "" + ds.child("online").getValue();
-                            String phone = "" + ds.child("phone").getValue();
+                            String phone = "" + ds.child("phones").getValue();
                             String profileImage = "" + ds.child("profileImage").getValue();
                             String timestamp = "" + ds.child("timestamp").getValue();
                             String shopName = "" + ds.child("shopName").getValue();

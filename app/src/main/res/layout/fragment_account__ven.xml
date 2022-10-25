@@ -19,7 +19,7 @@
                 android:id="@+id/profileIv"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginTop="45dp"
+                android:layout_marginTop="5dp"
                 android:layout_centerHorizontal="true"
                 app:c_border="true"
                 app:c_border_color="@color/colorPrimary"
@@ -35,29 +35,7 @@
                 android:layout_gravity="end"
                 android:background="@null"
                 android:layout_alignParentRight="true" />
-            <ImageButton
-                android:id="@+id/settingsBtn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_baseline_settings"
-                android:background="@null"
-                />
-            <ImageButton
-                android:id="@+id/reviewsBtn"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/ic_baseline_star_border_24"
-                android:background="@null"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Show reviews "
-                android:textColor="@color/black"
-                android:gravity="start"
-                android:layout_marginTop="30dp"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

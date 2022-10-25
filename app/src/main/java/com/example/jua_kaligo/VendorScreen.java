@@ -238,50 +238,50 @@ public class VendorScreen extends AppCompatActivity {
                 } );
     }
 
-//    private void checkUser() {
-//        FirebaseUser user= firebaseAuth.getCurrentUser ();
-//        if (user==null){
-//            startActivity ( new Intent( VendorScreen.this, ChooseRole.class ) );
-//            finish ();
-//        } else {
-//            loadMyInfo();
-//        }
-//    }
+    private void checkUser() {
+        FirebaseUser user= firebaseAuth.getCurrentUser ();
+        if (user==null){
+            startActivity ( new Intent( VendorScreen.this, ChooseRole.class ) );
+            finish ();
+        } else {
+            loadMyInfo();
+        }
+    }
 
-//    private void loadMyInfo() {
-//        DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
-//        ref.orderByChild ( "uid" ).equalTo ( firebaseAuth.getUid () )
-//                .addValueEventListener ( new ValueEventListener ( ) {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                        for (DataSnapshot ds: dataSnapshot.getChildren ()){
-//                            //get data from db
-//                            //String name = ""+ds.child ( "name" ).getValue ();
-//                            //String accountType = ""+ds.child ( "accountType" ).getValue ();
-//                           // String email = ""+ds.child ( "email" ).getValue ();
-//                            //String shopName = ""+ds.child ( "shopName" ).getValue ();
-//                            //String profileImage = ""+ds.child ( "profileImage" ).getValue ();
-//
-//                            //set data to UI
-//                           // nameTv.setText (name);
-//                            //shopNameTv.setText(shopName);
-//                            //emailTv.setText(email);
-//                           // try {
-//                             //   Picasso.get().load(profileImage).placeholder(R.drawable.ic_store_gray).into(profileIv);
-//                          //  }
-//                           // catch (Exception e){
-//                             //   profileIv.setImageResource(R.drawable.ic_store_gray);
-//
-//                           // }
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                    }
-//                } );
-//    }
+    private void loadMyInfo() {
+        DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
+        ref.orderByChild ( "uid" ).equalTo ( firebaseAuth.getUid () )
+                .addValueEventListener ( new ValueEventListener ( ) {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot ds: dataSnapshot.getChildren ()){
+                            //get data from db
+                            //String name = ""+ds.child ( "name" ).getValue ();
+                            //String accountType = ""+ds.child ( "accountType" ).getValue ();
+                           // String email = ""+ds.child ( "email" ).getValue ();
+                            //String shopName = ""+ds.child ( "shopName" ).getValue ();
+                            String profileImage = ""+ds.child ( "profileImage" ).getValue ();
+
+                            //set data to UI
+                           // nameTv.setText (name);
+                            //shopNameTv.setText(shopName);
+                            //emailTv.setText(email);
+                            try {
+                                Picasso.get().load(profileImage).placeholder(R.drawable.ic_baseline_store_gray).into(profileIv);
+                            }
+                            catch (Exception e){
+                                profileIv.setImageResource(R.drawable.ic_baseline_store_gray);
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                } );
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener bottomNavMethod = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
