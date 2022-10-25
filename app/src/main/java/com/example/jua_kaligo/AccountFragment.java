@@ -20,16 +20,7 @@ public class AccountFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
-        showmyorders = view.findViewById(R.id.showmyorders);
 
-        showmyorders.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getContext(),UserOrdersActivity.class);
-                startActivity(intent);
-            }
-        });
         return view;
     }
 }
