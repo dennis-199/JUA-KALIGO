@@ -59,7 +59,7 @@
             android:layout_height="match_parent"
             android:layout_below="@id/filteredProductsTv"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/row_product_seller" />
+            tools:listitem="@layout/row_product_post" />
 
 
 
