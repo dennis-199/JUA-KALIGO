@@ -20,7 +20,7 @@ public class Vendornext extends AppCompatActivity {
         spinner = (Spinner) findViewById(R.id.spinner);
         IDNUMBER = (EditText) findViewById(R.id.IDNUMBER1);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.region, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.type, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }

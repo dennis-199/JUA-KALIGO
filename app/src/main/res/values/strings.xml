@@ -51,6 +51,12 @@
         <item>Other </item>
 
     </string-array>
+    <string-array name="type">
+        <item>Products</item>
+        <item>Services</item>
+
+
+    </string-array>
     <string-array name="business">
         <item>Welding</item>
         <item>Mtumba clothes</item>
