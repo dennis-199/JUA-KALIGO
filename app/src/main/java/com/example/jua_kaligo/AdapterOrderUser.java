@@ -61,6 +61,7 @@ public class AdapterOrderUser extends RecyclerView.Adapter<AdapterOrderUser.Hold
         if (orderStatus.equals("In Progress")){
            // int r = i++;
 
+
             holder.statusTv.setTextColor(context.getResources().getColor(R.color.colorPrimary));
         }
         else if (orderStatus.equals("Completed")){

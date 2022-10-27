@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/myorders"
-        android:background="#EDF6ED"
+        android:background="#CFECEF"
         android:id="@+id/ordersRl">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ordersRv"

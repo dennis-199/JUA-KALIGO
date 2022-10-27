@@ -111,8 +111,8 @@ public class UserOrdersActivity extends AppCompatActivity {
 
 
                                         }
-
-
+                                        // g
+                                        //textView.setText(adapterOrderUser.getItemCount());
                                         //setup adapter
                                         adapterOrderUser = new AdapterOrderUser(UserOrdersActivity.this, ordersList);
                                         //set to recyclerview
