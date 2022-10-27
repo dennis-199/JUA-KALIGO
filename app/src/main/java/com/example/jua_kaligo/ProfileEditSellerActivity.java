@@ -86,7 +86,7 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
 
         spinner = (Spinner) findViewById(R.id.spinner);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.region, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.type, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
@@ -192,7 +192,7 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
             hashMap.put("country",""+country);
             hashMap.put("state",""+state);
             hashMap.put("city",""+city);
-            hashMap.put("Gender",""+Gender);
+            hashMap.put("gender",""+Gender);
             hashMap.put("address",""+address);
             hashMap.put("latitude",""+latitude);
             hashMap.put("longitude",""+longitude);
@@ -241,7 +241,7 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
                                 hashMap.put("country",""+country);
                                 hashMap.put("state",""+state);
                                 hashMap.put("city",""+city);
-                                hashMap.put("Gender",""+Gender);
+                                hashMap.put("gender",""+Gender);
                                 hashMap.put("address",""+address);
                                 hashMap.put("latitude",""+latitude);
                                 hashMap.put("longitude",""+longitude);
