@@ -33,6 +33,7 @@
     </RelativeLayout>
     <com.github.mikephil.charting.charts.PieChart
         android:layout_width="match_parent"
+        android:layout_below="@+id/toolbarRl"
         android:layout_height="match_parent"
         android:id="@+id/piechart"/>
 

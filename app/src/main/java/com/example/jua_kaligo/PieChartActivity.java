@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -33,6 +35,7 @@ public class PieChartActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
+    private ImageButton backBtn;
     int progress ;
 
     @Override
@@ -45,6 +48,9 @@ public class PieChartActivity extends AppCompatActivity {
         progressDialog.setTitle ( "Please Wait" );
         progressDialog.setCanceledOnTouchOutside ( false );
 
+        //init UI views
+        backBtn = findViewById(R.id.backBtn);
+
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
         pieChart.setExtraOffsets(5,10,5,5);
@@ -54,6 +60,14 @@ public class PieChartActivity extends AppCompatActivity {
         pieChart.setDrawHoleEnabled(true);
         pieChart.setHoleColor(Color.WHITE);
         pieChart.setTransparentCircleRadius(31f);
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+
+            }
+        });
 
         // get progress count
 
