@@ -15,13 +15,14 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
 public class BarChartActivity extends AppCompatActivity {
-    BarChart barChart;
+    //BarChart barChart;
     private ProgressDialog progressDialog;
     private ImageButton backBtn;
 
@@ -63,13 +64,18 @@ public class BarChartActivity extends AppCompatActivity {
 //        pieChart.setTransparentCircleRadius(31f);
 
         ArrayList<BarEntry> orders = new ArrayList<>();
-        orders.add(new BarEntry(1f,10f,"Jan" ));
-        orders.add(new BarEntry(2f,15f ));
-        orders.add(new BarEntry(3f,60f ));
-        orders.add(new BarEntry(4f,130f ));
-        orders.add(new BarEntry(5f,25f ));
-        orders.add(new BarEntry(6f,120f ));
-        orders.add(new BarEntry(7f,125f ));
+        orders.add(new BarEntry(1f,0f ));
+        orders.add(new BarEntry(2f,2f ));
+        orders.add(new BarEntry(3f,0f ));
+        orders.add(new BarEntry(4f,5f ));
+        orders.add(new BarEntry(5f,6f ));
+        orders.add(new BarEntry(6f,1f));
+        orders.add(new BarEntry(7f,12f ));
+        orders.add(new BarEntry(8f,5f ));
+        orders.add(new BarEntry(9f,12f ));
+        orders.add(new BarEntry(10f,15f ));
+        orders.add(new BarEntry(11f,5f ));
+        orders.add(new BarEntry(12f,0f ));
 
         BarDataSet barDataSet= new BarDataSet(orders,"Orders");
         barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
@@ -78,9 +84,19 @@ public class BarChartActivity extends AppCompatActivity {
 
         BarData barData = new BarData(barDataSet);
 
+        // test
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        final String[] labels = new String[] {"Dummy", "Jan", "Feb", "March", "April", "May",
+                "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"};
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
+        xAxis.setGranularity(1f);
+        xAxis.setGranularityEnabled(true);
+        // end
+
         barChart.setFitBars(true);
         barChart.setData(barData);
-        barChart.getDescription().setText("Bar chart example");
+        barChart.getDescription().setText("Monthly orders");
         barChart.animateY(2000);
 
 
