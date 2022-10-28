@@ -104,6 +104,7 @@ public class VendorViewOrdersActivity extends AppCompatActivity {
                                     adapterOrderShop.getFilter().filter("");
                                     //int i = adapterOrderShop.getItemCount(); // not working
 
+
                                 }
                                 else{
                                     String optionClicked = options[which];
@@ -136,10 +137,12 @@ public class VendorViewOrdersActivity extends AppCompatActivity {
 
                             orderShopArrayList.add(modelOrderShop);
 
+
                         }
                         adapterOrderShop = new AdapterOrderShop(VendorViewOrdersActivity.this,orderShopArrayList);
 
                         ordersRv.setAdapter(adapterOrderShop);
+
                     }
 
                     @Override
