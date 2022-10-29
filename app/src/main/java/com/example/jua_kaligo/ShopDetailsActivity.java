@@ -625,7 +625,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
     }
 
     private void openMap() {
-        String address = "https://maps.google.com/maps?saddr="+ myLatitude + "," + myLongitude + "&daddr=" + shopLatitude + "," + shopLongitude;
+        String address = "https://maps.google.com/maps?saddr="+ "my location" +  "&daddr=" + shopAddress ;
         Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse ( address ));
         startActivity ( intent );
     }
