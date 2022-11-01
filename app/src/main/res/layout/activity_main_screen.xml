@@ -70,6 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/mytable"
+        android:layout_marginBottom="50dp"
         app:defaultNavHost="true"
         app:navGraph="@navigation/my_navfile" />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
