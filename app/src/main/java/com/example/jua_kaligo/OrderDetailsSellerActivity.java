@@ -51,7 +51,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
     private ArrayList<ModelOrderedItem> orderedItemArrayList;
     private AdapterOrderedItem adapterOrderedItem;
 
-    String sourceLatitude, sourceLongitude,destinationLatitude, destinationLongitude;
+    String sourceLatitude, sourceLongitude,destinationLatitude, destinationLongitude, address1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -257,7 +257,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
 
     private void openMap() {
 
-        String address = "https://maps.google.com/maps?saddr="+ sourceLatitude + "," + sourceLongitude + "&daddr=" + destinationLatitude + "," + destinationLongitude;
+        String address = "https://maps.google.com/maps?saddr="+  "Your location" + "&daddr=" + address1;
         Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse ( address ));
         startActivity ( intent );
     }
@@ -271,6 +271,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
 
                         destinationLatitude =""+dataSnapshot.child("latitude").getValue();
                         destinationLongitude =""+dataSnapshot.child("longitude").getValue();
+                        address1 = ""+dataSnapshot.child("address").getValue();
                         String email =""+dataSnapshot.child("name").getValue();
                         String phone =""+dataSnapshot.child("phone").getValue();
 
