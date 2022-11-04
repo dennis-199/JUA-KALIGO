@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,9 +11,10 @@
         android:layout_height="75dp"
         android:background="@color/white"
         android:id="@+id/table">
-        <com.google.android.material.appbar.CollapsingToolbarLayout
+        <Toolbar
+            android:id="@+id/tool"
             android:layout_width="match_parent"
-
+            app:layout_scrollFlags="scroll|enterAlways"
             android:layout_height="wrap_content">
             <com.blogspot.atifsoftwares.circularimageview.CircularImageView
                 android:layout_width="70dp"
@@ -25,9 +26,8 @@
                 app:c_border_color="@color/white"
                 android:src="@drawable/ic_baseline_store_gray"/>
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:orientation="vertical">
                 <TextView
 
@@ -56,8 +56,7 @@
                 android:layout_height="70dp"
                 android:src="@drawable/order"
                 android:background="@null"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="130dp"
+                android:layout_marginStart="20dp"
                 android:contentDescription="OrderButton" />
             <ImageButton
                 android:id="@+id/moreBtn"
@@ -67,7 +66,7 @@
                 android:layout_marginEnd="0dp"
                 android:background="@null"
                 android:src="@drawable/ic_baseline_more"/>
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -77,18 +76,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/table"
+        android:layout_marginBottom="57dp"
         app:defaultNavHost="true"
         app:navGraph="@navigation/ven_nav" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:labelVisibilityMode="labeled"
-        android:layout_gravity="start"
-        android:id="@+id/navigation2"
-        android:background="@color/colorWhite"
-        app:menu="@menu/bottomven_nav"
-        android:layout_alignParentBottom="true"/>
+        android:orientation="vertical"
+        android:layout_gravity="bottom">
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:labelVisibilityMode="labeled"
+            android:layout_gravity="start"
+            android:id="@+id/navigation2"
+
+            android:background="@color/colorWhite"
+            app:menu="@menu/bottomven_nav"
+            android:layout_alignParentBottom="true"/>
+
+    </LinearLayout>
 
 
-</RelativeLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
