@@ -24,6 +24,9 @@
         tools:replace="android:icon"
         tools:targetApi="31">
         <activity
+            android:name=".PdfViewerActivity"
+            android:exported="false" />
+        <activity
             android:name=".PieChartActivity"
             android:exported="false" />
         <activity
