@@ -76,12 +76,12 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/my_navfile" />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
+        android:layout_width="55dp"
         android:id="@+id/postButton"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:layout_gravity="bottom"
-        android:layout_marginStart="350dp"
+        android:layout_marginStart="300dp"
         android:layout_alignParentBottom="true"
         android:backgroundTint="@color/white"
         android:src="@drawable/ic_baseline_chat"

@@ -161,7 +161,7 @@ public class MainScreen extends AppCompatActivity {
                     greetingTextView.setText("Good Night ");
                     full_nameTextview.setText(fullname+"!");
                 }
-                postbutton.setVisibility(View.INVISIBLE);
+                postbutton.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -279,5 +279,9 @@ public class MainScreen extends AppCompatActivity {
         }
     };
 
+    public void postactivity(View view) {
+        Intent intent = new Intent(this,PostActivity.class);
+        startActivity(intent);
 
+    }
 }
