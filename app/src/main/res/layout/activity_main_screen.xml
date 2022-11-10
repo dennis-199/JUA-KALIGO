@@ -80,12 +80,11 @@
         android:id="@+id/postButton"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
-        android:layout_alignParentRight="true"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="350dp"
         android:layout_alignParentBottom="true"
-        android:onClick="postactivity"
-        android:layout_marginRight="20dp"
-        android:backgroundTint="#EED622"
-        android:src="@drawable/ic_baseline_post_add_24"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_baseline_chat"
         android:layout_marginBottom="90dp"/>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"

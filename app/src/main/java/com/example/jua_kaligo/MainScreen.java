@@ -279,9 +279,5 @@ public class MainScreen extends AppCompatActivity {
         }
     };
 
-    public void postactivity(View view) {
-        Intent intent = new Intent(this,PostActivity.class);
-        startActivity(intent);
 
-    }
 }
