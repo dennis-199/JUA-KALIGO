@@ -62,6 +62,15 @@ public class MainScreen extends AppCompatActivity {
         profileIv = findViewById(R.id.profileIv);
         moreBtn = findViewById(R.id.moreBtn);
 
+
+        postbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainScreen.this, ChatBotMainActivity.class);
+                startActivity(intent);
+            }
+        });
+
 //        settingsBtn = findViewById(R.id.settingsBtn);
 //
 //        settingsBtn.setOnClickListener(new View.OnClickListener() {
