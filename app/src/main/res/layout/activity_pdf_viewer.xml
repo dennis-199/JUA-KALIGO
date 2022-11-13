@@ -16,4 +16,10 @@
         android:text="Helo"
         android:layout_marginTop="45dp"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:text="Hello world"
+        android:textStyle="bold"/>
 </RelativeLayout>
