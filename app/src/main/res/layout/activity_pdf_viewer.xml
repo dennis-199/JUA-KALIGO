@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="90dp"
         android:text="Hello world"
-        android:textColor="@color/backcolor"
-        android:textSize="27sp"
+        android:textColor="@color/black"
+        android:textSize="37sp"
         android:textStyle="bold"/>
 </RelativeLayout>
