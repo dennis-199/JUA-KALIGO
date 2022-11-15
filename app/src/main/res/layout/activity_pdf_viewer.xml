@@ -24,4 +24,12 @@
         android:textColor="@color/black"
         android:textSize="37sp"
         android:textStyle="bold"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="190dp"
+        android:text="Hello world"
+        android:textColor="@color/black"
+        android:textSize="37sp"
+        android:textStyle="italic"/>
 </RelativeLayout>
