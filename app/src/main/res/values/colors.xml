@@ -14,6 +14,7 @@
     <color name="gol">#786D04</color>
     <color name="textcolor">#C30848</color>
     <color name="backcolor">#02DEFB</color>
+    <color name="grey_10">#e6e6e6</color>
     <color name="colorBlack">#FF000000</color>
     <color name="bar">#FF9800</color>
     <color name="app_color">#EED622</color>

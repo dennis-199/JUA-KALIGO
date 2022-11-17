@@ -14,8 +14,8 @@
         android:title="Services"/>
     <item
         android:id="@+id/trade"
-        android:icon="@drawable/ic_baseline_autorenew_24"
-        android:title="Trade"/>
+        android:icon="@drawable/ic_baseline_info_24"
+        android:title="About"/>
     <item
         android:id="@+id/account"
         android:icon="@drawable/ic_baseline_account_box_24"
