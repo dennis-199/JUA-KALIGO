@@ -63,14 +63,14 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="JUAKALI-GO"
+                                android:text="JUAKALI-GO ABUT"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                                 android:textColor="@color/colorBlack" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="\u0040juakalistore@gmail.com"
+                                android:text="\u0040juakalicommerce@gmail.com"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                                 android:textColor="@color/colorGray01" />
 
