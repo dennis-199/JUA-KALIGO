@@ -25,7 +25,7 @@
         tools:replace="android:icon"
         tools:targetApi="31">
         <activity
-            android:name=".ListViewMultiChartActivity"
+            android:name=".Splash_Screen"
             android:exported="false" />
         <activity
             android:name=".ChatBotMainActivity"
@@ -156,7 +156,7 @@
             android:name=".Verification"
             android:exported="false" />
         <activity
-            android:name=".Splash_Screen"
+            android:name=".ListViewMultiChartActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
