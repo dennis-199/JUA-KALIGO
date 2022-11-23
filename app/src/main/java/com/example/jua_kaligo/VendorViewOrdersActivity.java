@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class VendorViewOrdersActivity extends AppCompatActivity {
     private TextView nameTv, shopNameTv, emailTv, tabProductsTv, tabOrdersTv,filteredProductsTv, filteredOrdersTv;
-    private ImageButton backBtn,editProfileBtn, addProductBtn,filterProductsBtn,filterOrderBtn, reviewsBtn, settingsBtn,moreBtn;;
+    private ImageButton backBtn,editProfileBtn, addProductBtn,filterProductsBtn,filterOrderBtn, reviewsBtn, settingsBtn,moreBtn;
     private RecyclerView productsRv, ordersRv;
 
     private ArrayList<ModelOrderShop> orderShopArrayList;
@@ -44,7 +44,7 @@ public class VendorViewOrdersActivity extends AppCompatActivity {
         filteredOrdersTv = findViewById(R.id.filteredOrdersTv);
         filterOrderBtn = findViewById(R.id.filterOrderBtn);
         ordersRv = findViewById(R.id.ordersRv);
-        TextView textView = (TextView) this.findViewById(R.id.textView);
+        TextView textView =  this.findViewById(R.id.textView);
 
         backBtn = findViewById(R.id.backBtn);
 
@@ -60,6 +60,7 @@ public class VendorViewOrdersActivity extends AppCompatActivity {
         // add menu items to our menu
         popupMenu.getMenu().add("BarGraph");
         popupMenu.getMenu().add("PieChart");
+        popupMenu.getMenu().add("Report");
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuitem) {
@@ -68,6 +69,10 @@ public class VendorViewOrdersActivity extends AppCompatActivity {
 
                 }else if(menuitem.getTitle() == "PieChart"){
                     Intent intent = new Intent(VendorViewOrdersActivity.this, PieChartActivity.class);
+                    startActivity(intent);
+
+                }else if(menuitem.getTitle() == "Report"){
+                    Intent intent = new Intent(VendorViewOrdersActivity.this, ListViewMultiChartActivity.class);
                     startActivity(intent);
 
                 }
