@@ -2,17 +2,22 @@ package com.example.jua_kaligo;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.text.format.DateFormat;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,9 +47,9 @@ import java.util.Map;
 
 public class OrderDetailsSellerActivity extends AppCompatActivity {
     private ImageButton backBtn, editBtn, mapBtn;
-    private TextView orderIdTv, dateTv, orderStatusTv, emailTv, phoneTv,totalItemsTv, amountTv, addressTv;
+    private TextView orderIdTv, dateTv, orderStatusTv, emailTv, phoneTv,totalItemsTv, amountTv, addressTv, updateCustomer;
     private RecyclerView itemsRv;
-
+    Button button;
     String orderId,orderBy;
 
     private FirebaseAuth firebaseAuth;
@@ -58,6 +63,28 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_details_seller);
         // init views
+        button = findViewById(R.id.button);
+        ActivityCompat.requestPermissions(OrderDetailsSellerActivity.this, new String[]{Manifest.permission.SEND_SMS}, PackageManager.PERMISSION_GRANTED);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                sendmessage();
+//                Location lastLocation = mlocManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+//                String locationInfo = "Location: " +
+//                        "\nlatitude = " + lastLocation.getLatitude() +
+//                        "\nlongitude = " + lastLocation.getLongitude();
+                // working
+//                String messageToSend = "this is a message"+orderId + orderBy;
+//                String number = "0780754884";
+//
+//                SmsManager.getDefault().sendTextMessage(number, null, messageToSend, null,null);
+
+
+            }
+        });
+
         backBtn = findViewById(R.id.backBtn);
         editBtn = findViewById(R.id.editBtn);
         mapBtn = findViewById(R.id.mapBtn);
@@ -106,6 +133,18 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         loadOrderedItems();
     }
 
+    String phone, orderstat, amount;
+    private void sendmessage() {
+        phone = phoneTv.getText().toString().trim();
+        orderstat = orderStatusTv.getText().toString().trim();
+        amount = amountTv.getText().toString().trim();
+
+        String messageToSend = "Your order number "+orderId + " is now "+orderstat + " Amount to pay "+ amount;
+        String number = phone;
+
+        SmsManager.getDefault().sendTextMessage(number, null, messageToSend, null,null);
+    }
+
     private void editOrderStatusDialog() {
         String[] options = {"In progress", "Completed", "Cancelled"};
 
@@ -132,11 +171,18 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                 .updateChildren(hashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     String message = "Order is now"+selectedOption;
+
+                    //
+
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(OrderDetailsSellerActivity.this, message,Toast.LENGTH_SHORT);
 
                         prepareNotificationMessage(orderId, message);
+                        //test
+
+                        //
+
 
                     }
                 })
@@ -306,6 +352,8 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
 
     private void prepareNotificationMessage(String orderId, String message){
         // when user send order status, send notification to buyer
+
+
 
         //prepare data for notification
         String NOTIFICATION_TOPIC = "/topics/" + Constants.FCM_TOPIC;//must be same as subscribed by user

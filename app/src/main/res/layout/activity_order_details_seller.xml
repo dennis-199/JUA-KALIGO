@@ -33,17 +33,17 @@
             android:id="@+id/editBtn"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@null"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_baseline_edit"/>
+            android:background="@null"
+            android:src="@drawable/ic_baseline_edit" />
 
         <ImageButton
             android:id="@+id/mapBtn"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@null"
             android:layout_toStartOf="@id/editBtn"
-            android:src="@drawable/ic_baseline_map_black"/>
+            android:background="@null"
+            android:src="@drawable/ic_baseline_map_black" />
 
     </RelativeLayout>
     <androidx.cardview.widget.CardView
@@ -236,6 +236,12 @@
         </TableLayout>
 
     </androidx.cardview.widget.CardView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:textColor="@color/white"
+        android:text="Update customer on order"
+        android:id="@+id/button"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -247,6 +253,7 @@
         android:textAlignment="center"
         android:textColor="@color/colorWhite"
         android:textStyle="bold"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/itemsRv"
         android:layout_width="match_parent"

@@ -115,6 +115,7 @@
                 android:drawableLeft="@drawable/ic_location" />
 
         </LinearLayout>
+
         <EditText
             android:id="@+id/addressEt"
             android:layout_width="match_parent"
@@ -131,7 +132,7 @@
             android:drawableLeft="@drawable/ic_location"
             android:drawablePadding="5dp"
             android:hint="Complete Address"
-            android:inputType="phone"
+            android:inputType="textMultiLine"
             android:padding="10dp"
             android:textColor="@color/colorPrimary"
             android:textColorHint="@color/colorGray" />

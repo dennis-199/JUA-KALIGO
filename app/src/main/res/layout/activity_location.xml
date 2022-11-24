@@ -115,26 +115,27 @@
             android:drawableLeft="@drawable/ic_location" />
 
     </LinearLayout>
-    <EditText
-        android:id="@+id/addressEt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/addressLl"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/shape_rect02"
-        android:drawableStart="@drawable/ic_location"
-        android:drawableLeft="@drawable/ic_location"
-        android:drawablePadding="5dp"
-        android:hint="Complete Address"
-        android:inputType="phone"
-        android:padding="10dp"
-        android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/colorGray" />
+
+        <EditText
+            android:id="@+id/addressEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addressLl"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/shape_rect02"
+            android:drawableStart="@drawable/ic_location"
+            android:drawableLeft="@drawable/ic_location"
+            android:drawablePadding="5dp"
+            android:hint="Complete Address"
+            android:inputType="textMultiLine"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorGray" />
 
         <Button
             android:layout_width="200dp"
