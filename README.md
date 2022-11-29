@@ -9,4 +9,8 @@ The application uses One time password (OTP) for registration and loging in.
 I have used three fragments inside an activity for the vendor layout ... In the first fragment home he can view his posted products, in the second fragment he posts his products and in the third fragment he sees his profie ( shop details).
 ![image](https://user-images.githubusercontent.com/69002486/204143444-48d5cd19-5c1d-4136-9019-db4d7e1bd085.png)
 
+Customer Layout, Designed using 5 framnets inside one activity 
+![image](https://user-images.githubusercontent.com/69002486/204561079-bec87e8e-c69d-4a09-8511-3d464aa1250a.png)
+
+
 
