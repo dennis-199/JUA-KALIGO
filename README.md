@@ -15,6 +15,7 @@ Customer Layout, Designed using 5 framnets inside one activity
 ![image](https://user-images.githubusercontent.com/69002486/204825588-7a408455-4e62-4f66-94dd-c3c59e3ee566.png)
 
 shops dispaly 
+You can locate a shop by clickeing on the map icon, it opens google maps and shows you the route to take
 Products of that particular shop selected will be displayed upon selecting a particular shop, below is the image 
 ![image](https://user-images.githubusercontent.com/69002486/205143520-be27b353-7c63-4034-a464-a5e8fd0fd134.png) ![image](https://user-images.githubusercontent.com/69002486/205324516-95869374-67ae-4e04-825d-7a6a256dd5f8.png)
 
