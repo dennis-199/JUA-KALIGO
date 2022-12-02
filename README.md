@@ -16,7 +16,8 @@ Customer Layout, Designed using 5 framnets inside one activity
 
 shops dispaly 
 Products of that particular shop selected will be displayed upon selecting a particular shop, below is the image 
-![image](https://user-images.githubusercontent.com/69002486/205143520-be27b353-7c63-4034-a464-a5e8fd0fd134.png)
+![image](https://user-images.githubusercontent.com/69002486/205143520-be27b353-7c63-4034-a464-a5e8fd0fd134.png) ![image](https://user-images.githubusercontent.com/69002486/205324516-95869374-67ae-4e04-825d-7a6a256dd5f8.png)
+
 
 
 
