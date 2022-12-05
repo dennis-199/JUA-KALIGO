@@ -25,9 +25,7 @@ below is the image
 
 
 Adding poduct to cart. You can add a product to cart add apply a promotion code if you have any,
-after adding the product to cart you confirm the order 
-![image](https://user-images.githubusercontent.com/69002486/205568005-d3585615-9619-4144-8488-996135520476.png)
-![image](https://user-images.githubusercontent.com/69002486/205568050-2b5b81ee-0919-440d-a892-fc44b1dafba6.png)
+after adding the product to cart you confirm the order ![image](https://user-images.githubusercontent.com/69002486/205568005-d3585615-9619-4144-8488-996135520476.png) ![image](https://user-images.githubusercontent.com/69002486/205568050-2b5b81ee-0919-440d-a892-fc44b1dafba6.png)
 
 
 
