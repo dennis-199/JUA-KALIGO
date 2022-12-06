@@ -29,6 +29,10 @@ after adding the product to cart you confirm the order
 
 ![image](https://user-images.githubusercontent.com/69002486/205568005-d3585615-9619-4144-8488-996135520476.png) ![image](https://user-images.githubusercontent.com/69002486/205568050-2b5b81ee-0919-440d-a892-fc44b1dafba6.png)
 
+orders view
+![image](https://user-images.githubusercontent.com/69002486/205991938-f9f1ecba-94e2-4224-8e55-7150a30df015.png)
+
+
 
 
 
