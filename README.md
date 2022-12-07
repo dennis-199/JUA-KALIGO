@@ -34,6 +34,8 @@ orders view
 ![image](https://user-images.githubusercontent.com/69002486/205991938-f9f1ecba-94e2-4224-8e55-7150a30df015.png)
 
 order details
+![image](https://user-images.githubusercontent.com/69002486/206227294-2d9a9bff-2138-44a1-8a32-f620349eba71.png)
+
 
 
 
