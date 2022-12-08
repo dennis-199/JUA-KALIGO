@@ -36,8 +36,8 @@ order details
 
 ![image](https://user-images.githubusercontent.com/69002486/206227294-2d9a9bff-2138-44a1-8a32-f620349eba71.png)
 
-Lipa na mpesa has been integrated and upon pressing on the button pay now an mpesa push up will be sent to your phone to input your pin 
-as shown below
+Lipa na mpesa has been integrated and upon pressing on the button pay now an mpesa push up will be sent to
+your phone to input your pin as shown below
 ![image](https://user-images.githubusercontent.com/69002486/206411209-28a2e7d5-3ef1-44c7-97c0-ebfc2fccd430.png)
 
 
