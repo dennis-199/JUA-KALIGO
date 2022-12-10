@@ -41,6 +41,8 @@ your phone to input your pin as shown below
 
 ![image](https://user-images.githubusercontent.com/69002486/206411209-28a2e7d5-3ef1-44c7-97c0-ebfc2fccd430.png)
 
+order view seller
+
 
 
 
