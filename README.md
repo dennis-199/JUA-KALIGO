@@ -57,6 +57,8 @@ additional reports
 ![image](https://user-images.githubusercontent.com/69002486/206990959-71b1fb1c-22e0-4940-bf1c-6996870865aa.png)
 
 Firebase messaging report
+![image](https://user-images.githubusercontent.com/69002486/207282010-f81f9b59-0d86-4b94-a2f2-b1f993b300c8.png)
+
 
 
 
