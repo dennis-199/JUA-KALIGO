@@ -60,6 +60,8 @@ Firebase messaging report
 ![image](https://user-images.githubusercontent.com/69002486/207282010-f81f9b59-0d86-4b94-a2f2-b1f993b300c8.png)
 
 server error  report
+![image](https://user-images.githubusercontent.com/69002486/207612938-d8350777-bbc3-4760-b66c-bbe35eb86268.png)
+
 
 
 
