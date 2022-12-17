@@ -63,6 +63,8 @@ server error  report
 ![image](https://user-images.githubusercontent.com/69002486/207612938-d8350777-bbc3-4760-b66c-bbe35eb86268.png)
 
 firebase user activity 
+![image](https://user-images.githubusercontent.com/69002486/208263399-4580cedb-5677-403d-8530-7544475091d1.png)
+
 
 
 
