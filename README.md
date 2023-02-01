@@ -72,7 +72,7 @@ no of user in a country
 ![image](https://user-images.githubusercontent.com/69002486/208884937-731ae7d8-67df-48ff-9d7c-87cc68e4e35e.png)
 
 proceeding to publish in play store
-to be done soon, vamos!!!!!
+to be done soon, vamos!!!!
 
 
 
